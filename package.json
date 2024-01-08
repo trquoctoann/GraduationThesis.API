@@ -1,0 +1,16 @@
+{
+    "scripts": {
+        "docker:db:down": "docker-compose -f src/main/docker/mysql.yml down",
+        "docker:db:up": "docker-compose -f src/main/docker/mysql.yml up -d",
+        "prepare": "husky install",
+        "prettier:check": "prettier --check \"{,src/**/}*.{md,json,yml,html,java}\"",
+        "prettier:format": "prettier --write \"{,src/**/}*.{md,json,yml,html,java}\""
+    },
+    "devDependencies": {
+        "husky": "^8.0.3",
+        "lint-staged": "^15.2.0",
+        "prettier": "2.3.1",
+        "prettier-plugin-java": "2.3.1",
+        "prettier-plugin-packagejson": "2.4.6"
+    }
+}
