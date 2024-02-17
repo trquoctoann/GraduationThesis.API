@@ -5,6 +5,7 @@ import com.cheems.pizzatalk.constant.LoginConstants;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -61,13 +62,25 @@ public class UserEntity extends AbstractAuditingEntity {
     @Column(name = "lang_key", length = 5, nullable = false)
     private String langKey;
 
+    @Size(max = 20)
+    @Column(name = "activation_key", length = 20)
+    @JsonIgnore
+    private String activationKey;
+
+    @Column(name = "activation_date")
+    private Instant activationDate = null;
+
+    @Size(max = 20)
+    @Column(name = "reset_key", length = 20)
+    @JsonIgnore
+    private String resetKey;
+
+    @Column(name = "reset_date")
+    private Instant resetDate = null;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties(value = { "user", "role" }, allowSetters = true)
     private Set<UserRoleEntity> userRoles = new HashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
-    private Set<UserKeyEntity> userKeys = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -186,6 +199,58 @@ public class UserEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public String getActivationKey() {
+        return this.activationKey;
+    }
+
+    public void setActivationKey(String activationKey) {
+        this.activationKey = activationKey;
+    }
+
+    public UserEntity activationKey(String activationKey) {
+        this.activationKey = activationKey;
+        return this;
+    }
+
+    public Instant getActivationDate() {
+        return this.activationDate;
+    }
+
+    public void setActivationDate(Instant activationDate) {
+        this.activationDate = activationDate;
+    }
+
+    public UserEntity activationDate(Instant activationDate) {
+        this.activationDate = activationDate;
+        return this;
+    }
+
+    public String getResetKey() {
+        return this.resetKey;
+    }
+
+    public void setResetKey(String resetKey) {
+        this.resetKey = resetKey;
+    }
+
+    public UserEntity resetKey(String resetKey) {
+        this.resetKey = resetKey;
+        return this;
+    }
+
+    public Instant getResetDate() {
+        return this.resetDate;
+    }
+
+    public void setResetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+    }
+
+    public UserEntity resetDate(Instant resetDate) {
+        this.resetDate = resetDate;
+        return this;
+    }
+
     public Set<UserRoleEntity> getUserRoles() {
         return this.userRoles;
     }
@@ -214,37 +279,6 @@ public class UserEntity extends AbstractAuditingEntity {
     public UserEntity removeUserRole(UserRoleEntity userRole) {
         userRole.setUser(null);
         this.userRoles.remove(userRole);
-        return this;
-    }
-
-    public Set<UserKeyEntity> getUserKeys() {
-        return this.userKeys;
-    }
-
-    public void setUserKeys(Set<UserKeyEntity> userKeys) {
-        if (this.userKeys != null) {
-            this.userKeys.forEach(userKey -> userKey.setUser(null));
-        }
-        if (userKeys != null) {
-            userKeys.forEach(userKey -> userKey.setUser(this));
-        }
-        this.userKeys = userKeys;
-    }
-
-    public UserEntity userKeys(Set<UserKeyEntity> userKeys) {
-        this.setUserKeys(userKeys);
-        return this;
-    }
-
-    public UserEntity addUserKey(UserKeyEntity userKey) {
-        userKey.setUser(this);
-        this.userKeys.add(userKey);
-        return this;
-    }
-
-    public UserEntity removeUserKey(UserKeyEntity userKey) {
-        userKey.setUser(null);
-        this.userKeys.remove(userKey);
         return this;
     }
 

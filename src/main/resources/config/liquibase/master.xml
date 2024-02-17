@@ -18,6 +18,4 @@
     <include file="config/liquibase/changelog/20240108000200_added_table_Role.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240108000600_added_table_UserRole.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240108000800_added_table_constraints_UserRole.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20240108001100_added_table_UserKey.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20240108001400_added_table_constraints_UserKey.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

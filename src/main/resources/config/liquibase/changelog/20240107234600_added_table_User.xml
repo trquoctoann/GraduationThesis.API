@@ -29,6 +29,10 @@
             <column name="lang_key" type="varchar(5)">
                 <constraints nullable="false"/>
             </column>
+            <column name="activation_key" type="varchar(20)"/>
+            <column name="activation_date" type="datetime"/>
+            <column name="reset_key" type="varchar(20)"/>
+            <column name="reset_date" type="datetime"/>
             <column name="created_by" type="varchar(50)"/>
             <column name="created_date" type="datetime"/>
             <column name="last_modified_by" type="varchar(50)"/>

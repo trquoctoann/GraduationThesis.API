@@ -6,6 +6,8 @@ public final class AuthorityConstants {
 
     public static final String ADMINISTRATOR = "Administrator";
 
+    public static final String STAFF = "Staff";
+
     public static final String USER = "User";
 
     public static final String CHATBOT = "Chatbot";
