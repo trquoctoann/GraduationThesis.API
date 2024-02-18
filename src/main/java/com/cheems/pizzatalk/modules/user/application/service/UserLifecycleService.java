@@ -8,6 +8,7 @@ import com.cheems.pizzatalk.modules.role.application.port.in.share.QueryRoleUseC
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
+import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserPasswordCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
@@ -59,17 +60,18 @@ public class UserLifecycleService implements UserLifecycleUseCase {
     @Override
     public User create(CreateUserCommand command) {
         log.debug("Creating user: {}", command);
-        Optional<User> existUser = queryUserUseCase.findByUsername(command.getUsername());
-        if (existUser.isPresent()) {
+        if (queryUserUseCase.findByUsername(command.getUsername()).isPresent()) {
             throw new BusinessException("Username already exists");
+        } else if (queryUserUseCase.findByEmail(command.getEmail()).isPresent()) {
+            throw new BusinessException("Email already exists");
         }
 
         User user = objectMapper.convertValue(command, User.class);
         setUserDefaultValue(user);
         String encryptedPassword = passwordEncoder.encode(command.getRawPassword());
         user.setPassword(encryptedPassword);
-        Set<Role> roles = new HashSet<>();
 
+        Set<Role> roles = new HashSet<>();
         if (command.getRoleIds().size() > 0) {
             for (Long roleId : command.getRoleIds()) {
                 Role role = queryRoleUseCase.getById(roleId);
@@ -81,6 +83,7 @@ public class UserLifecycleService implements UserLifecycleUseCase {
             roles.add(queryRoleUseCase.getByAuthority(AuthorityConstants.USER));
         }
         user.setRoles(roles);
+
         user = userPort.save(user);
         log.debug("Created user: {}", command);
         return user;
@@ -94,7 +97,13 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         User user = objectMapper.convertValue(command, User.class);
         user.setId(existUser.getId());
         user.setUsername(existUser.getUsername());
+        user.setEmail(existUser.getEmail());
+        user.setActivationKey(existUser.getActivationKey());
+        user.setActivationDate(existUser.getActivationDate());
+        user.setResetKey(existUser.getResetKey());
+        user.setResetDate(existUser.getResetDate());
         user.setStatus(existUser.getStatus());
+        user.setRoles(existUser.getRoles());
 
         user = userPort.save(user);
         log.debug("Updated user, id: {}", command.getId());
@@ -164,7 +173,10 @@ public class UserLifecycleService implements UserLifecycleUseCase {
     }
 
     @Override
-    public Optional<User> resetPassword(String newPassword, String resetKey) {
+    public Optional<User> resetPassword(UpdateUserPasswordCommand command) {
+        String resetKey = command.getKey();
+        String newPassword = command.getNewPassword();
+
         log.debug("Reset user password for reset key {}", resetKey);
         StringFilter resetKeyFilter = new StringFilter();
         resetKeyFilter.setEquals(resetKey);
