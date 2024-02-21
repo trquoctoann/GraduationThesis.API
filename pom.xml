@@ -17,7 +17,7 @@
 		<java.version>11</java.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.24</lombok.version>
-		<hibernate.version>5.4.32.Final</hibernate.version>
+		<hibernate.version>5.6.15.Final</hibernate.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -90,6 +90,14 @@
             <scope>provided</scope>
         </dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>	
@@ -118,7 +126,7 @@
 					<url>jdbc:mysql://localhost:3306/pizzatalk</url>
 					<defaultSchemaName>pizzatalk</defaultSchemaName>
 					<username>root</username>
-					<password></password>
+					<password>Toan972002</password>
 					<logging>debug</logging>
 				</configuration>
 			</plugin>
