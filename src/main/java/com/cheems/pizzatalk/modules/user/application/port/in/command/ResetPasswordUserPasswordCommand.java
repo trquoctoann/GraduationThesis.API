@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UpdateUserPasswordCommand extends CommandSelfValidating<UpdateUserPasswordCommand> {
+public class ResetPasswordUserPasswordCommand extends CommandSelfValidating<ResetPasswordUserPasswordCommand> {
 
     @NotNull
     private String key;

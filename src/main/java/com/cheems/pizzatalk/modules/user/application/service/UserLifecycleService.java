@@ -1,24 +1,18 @@
 package com.cheems.pizzatalk.modules.user.application.service;
 
 import com.cheems.pizzatalk.common.exception.BusinessException;
-import com.cheems.pizzatalk.common.filter.StringFilter;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
-import com.cheems.pizzatalk.entities.filter.UserStatusFilter;
 import com.cheems.pizzatalk.modules.role.application.port.in.share.QueryRoleUseCase;
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
-import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserPasswordCommand;
-import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
 import com.cheems.pizzatalk.security.AuthorityConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.time.Instant;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
@@ -126,74 +120,6 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         user.setStatus(UserStatus.DELETED);
         userPort.save(user);
         log.debug("Deleted user, id: {}", username);
-    }
-
-    @Override
-    public Optional<User> activateUser(String activationKey) {
-        log.debug("Activating user for activation key: {}", activationKey);
-        StringFilter activationKeyFilter = new StringFilter();
-        activationKeyFilter.setEquals(activationKey);
-
-        UserCriteria criteria = new UserCriteria();
-        criteria.setActivationKey(activationKeyFilter);
-
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setStatus(UserStatus.ACTIVATED);
-                user.setActivationKey(null);
-                user.setActivationDate(Instant.now());
-                user = userPort.save(user);
-                log.debug("User {} has been activated", user.getId());
-                return user;
-            });
-    }
-
-    @Override
-    public Optional<User> requestResetPassword(String email) {
-        log.debug("Requesting reset password for user has email: {}", email);
-        StringFilter emailFilter = new StringFilter();
-        emailFilter.setEquals(email);
-
-        UserStatusFilter userStatusFilter = new UserStatusFilter();
-        userStatusFilter.setEquals(UserStatus.ACTIVATED);
-
-        UserCriteria criteria = new UserCriteria();
-        criteria.setEmail(emailFilter);
-        criteria.setStatus(userStatusFilter);
-
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setResetKey(RandomStringUtils.randomNumeric(20));
-                user = userPort.save(user);
-                log.debug("Reset key has been created for user {}", user.getId());
-                return user;
-            });
-    }
-
-    @Override
-    public Optional<User> resetPassword(UpdateUserPasswordCommand command) {
-        String resetKey = command.getKey();
-        String newPassword = command.getNewPassword();
-
-        log.debug("Reset user password for reset key {}", resetKey);
-        StringFilter resetKeyFilter = new StringFilter();
-        resetKeyFilter.setEquals(resetKey);
-
-        UserCriteria criteria = new UserCriteria();
-        criteria.setResetKey(resetKeyFilter);
-
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setPassword(passwordEncoder.encode(newPassword));
-                user.setResetKey(resetKey);
-                user.setResetDate(Instant.now());
-                user = userPort.save(user);
-                log.debug("Reset password successfully for user {}", user.getId());
-                return user;
-            });
     }
 
     private void setUserDefaultValue(User user) {
