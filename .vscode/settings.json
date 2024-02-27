@@ -2,4 +2,5 @@
     "editor.formatOnSave": true,
     "java.compile.nullAnalysis.mode": "disabled",
     "java.configuration.updateBuildConfiguration": "interactive",
+    "terminal.integrated.scrollback": 100000
 }
