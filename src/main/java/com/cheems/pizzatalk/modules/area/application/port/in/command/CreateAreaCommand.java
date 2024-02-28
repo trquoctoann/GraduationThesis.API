@@ -13,7 +13,6 @@ import lombok.ToString;
 @ToString
 public class CreateAreaCommand extends CommandSelfValidating<CreateAreaCommand> {
 
-    @NotNull
     private Long originalId;
 
     @NotNull

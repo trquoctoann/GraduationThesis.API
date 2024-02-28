@@ -19,8 +19,7 @@ public class AreaEntity extends AbstractAuditingEntity {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    @NotNull
-    @Column(name = "original_id", unique = true, nullable = false)
+    @Column(name = "original_id")
     private Long originalId;
 
     @NotNull

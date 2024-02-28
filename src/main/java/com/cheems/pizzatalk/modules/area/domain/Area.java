@@ -14,7 +14,6 @@ public class Area implements Serializable {
 
     private Long id;
 
-    @NotNull
     private Long originalId;
 
     @NotNull

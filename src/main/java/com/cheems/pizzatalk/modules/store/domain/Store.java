@@ -13,7 +13,6 @@ public class Store implements Serializable {
 
     private Long id;
 
-    @NotNull
     private Long originalId;
 
     @NotNull

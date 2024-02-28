@@ -12,7 +12,6 @@ import lombok.ToString;
 @ToString
 public class CreateStoreCommand extends CommandSelfValidating<CreateStoreCommand> {
 
-    @NotNull
     private Long originalId;
 
     @NotNull
