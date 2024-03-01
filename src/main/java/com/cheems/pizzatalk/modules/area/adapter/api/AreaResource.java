@@ -86,7 +86,7 @@ public class AreaResource {
         Area area = areaLifecycleUseCase.create(command);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(new URI("/api/users/" + area.getId()));
+        headers.setLocation(new URI("/api/areas/" + area.getId()));
         headers.add("X-applicationName-alert", "entity.creation.success");
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + area.getId().toString());
 

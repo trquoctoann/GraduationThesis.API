@@ -86,7 +86,7 @@ public class StoreResource {
         Store store = storeLifecycleUseCase.create(command);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(new URI("/api/users/" + store.getId()));
+        headers.setLocation(new URI("/api/stores/" + store.getId()));
         headers.add("X-applicationName-alert", "entity.creation.success");
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + store.getId().toString());
 
