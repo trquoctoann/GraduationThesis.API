@@ -13,8 +13,6 @@ import lombok.ToString;
 @ToString
 public class CreateCategoryCommand extends CommandSelfValidating<CreateCategoryCommand> {
 
-    private Long originalId;
-
     @NotNull
     @Size(max = 50)
     private String name;

@@ -19,8 +19,6 @@ public class AreaCriteria extends QuerySelfValidating<AreaCriteria> implements S
 
     private RangeFilter<Long> id;
 
-    private RangeFilter<Long> originalId;
-
     private StringFilter name;
 
     private StringFilter code;
@@ -39,7 +37,6 @@ public class AreaCriteria extends QuerySelfValidating<AreaCriteria> implements S
 
     public AreaCriteria(AreaCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.originalId = other.originalId == null ? null : other.originalId.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.code = other.code == null ? null : other.code.copy();
         this.brandCode = other.brandCode == null ? null : other.brandCode.copy();

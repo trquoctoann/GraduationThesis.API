@@ -14,8 +14,6 @@ public class Area implements Serializable {
 
     private Long id;
 
-    private Long originalId;
-
     @NotNull
     @Size(max = 100)
     private String name;

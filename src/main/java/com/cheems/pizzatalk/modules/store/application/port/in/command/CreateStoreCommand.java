@@ -12,8 +12,6 @@ import lombok.ToString;
 @ToString
 public class CreateStoreCommand extends CommandSelfValidating<CreateStoreCommand> {
 
-    private Long originalId;
-
     @NotNull
     @Size(max = 200)
     private String name;

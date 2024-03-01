@@ -19,9 +19,6 @@ public class AreaEntity extends AbstractAuditingEntity {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    @Column(name = "original_id")
-    private Long originalId;
-
     @NotNull
     @Size(max = 100)
     @Column(name = "name", length = 100, nullable = false)
@@ -65,19 +62,6 @@ public class AreaEntity extends AbstractAuditingEntity {
 
     public AreaEntity id(Long id) {
         this.id = id;
-        return this;
-    }
-
-    public Long getOriginalId() {
-        return this.originalId;
-    }
-
-    public void setOriginalId(Long originalId) {
-        this.originalId = originalId;
-    }
-
-    public AreaEntity originalId(Long originalId) {
-        this.originalId = originalId;
         return this;
     }
 
@@ -212,9 +196,6 @@ public class AreaEntity extends AbstractAuditingEntity {
             "Area{" +
             "id=" +
             getId() +
-            ", originalId='" +
-            getOriginalId() +
-            "'" +
             ", name='" +
             getName() +
             "'" +

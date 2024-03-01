@@ -71,7 +71,6 @@ public class StoreLifecycleService implements StoreLifecycleUseCase {
 
         Store store = objectMapper.convertValue(command, Store.class);
         store.setId(existStore.getId());
-        store.setOriginalId(existStore.getOriginalId());
 
         log.debug("Updated store, id: {}", command.getId());
         return store;

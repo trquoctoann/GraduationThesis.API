@@ -20,8 +20,6 @@ public class StoreCriteria extends QuerySelfValidating<StoreCriteria> implements
 
     private RangeFilter<Long> id;
 
-    private RangeFilter<Long> originalId;
-
     private StringFilter name;
 
     private StringFilter address;
@@ -56,7 +54,6 @@ public class StoreCriteria extends QuerySelfValidating<StoreCriteria> implements
 
     public StoreCriteria(StoreCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.originalId = other.originalId == null ? null : other.originalId.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.address = other.address == null ? null : other.address.copy();
         this.phoneNumber = other.phoneNumber == null ? null : other.phoneNumber.copy();

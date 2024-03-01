@@ -18,9 +18,6 @@ public class CategoryEntity extends AbstractAuditingEntity {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    @Column(name = "original_id")
-    private Long originalId;
-
     @NotNull
     @Size(max = 50)
     @Column(name = "name", length = 50, unique = true, nullable = false)
@@ -53,19 +50,6 @@ public class CategoryEntity extends AbstractAuditingEntity {
 
     public CategoryEntity id(Long id) {
         this.id = id;
-        return this;
-    }
-
-    public Long getOriginalId() {
-        return this.originalId;
-    }
-
-    public void setOriginalId(Long originalId) {
-        this.originalId = originalId;
-    }
-
-    public CategoryEntity originalId(Long originalId) {
-        this.originalId = originalId;
         return this;
     }
 
@@ -174,9 +158,6 @@ public class CategoryEntity extends AbstractAuditingEntity {
             "Category{" +
             "id=" +
             getId() +
-            ", originalId='" +
-            getOriginalId() +
-            "'" +
             ", name='" +
             getName() +
             "'" +

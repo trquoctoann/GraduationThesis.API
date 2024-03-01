@@ -13,8 +13,6 @@ import lombok.ToString;
 @ToString
 public class CreateAreaCommand extends CommandSelfValidating<CreateAreaCommand> {
 
-    private Long originalId;
-
     @NotNull
     @Size(max = 100)
     private String name;

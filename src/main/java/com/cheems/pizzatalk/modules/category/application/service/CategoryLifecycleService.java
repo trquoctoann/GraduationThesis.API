@@ -52,7 +52,6 @@ public class CategoryLifecycleService implements CategoryLifecycleUseCase {
 
         Category category = objectMapper.convertValue(command, Category.class);
         category.setId(existCategory.getId());
-        category.setOriginalId(existCategory.getOriginalId());
         category.setName(existCategory.getName());
 
         category = categoryPort.save(category);

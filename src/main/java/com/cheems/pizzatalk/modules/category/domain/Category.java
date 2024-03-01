@@ -15,8 +15,6 @@ public class Category implements Serializable {
 
     private Long id;
 
-    private Long originalId;
-
     @NotNull
     @Size(max = 50)
     private String name;

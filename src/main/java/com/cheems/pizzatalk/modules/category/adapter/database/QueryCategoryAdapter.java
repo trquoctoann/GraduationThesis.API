@@ -81,9 +81,6 @@ public class QueryCategoryAdapter extends QueryService<CategoryEntity> implement
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), CategoryEntity_.id));
             }
-            if (criteria.getOriginalId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getOriginalId(), CategoryEntity_.originalId));
-            }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), CategoryEntity_.name));
             }

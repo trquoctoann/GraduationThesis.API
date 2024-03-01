@@ -76,9 +76,6 @@ public class QueryStoreAdapter extends QueryService<StoreEntity> implements Quer
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), StoreEntity_.id));
             }
-            if (criteria.getOriginalId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getOriginalId(), StoreEntity_.originalId));
-            }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), StoreEntity_.name));
             }

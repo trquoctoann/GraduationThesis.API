@@ -17,9 +17,6 @@ public class StoreEntity extends AbstractAuditingEntity {
     @Access(AccessType.PROPERTY)
     private Long id;
 
-    @Column(name = "original_id")
-    private Long originalId;
-
     @NotNull
     @Size(max = 200)
     @Column(name = "name", length = 200, nullable = false)
@@ -93,19 +90,6 @@ public class StoreEntity extends AbstractAuditingEntity {
 
     public StoreEntity id(Long id) {
         this.id = id;
-        return this;
-    }
-
-    public Long getOriginalId() {
-        return this.originalId;
-    }
-
-    public void setOriginalId(Long originalId) {
-        this.originalId = originalId;
-    }
-
-    public StoreEntity originalId(Long originalId) {
-        this.originalId = originalId;
         return this;
     }
 
@@ -326,9 +310,6 @@ public class StoreEntity extends AbstractAuditingEntity {
             "Store{" +
             "id=" +
             getId() +
-            ", originalId='" +
-            getOriginalId() +
-            "'" +
             ", name='" +
             getName() +
             "'" +

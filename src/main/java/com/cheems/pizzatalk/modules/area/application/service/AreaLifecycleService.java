@@ -52,7 +52,6 @@ public class AreaLifecycleService implements AreaLifecycleUseCase {
 
         Area area = objectMapper.convertValue(command, Area.class);
         area.setId(existArea.getId());
-        area.setOriginalId(existArea.getOriginalId());
         area.setCode(existArea.getCode());
 
         areaPort.save(area);

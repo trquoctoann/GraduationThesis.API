@@ -19,8 +19,6 @@ public class CategoryCriteria extends QuerySelfValidating<CategoryCriteria> impl
 
     private RangeFilter<Long> id;
 
-    private RangeFilter<Long> originalId;
-
     private StringFilter name;
 
     private StringFilter description;
@@ -35,7 +33,6 @@ public class CategoryCriteria extends QuerySelfValidating<CategoryCriteria> impl
 
     public CategoryCriteria(CategoryCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.originalId = other.originalId == null ? null : other.originalId.copy();
         this.name = other.name == null ? null : other.name.copy();
         this.description = other.description == null ? null : other.description.copy();
         this.status = other.status == null ? null : other.status.copy();

@@ -77,9 +77,6 @@ public class QueryAreaAdapter extends QueryService<AreaEntity> implements QueryA
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), AreaEntity_.id));
             }
-            if (criteria.getOriginalId() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getOriginalId(), AreaEntity_.originalId));
-            }
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), AreaEntity_.name));
             }

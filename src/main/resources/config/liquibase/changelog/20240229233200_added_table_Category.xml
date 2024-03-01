@@ -11,7 +11,6 @@
             <column name="id" type="bigint" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="original_id" type="bigint"/>
             <column name="name" type="varchar(100)">
                 <constraints unique="true" nullable="false" uniqueConstraintName="unique_category_name"/>
             </column>
