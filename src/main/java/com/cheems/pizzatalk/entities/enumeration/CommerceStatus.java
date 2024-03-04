@@ -4,4 +4,5 @@ public enum CommerceStatus {
     ACTIVE,
     INACTIVE,
     DISCONTINUED,
+    UPCOMING,
 }
