@@ -14,11 +14,13 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
     String DOMAIN_CATEGORY = "category";
     String DOMAIN_PRODUCT_VARIATIONS = "productVariations";
     String DOMAIN_OPTIONS = "options";
+    String DOMAIN_OPTION_DETAILS = "optionDetails";
 
     String ENTITY_PARENT_PRODUCT = "parentProduct";
     String ENTITY_CATEGORY = "category";
     String ENTITY_PRODUCT_VARIATIONS = "productVariations";
     String ENTITY_OPTIONS = "productOptions.option";
+    String ENTITY_OPTION_DETAILS = "productOptions.productOptionDetails.optionDetail";
 
     @Override
     @Mapping(target = "parentProduct", source = "parentProductId")
@@ -51,6 +53,9 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
                 } 
                 if (domainAttribute.equals(DOMAIN_OPTIONS)) {
                     entityAttributes.add(ENTITY_OPTIONS);
+                }
+                if (domainAttribute.equals(DOMAIN_OPTION_DETAILS)) {
+                    entityAttributes.add(ENTITY_OPTION_DETAILS);
                 }
             });
         return entityAttributes;
