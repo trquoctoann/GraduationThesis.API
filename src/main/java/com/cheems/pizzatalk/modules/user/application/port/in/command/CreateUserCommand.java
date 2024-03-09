@@ -34,5 +34,5 @@ public class CreateUserCommand extends CommandSelfValidating<CreateUserCommand> 
 
     private String langKey;
 
-    private Set<Long> roleIds;
+    private Set<String> roleNames;
 }

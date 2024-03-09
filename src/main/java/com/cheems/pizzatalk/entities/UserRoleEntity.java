@@ -15,11 +15,11 @@ public class UserRoleEntity implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "userRoles", "userKeys" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "userRoles" }, allowSetters = true)
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "userRoles" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "userRoles", "rolePermissions" }, allowSetters = true)
     private RoleEntity role;
 
     public Long getId() {

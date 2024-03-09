@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.store.application.port.in.query.StoreCriteri
 import com.cheems.pizzatalk.modules.store.application.port.in.share.QueryStoreUseCase;
 import com.cheems.pizzatalk.modules.store.application.port.in.share.StoreLifecycleUseCase;
 import com.cheems.pizzatalk.modules.store.domain.Store;
-import com.cheems.pizzatalk.security.AuthorityConstants;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

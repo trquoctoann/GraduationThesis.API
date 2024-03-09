@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.deal.application.port.in.query.DealCriteria;
 import com.cheems.pizzatalk.modules.deal.application.port.in.share.DealLifecycleUseCase;
 import com.cheems.pizzatalk.modules.deal.application.port.in.share.QueryDealUseCase;
 import com.cheems.pizzatalk.modules.deal.domain.Deal;
-import com.cheems.pizzatalk.security.AuthorityConstants;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

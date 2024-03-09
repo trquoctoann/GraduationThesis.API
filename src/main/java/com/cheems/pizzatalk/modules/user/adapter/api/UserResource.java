@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
 import com.cheems.pizzatalk.modules.user.domain.User;
-import com.cheems.pizzatalk.security.AuthorityConstants;
 import com.cheems.pizzatalk.service.MailService;
 import java.net.URI;
 import java.net.URISyntaxException;

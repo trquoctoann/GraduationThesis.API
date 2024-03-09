@@ -10,8 +10,10 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface UserMapper extends EntityMapper<User, UserEntity> {
     String DOMAIN_ROLE = "roles";
+    String DOMAIN_PERMISSION = "permissions";
 
     String ENTITY_ROLE = "userRoles.role";
+    String ENTITY_PERMISSION = "userRoles.role.rolePermissions.permission";
 
     // prettier-ignore
     default Set<String> toEntityAttributes(Set<String> domainAttributes) {
@@ -20,6 +22,9 @@ public interface UserMapper extends EntityMapper<User, UserEntity> {
             domainAttribute -> {
                 if (domainAttribute.equals(DOMAIN_ROLE)) {
                     entityAttributes.add(ENTITY_ROLE);
+                }
+                if (domainAttribute.equals(DOMAIN_PERMISSION)) {
+                    entityAttributes.add(ENTITY_PERMISSION);
                 }
             });
         return entityAttributes;

@@ -41,19 +41,19 @@ public class QueryRoleService implements QueryRoleUseCase {
     }
 
     @Override
-    public Optional<Role> findByAuthority(String authority) {
+    public Optional<Role> findByName(String name) {
         RoleCriteria criteria = new RoleCriteria();
 
-        StringFilter authorityFilter = new StringFilter();
-        authorityFilter.setEquals(authority);
-        criteria.setAuthority(authorityFilter);
+        StringFilter nameFilter = new StringFilter();
+        nameFilter.setEquals(name);
+        criteria.setName(nameFilter);
 
         return findByCriteria(criteria);
     }
 
     @Override
-    public Role getByAuthority(String authority) {
-        return findByAuthority(authority).orElseThrow(() -> new BusinessException("Not found role with authority: " + authority));
+    public Role getByName(String name) {
+        return findByName(name).orElseThrow(() -> new BusinessException("Not found role with name: " + name));
     }
 
     @Override

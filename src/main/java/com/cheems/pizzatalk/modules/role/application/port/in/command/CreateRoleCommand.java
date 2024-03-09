@@ -12,5 +12,5 @@ import lombok.ToString;
 public class CreateRoleCommand extends CommandSelfValidating<CreateRoleCommand> {
 
     @NotNull
-    private String authority;
+    private String name;
 }

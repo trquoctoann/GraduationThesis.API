@@ -6,13 +6,13 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="20240108000200-1" author="trquoctoan">
-        <createTable tableName="role">
+    <changeSet id="20240309203700-1" author="trquoctoan">
+        <createTable tableName="permission">
             <column name="id" type="bigint" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
-                <constraints unique="true" nullable="false" uniqueConstraintName="unique_role_name"/>
+                <constraints unique="true" nullable="false" uniqueConstraintName="unique_permission_name"/>
             </column>
             <column name="created_by" type="varchar(50)"/>
             <column name="created_date" type="datetime"/>

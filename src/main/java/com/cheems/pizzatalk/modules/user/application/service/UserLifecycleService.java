@@ -10,7 +10,7 @@ import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseC
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
-import com.cheems.pizzatalk.security.AuthorityConstants;
+import com.cheems.pizzatalk.security.RoleConstants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashSet;
 import java.util.Set;
@@ -66,16 +66,15 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         user.setPassword(encryptedPassword);
 
         Set<Role> roles = new HashSet<>();
-        if (command.getRoleIds().size() > 0) {
-            for (Long roleId : command.getRoleIds()) {
-                Role role = queryRoleUseCase.getById(roleId);
-                if (!role.getAuthority().equals(AuthorityConstants.ADMINISTRATOR)) {
+        if (command.getRoleNames().size() > 0) {
+            for (String roleName : command.getRoleNames()) {
+                Role role = queryRoleUseCase.getByName(roleName);
+                if (!role.getName().equals(RoleConstants.ADMINISTRATOR)) {
                     roles.add(role);
                 }
             }
-        } else {
-            roles.add(queryRoleUseCase.getByAuthority(AuthorityConstants.USER));
         }
+        roles.add(queryRoleUseCase.getByName(RoleConstants.USER));
         user.setRoles(roles);
 
         user = userPort.save(user);

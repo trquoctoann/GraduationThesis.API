@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.area.application.port.in.query.AreaCriteria;
 import com.cheems.pizzatalk.modules.area.application.port.in.share.AreaLifecycleUseCase;
 import com.cheems.pizzatalk.modules.area.application.port.in.share.QueryAreaUseCase;
 import com.cheems.pizzatalk.modules.area.domain.Area;
-import com.cheems.pizzatalk.security.AuthorityConstants;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

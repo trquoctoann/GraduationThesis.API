@@ -151,6 +151,16 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
                     .collect(Collectors.toSet())
             );
         }
+        if (domainAttributes.contains(UserMapper.DOMAIN_PERMISSION)) {
+            user.setPermissions(
+                userEntity
+                    .getUserRoles()
+                    .stream()
+                    .flatMap(userRoleEntity -> userRoleEntity.getRole().getRolePermissions().stream())
+                    .map(rolePermissionEntity -> rolePermissionEntity.getPermission().getName())
+                    .collect(Collectors.toSet())
+            );
+        }
         return user;
     }
 }

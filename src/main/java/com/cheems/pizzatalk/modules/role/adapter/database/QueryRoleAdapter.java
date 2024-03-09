@@ -44,7 +44,7 @@ public class QueryRoleAdapter extends QueryService<RoleEntity> implements QueryR
             Set<Long> roleIds = roleEntities.stream().map(RoleEntity::getId).collect(Collectors.toSet());
             throw new AdapterException("Found more than one role: " + roleIds);
         }
-        return Optional.of(roleEntities.get(0)).map(roleEntity -> roleMapper.toDomain(roleEntity));
+        return Optional.of(roleEntities.get(0)).map(roleEntity -> toDomainModel(roleEntity, criteria.getFetchAttributes()));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class QueryRoleAdapter extends QueryService<RoleEntity> implements QueryR
         return roleRepository
             .findAll(createSpecification(criteria))
             .stream()
-            .map(roleEntity -> roleMapper.toDomain(roleEntity))
+            .map(roleEntity -> toDomainModel(roleEntity, criteria.getFetchAttributes()))
             .collect(Collectors.toList());
     }
 
@@ -63,16 +63,42 @@ public class QueryRoleAdapter extends QueryService<RoleEntity> implements QueryR
     }
 
     private Specification<RoleEntity> createSpecification(RoleCriteria criteria) {
+        Set<String> domainAttributes = criteria.getFetchAttributes();
         Specification<RoleEntity> specification = Specification.where(null);
         if (criteria != null) {
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), RoleEntity_.id));
             }
-            if (criteria.getAuthority() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getAuthority(), RoleEntity_.authority));
+            if (criteria.getName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getName(), RoleEntity_.name));
+            }
+            if (!CollectionUtils.isEmpty(domainAttributes)) {
+                specification = specification.and(SpecificationUtils.fetchAttributes(roleMapper.toEntityAttributes(domainAttributes)));
             }
             specification = specification.and(SpecificationUtils.distinct(true));
         }
         return specification;
+    }
+
+    private Role toDomainModel(RoleEntity roleEntity, Set<String> domainAttributes) {
+        Role role = roleMapper.toDomain(roleEntity);
+        return enrichRoleDomain(role, roleEntity, domainAttributes);
+    }
+
+    private Role enrichRoleDomain(Role role, RoleEntity roleEntity, Set<String> domainAttributes) {
+        if (CollectionUtils.isEmpty(domainAttributes)) {
+            return role;
+        }
+
+        if (domainAttributes.contains(RoleMapper.DOMAIN_PERMISSION)) {
+            role.setPermissions(
+                roleEntity
+                    .getRolePermissions()
+                    .stream()
+                    .map(rolePermissionEntity -> rolePermissionEntity.getPermission().getName())
+                    .collect(Collectors.toSet())
+            );
+        }
+        return role;
     }
 }

@@ -12,9 +12,9 @@ public interface QueryRoleUseCase {
 
     Role getById(Long id);
 
-    Optional<Role> findByAuthority(String authority);
+    Optional<Role> findByName(String name);
 
-    Role getByAuthority(String authority);
+    Role getByName(String name);
 
     Optional<Role> findByCriteria(RoleCriteria criteria);
 

@@ -1,6 +1,8 @@
 package com.cheems.pizzatalk.modules.role.domain;
 
+import com.cheems.pizzatalk.modules.permission.domain.Permission;
 import java.io.Serializable;
+import java.util.Set;
 import javax.validation.constraints.*;
 import lombok.Data;
 import lombok.ToString;
@@ -13,5 +15,7 @@ public class Role implements Serializable {
 
     @NotNull
     @Size(max = 50)
-    private String authority;
+    private String name;
+
+    private Set<String> permissions;
 }

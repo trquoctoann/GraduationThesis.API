@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.category.application.port.in.query.CategoryC
 import com.cheems.pizzatalk.modules.category.application.port.in.share.CategoryLifecycleUseCase;
 import com.cheems.pizzatalk.modules.category.application.port.in.share.QueryCategoryUseCase;
 import com.cheems.pizzatalk.modules.category.domain.Category;
-import com.cheems.pizzatalk.security.AuthorityConstants;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;

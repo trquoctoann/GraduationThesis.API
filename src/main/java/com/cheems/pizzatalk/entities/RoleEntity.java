@@ -19,12 +19,16 @@ public class RoleEntity extends AbstractAuditingEntity {
 
     @NotNull
     @Size(max = 50)
-    @Column(name = "authority", length = 50, nullable = false)
-    private String authority;
+    @Column(name = "name", length = 50, unique = true, nullable = false)
+    private String name;
 
     @OneToMany(mappedBy = "role")
     @JsonIgnoreProperties(value = { "user", "role" }, allowSetters = true)
     private Set<UserRoleEntity> userRoles = new HashSet<>();
+
+    @OneToMany(mappedBy = "role")
+    @JsonIgnoreProperties(value = { "role", "permission" }, allowSetters = true)
+    private Set<RolePermissionEntity> rolePermissions = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -39,16 +43,16 @@ public class RoleEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public String getAuthority() {
-        return this.authority;
+    public String getName() {
+        return this.name;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public RoleEntity authority(String authority) {
-        this.authority = authority;
+    public RoleEntity name(String name) {
+        this.name = name;
         return this;
     }
 
@@ -83,6 +87,37 @@ public class RoleEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public Set<RolePermissionEntity> getRolePermissions() {
+        return this.rolePermissions;
+    }
+
+    public void setRolePermissions(Set<RolePermissionEntity> rolePermissions) {
+        if (this.rolePermissions != null) {
+            this.rolePermissions.forEach(rolePermission -> rolePermission.setRole(null));
+        }
+        if (rolePermissions != null) {
+            rolePermissions.forEach(rolePermission -> rolePermission.setRole(this));
+        }
+        this.rolePermissions = rolePermissions;
+    }
+
+    public RoleEntity rolePermissions(Set<RolePermissionEntity> rolePermissions) {
+        this.setRolePermissions(rolePermissions);
+        return this;
+    }
+
+    public RoleEntity addRolePermission(RolePermissionEntity rolePermission) {
+        rolePermission.setRole(this);
+        this.rolePermissions.add(rolePermission);
+        return this;
+    }
+
+    public RoleEntity removeRolePermission(RolePermissionEntity rolePermission) {
+        rolePermission.setRole(null);
+        this.rolePermissions.remove(rolePermission);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,6 +136,6 @@ public class RoleEntity extends AbstractAuditingEntity {
 
     @Override
     public String toString() {
-        return ("Role{" + "id=" + getId() + ", authority='" + getAuthority() + "'" + "}");
+        return ("Role{" + "id=" + getId() + ", name='" + getName() + "'" + "}");
     }
 }

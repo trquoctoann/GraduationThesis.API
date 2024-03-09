@@ -20,9 +20,9 @@ public class RoleUserService implements RoleUserUseCase {
     }
 
     @Override
-    public void removeRoleOfUserByRoleId(Long id) {
-        logger.debug("Removing role, id {} for all users", id);
-        rolePort.removeRoleOfUserByRoleId(id);
-        logger.debug("Removed role, id {} for all users", id);
+    public void removeRoleForAllUsers(Long roleId) {
+        logger.debug("Removing role, id {} for all users", roleId);
+        rolePort.removeRoleForAllUsers(roleId);
+        logger.debug("Removed role, id {} for all users", roleId);
     }
 }

@@ -59,4 +59,6 @@ public class User implements Serializable {
     private String langKey;
 
     private Set<Role> roles;
+
+    private Set<String> permissions;
 }
