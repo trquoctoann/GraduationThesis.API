@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240310095800-1" author="trquoctoann">
+        <insert tableName="permission">
+            <column name="name" value="SYSTEM"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="AREA.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="AREA.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="AREA.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="AREA.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="STORE.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="STORE.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="STORE.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="STORE.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CATEGORY.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CATEGORY.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CATEGORY.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CATEGORY.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="DEAL.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="DEAL.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="DEAL.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="DEAL.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION_DETAIL.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION_DETAIL.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION_DETAIL.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="OPTION_DETAIL.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PERMISSION.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PERMISSION.ASSIGN"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PRODUCT.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PRODUCT.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PRODUCT.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="PRODUCT.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ROLE.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ROLE.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ROLE.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ROLE.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ROLE.ASSIGN"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="USER.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="USER.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="USER.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ORDER.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ORDER.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ORDER.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ORDER.DELETE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="ORDER.UPDATE_STATUS"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CART.CREATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CART.READ"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CART.UPDATE"/>
+        </insert>
+        <insert tableName="permission">
+            <column name="name" value="CART.DELETE"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -17,6 +17,10 @@
             <column name="permission_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            <column name="created_by" type="varchar(50)"/>
+            <column name="created_date" type="datetime"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="datetime"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

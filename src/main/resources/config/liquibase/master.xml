@@ -35,4 +35,7 @@
     <include file="config/liquibase/changelog/20240309203700_added_table_Permission.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240309203900_added_table_RolePermission.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240309204000_added_table_constraints_RolePermission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240310095800_added_Permission.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240310102700_added_default_Role.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240310102800_added_default_RolePermission.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
