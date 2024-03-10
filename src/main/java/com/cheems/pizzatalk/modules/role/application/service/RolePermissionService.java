@@ -48,7 +48,7 @@ public class RolePermissionService implements RolePermissionUseCase {
         inRemoveDemandPermissionIds.removeAll(requestSavePermissionIds);
 
         rolePort.removePermissionOfRole(roleId, inRemoveDemandPermissionIds);
-        rolePort.savePermissionToRole(roleId, inRemoveDemandPermissionIds);
+        rolePort.savePermissionToRole(roleId, inSaveDemandPermissionIds);
 
         log.debug("Saved permissions: {}, to role id: {}", permissionNames, roleId);
     }

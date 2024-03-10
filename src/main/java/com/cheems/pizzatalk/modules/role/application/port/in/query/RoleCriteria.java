@@ -20,11 +20,14 @@ public class RoleCriteria extends QuerySelfValidating<RoleCriteria> implements S
 
     private StringFilter name;
 
+    private RangeFilter<Long> userId;
+
     public RoleCriteria() {}
 
     public RoleCriteria(RoleCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
+        this.userId = other.userId == null ? null : other.userId.copy();
     }
 
     @Override

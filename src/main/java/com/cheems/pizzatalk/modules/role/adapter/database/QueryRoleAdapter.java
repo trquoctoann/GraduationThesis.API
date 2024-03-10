@@ -1,10 +1,13 @@
 package com.cheems.pizzatalk.modules.role.adapter.database;
 
 import com.cheems.pizzatalk.common.exception.AdapterException;
+import com.cheems.pizzatalk.common.filter.RangeFilter;
 import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.RoleEntity;
 import com.cheems.pizzatalk.entities.RoleEntity_;
+import com.cheems.pizzatalk.entities.UserRoleEntity;
+import com.cheems.pizzatalk.entities.UserRoleEntity_;
 import com.cheems.pizzatalk.entities.mapper.RoleMapper;
 import com.cheems.pizzatalk.modules.role.application.port.in.query.RoleCriteria;
 import com.cheems.pizzatalk.modules.role.application.port.out.QueryRolePort;
@@ -14,6 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -72,12 +77,25 @@ public class QueryRoleAdapter extends QueryService<RoleEntity> implements QueryR
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), RoleEntity_.name));
             }
+            if (criteria.getUserId() != null) {
+                specification = specification.and(buildSpecificationFindByUserId(criteria.getUserId()));
+            }
             if (!CollectionUtils.isEmpty(domainAttributes)) {
                 specification = specification.and(SpecificationUtils.fetchAttributes(roleMapper.toEntityAttributes(domainAttributes)));
             }
             specification = specification.and(SpecificationUtils.distinct(true));
         }
         return specification;
+    }
+
+    private Specification<RoleEntity> buildSpecificationFindByUserId(RangeFilter<Long> userId) {
+        if (userId.getEquals() != null) {
+            return (root, query, builder) -> {
+                Join<RoleEntity, UserRoleEntity> joinUserRoles = SpecificationUtils.getJoinFetch(root, "userRoles", JoinType.LEFT, false);
+                return builder.equal(joinUserRoles.get(UserRoleEntity_.user), userId.getEquals());
+            };
+        }
+        return null;
     }
 
     private Role toDomainModel(RoleEntity roleEntity, Set<String> domainAttributes) {

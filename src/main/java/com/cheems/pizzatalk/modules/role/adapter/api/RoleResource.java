@@ -1,5 +1,6 @@
 package com.cheems.pizzatalk.modules.role.adapter.api;
 
+import com.cheems.pizzatalk.entities.mapper.RoleMapper;
 import com.cheems.pizzatalk.modules.role.adapter.api.dto.PayloadSavePermissionToRole;
 import com.cheems.pizzatalk.modules.role.application.port.in.command.CreateRoleCommand;
 import com.cheems.pizzatalk.modules.role.application.port.in.command.UpdateRoleCommand;
@@ -10,7 +11,9 @@ import com.cheems.pizzatalk.modules.role.application.port.in.share.RolePermissio
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +54,9 @@ public class RoleResource {
     @GetMapping("/roles")
     public ResponseEntity<List<Role>> getRoles(RoleCriteria criteria) {
         log.debug("REST request to get all roles by criteria: {}", criteria);
+        Set<String> fetchAttributes = new HashSet<>();
+        fetchAttributes.add(RoleMapper.DOMAIN_PERMISSION);
+        criteria.setFetchAttributes(fetchAttributes);
         return ResponseEntity.ok().body(queryRoleUseCase.findListByCriteria(criteria));
     }
 
@@ -58,7 +64,7 @@ public class RoleResource {
     @GetMapping("/roles/{id}")
     public ResponseEntity<Role> getRoleById(@PathVariable(value = "id", required = true) Long id) {
         log.debug("REST request to get role, ID: {}", id);
-        return ResponseEntity.ok().body(queryRoleUseCase.getById(id));
+        return ResponseEntity.ok().body(queryRoleUseCase.getById(id, RoleMapper.DOMAIN_PERMISSION));
     }
 
     // @PreAuthorize("hasAnyAuthority('" + AuthorityConstants.ADMINISTRATOR + "')")
