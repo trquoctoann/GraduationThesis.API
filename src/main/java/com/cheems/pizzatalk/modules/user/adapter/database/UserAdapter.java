@@ -37,7 +37,7 @@ public class UserAdapter implements UserPort {
     public void saveRole(Long userId, Set<Long> roleIds) {
         roleIds.forEach(roleId -> {
             UserRoleEntity userRoleEntity = new UserRoleEntity();
-            userRoleEntity.setRole(roleMapper.fromId(userId));
+            userRoleEntity.setRole(roleMapper.fromId(roleId));
             userRoleEntity.setUser(userMapper.fromId(userId));
             userRoleRepository.save(userRoleEntity);
         });
@@ -47,5 +47,10 @@ public class UserAdapter implements UserPort {
     public void removeRole(Long userId, Set<Long> roleIds) {
         Set<UserRoleEntity> existUserRoleEntities = userRoleRepository.findByUserIdAndRoleIds(userId, roleIds);
         userRoleRepository.deleteAll(existUserRoleEntities);
+    }
+
+    @Override
+    public void removeAllRoleOfUser(Long userId) {
+        userRoleRepository.deleteByUserId(userId);
     }
 }

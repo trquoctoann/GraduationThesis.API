@@ -1,11 +1,13 @@
 package com.cheems.pizzatalk.modules.user.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.UserMapper;
+import com.cheems.pizzatalk.modules.user.adapter.api.dto.PayloadSaveRoleToUser;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
+import com.cheems.pizzatalk.modules.user.application.port.in.share.UserRoleUseCase;
 import com.cheems.pizzatalk.modules.user.domain.User;
 import com.cheems.pizzatalk.service.MailService;
 import java.net.URI;
@@ -44,11 +46,19 @@ public class UserResource {
 
     private final QueryUserUseCase queryUserUseCase;
 
+    private final UserRoleUseCase userRoleUseCase;
+
     private final MailService mailService;
 
-    public UserResource(UserLifecycleUseCase userLifecycleUseCase, QueryUserUseCase queryUserUseCase, MailService mailService) {
+    public UserResource(
+        UserLifecycleUseCase userLifecycleUseCase,
+        QueryUserUseCase queryUserUseCase,
+        UserRoleUseCase userRoleUseCase,
+        MailService mailService
+    ) {
         this.userLifecycleUseCase = userLifecycleUseCase;
         this.queryUserUseCase = queryUserUseCase;
+        this.userRoleUseCase = userRoleUseCase;
         this.mailService = mailService;
     }
 
@@ -74,7 +84,7 @@ public class UserResource {
     @GetMapping("/users/{id}")
     public ResponseEntity<User> getUser(@PathVariable(value = "id", required = true) Long id) {
         log.debug("REST request to get user, ID: {}", id);
-        Optional<User> optionalUser = queryUserUseCase.findById(id, UserMapper.DOMAIN_ROLE);
+        Optional<User> optionalUser = queryUserUseCase.findById(id, UserMapper.DOMAIN_ROLE, UserMapper.DOMAIN_PERMISSION);
         return optionalUser
             .map(user -> ResponseEntity.ok().body(user))
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -88,7 +98,7 @@ public class UserResource {
         mailService.sendEmail(
             command.getEmail(),
             "Welcome to PizzaTalk!",
-            this.baseUrl + "/accounts/activate?key=" + user.getActivationKey()
+            this.baseUrl + "/api/accounts/activate?activationKey=" + user.getActivationKey()
         );
 
         HttpHeaders headers = new HttpHeaders();
@@ -126,5 +136,15 @@ public class UserResource {
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + id.toString());
 
         return ResponseEntity.noContent().headers(headers).build();
+    }
+
+    @PutMapping("/users/{id}/save-role")
+    public ResponseEntity<Void> saveRoleToUser(
+        @PathVariable(value = "id", required = true) Long id,
+        @RequestBody PayloadSaveRoleToUser request
+    ) {
+        log.debug("REST request to save role {} to user, ID: {}", request.getRoles(), id);
+        userRoleUseCase.saveRoleToUser(id, request.getRoles());
+        return ResponseEntity.noContent().build();
     }
 }

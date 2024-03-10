@@ -8,6 +8,7 @@ import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserC
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
+import com.cheems.pizzatalk.modules.user.application.port.in.share.UserRoleUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
 import com.cheems.pizzatalk.security.RoleConstants;
@@ -37,18 +38,22 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
     private final QueryUserUseCase queryUserUseCase;
 
+    private final UserRoleUseCase userRoleUseCase;
+
     public UserLifecycleService(
         ObjectMapper objectMapper,
         UserPort userPort,
         PasswordEncoder passwordEncoder,
         QueryRoleUseCase queryRoleUseCase,
-        QueryUserUseCase queryUserUseCase
+        QueryUserUseCase queryUserUseCase,
+        UserRoleUseCase userRoleUseCase
     ) {
         this.objectMapper = objectMapper;
         this.userPort = userPort;
         this.passwordEncoder = passwordEncoder;
         this.queryRoleUseCase = queryRoleUseCase;
         this.queryUserUseCase = queryUserUseCase;
+        this.userRoleUseCase = userRoleUseCase;
     }
 
     @Override
@@ -62,22 +67,13 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
         User user = objectMapper.convertValue(command, User.class);
         setUserDefaultValue(user);
-        String encryptedPassword = passwordEncoder.encode(command.getRawPassword());
-        user.setPassword(encryptedPassword);
 
-        Set<Role> roles = new HashSet<>();
-        if (command.getRoleNames().size() > 0) {
-            for (String roleName : command.getRoleNames()) {
-                Role role = queryRoleUseCase.getByName(roleName);
-                if (!role.getName().equals(RoleConstants.ADMINISTRATOR)) {
-                    roles.add(role);
-                }
-            }
-        }
-        roles.add(queryRoleUseCase.getByName(RoleConstants.USER));
-        user.setRoles(roles);
+        Set<String> roles = command.getRoleNames();
+        roles.removeIf(role -> RoleConstants.ADMINISTRATOR.equals(role));
+        roles.add(RoleConstants.USER);
 
         user = userPort.save(user);
+        userRoleUseCase.saveRoleToUser(user.getId(), roles);
         log.debug("Created user: {}", command);
         return user;
     }
@@ -128,5 +124,8 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         if (user.getLangKey() == null || user.getLangKey() == "") {
             user.setLangKey("vn");
         }
+
+        String encryptedPassword = passwordEncoder.encode(user.getRawPassword());
+        user.setPassword(encryptedPassword);
     }
 }

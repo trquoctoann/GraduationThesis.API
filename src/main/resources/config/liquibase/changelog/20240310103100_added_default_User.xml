@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240310103100-1" author="trquoctoann">
+        <insert tableName="user">
+            <column name="username" value="admin"/>
+            <column name="password" value="$2a$12$N2ZdQCMe83.Ltw/0Zeub0Oyn3yKOPRjqJk2sgLd8o4R0TP1/LakQK"/>
+            <column name="first_name" value="PizzaTalk"/>
+            <column name="last_name" value="Admin"/>
+            <column name="email" value="trquoctoannnn@gmail.com"/>
+            <column name="status" value="ACTIVATED"/>
+            <column name="lang_key" value="vn"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

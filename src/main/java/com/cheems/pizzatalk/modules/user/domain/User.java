@@ -22,6 +22,8 @@ public class User implements Serializable {
     @Pattern(regexp = LoginConstants.LOGIN_REGEX)
     private String username;
 
+    private String rawPassword;
+
     @JsonIgnore
     private String password;
 

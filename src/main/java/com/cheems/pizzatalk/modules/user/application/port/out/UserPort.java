@@ -9,4 +9,6 @@ public interface UserPort {
     void saveRole(Long userId, Set<Long> roleIds);
 
     void removeRole(Long userId, Set<Long> roleIds);
+
+    void removeAllRoleOfUser(Long userId);
 }
