@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to PizzaTalk!</title>
+    <style>
+        body { font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif; background-color: #fff3e0; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #ffeadb; border: 1px solid #fcdcb4; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); }
+        .logo { text-align: center; margin-bottom: 20px; }
+        .button { background-color: #e74c3c; color: white; padding: 10px 20px; text-align: center; display: inline-block; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        .footer { margin-top: 20px; font-size: 0.8em; text-align: center; color: #888; }
+        p { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="cid:logo" alt="PizzaTalk Logo" width="120">
+        </div>
+        <h2>Welcome to PizzaTalk!</h2>
+        <p>Hello {{CUSTOMER_FIRSTNAME}}!</p>
+        <p>We're excited to have you join our community of pizza enthusiasts. Before you dive in and start enjoying delicious pizza deals and conversations, please activate your account by clicking the link below:</p>
+        <p><a href="{{ACTIVATION_LINK}}" class="button">Activate Your Account</a></p>
+        <p>Once your account is activated, you can start exploring our menu, sharing your favorite pizza recipes, and joining discussions with fellow pizza lovers.</p>
+        <div class="footer">
+            <p>If you have any questions or need help, feel free to contact us at support@pizzatalk.com.</p>
+            <p>Thank you for joining us, and welcome aboard!</p>
+            <p>The PizzaTalk Team</p>
+        </div>
+    </div>
+</body>
+</html>
