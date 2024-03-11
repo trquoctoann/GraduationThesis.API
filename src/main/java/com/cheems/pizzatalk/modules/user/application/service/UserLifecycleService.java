@@ -2,8 +2,6 @@ package com.cheems.pizzatalk.modules.user.application.service;
 
 import com.cheems.pizzatalk.common.exception.BusinessException;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
-import com.cheems.pizzatalk.modules.role.application.port.in.share.QueryRoleUseCase;
-import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
@@ -12,12 +10,15 @@ import com.cheems.pizzatalk.modules.user.application.port.in.share.UserRoleUseCa
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
 import com.cheems.pizzatalk.security.RoleConstants;
+import com.cheems.pizzatalk.service.MailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.HashSet;
+
+import java.io.IOException;
 import java.util.Set;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,32 +29,35 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
     private static final Logger log = LoggerFactory.getLogger(UserLifecycleService.class);
 
+    @Value("${spring.application.base-url}")
+    private String baseUrl;
+
     private final ObjectMapper objectMapper;
 
     private final UserPort userPort;
 
     private final PasswordEncoder passwordEncoder;
 
-    private final QueryRoleUseCase queryRoleUseCase;
-
     private final QueryUserUseCase queryUserUseCase;
 
     private final UserRoleUseCase userRoleUseCase;
+
+    private final MailService mailService;
 
     public UserLifecycleService(
         ObjectMapper objectMapper,
         UserPort userPort,
         PasswordEncoder passwordEncoder,
-        QueryRoleUseCase queryRoleUseCase,
         QueryUserUseCase queryUserUseCase,
-        UserRoleUseCase userRoleUseCase
+        UserRoleUseCase userRoleUseCase,
+        MailService mailService
     ) {
         this.objectMapper = objectMapper;
         this.userPort = userPort;
         this.passwordEncoder = passwordEncoder;
-        this.queryRoleUseCase = queryRoleUseCase;
         this.queryUserUseCase = queryUserUseCase;
         this.userRoleUseCase = userRoleUseCase;
+        this.mailService = mailService;
     }
 
     @Override
@@ -74,6 +78,21 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
         user = userPort.save(user);
         userRoleUseCase.saveRoleToUser(user.getId(), roles);
+
+        String activationUrl = this.baseUrl + "/api/accounts/activate?activationKey=" + user.getActivationKey();
+        try {
+            String htmlContent = mailService.loadHtmlContent("html/ActivationEmail.html");
+            htmlContent = htmlContent.replace("{{CUSTOMER_FIRSTNAME}}", command.getFirstName());
+            htmlContent = htmlContent.replace("{{ACTIVATION_LINK}}", activationUrl);
+            mailService.sendEmail(
+                command.getEmail(),
+                "Welcome to PizzaTalk!",
+                htmlContent,
+                true
+            );
+        } catch (IOException e) {
+            log.error("Failed to load email template", e);
+        }
         log.debug("Created user: {}", command);
         return user;
     }

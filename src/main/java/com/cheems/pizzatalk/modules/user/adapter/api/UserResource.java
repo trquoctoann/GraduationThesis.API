@@ -9,7 +9,6 @@ import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseC
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycleUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserRoleUseCase;
 import com.cheems.pizzatalk.modules.user.domain.User;
-import com.cheems.pizzatalk.service.MailService;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -39,27 +38,19 @@ public class UserResource {
     @Value("${spring.application.name}")
     private String applicationName;
 
-    @Value("${spring.application.base-url}")
-    private String baseUrl;
-
     private final UserLifecycleUseCase userLifecycleUseCase;
 
     private final QueryUserUseCase queryUserUseCase;
 
     private final UserRoleUseCase userRoleUseCase;
-
-    private final MailService mailService;
-
     public UserResource(
         UserLifecycleUseCase userLifecycleUseCase,
         QueryUserUseCase queryUserUseCase,
-        UserRoleUseCase userRoleUseCase,
-        MailService mailService
+        UserRoleUseCase userRoleUseCase
     ) {
         this.userLifecycleUseCase = userLifecycleUseCase;
         this.queryUserUseCase = queryUserUseCase;
         this.userRoleUseCase = userRoleUseCase;
-        this.mailService = mailService;
     }
 
     // @PreAuthorize("hasAnyAuthority('" + AuthorityConstants.ADMINISTRATOR + "')")
@@ -95,11 +86,6 @@ public class UserResource {
     public ResponseEntity<Void> createUser(@Valid @RequestBody CreateUserCommand command) throws URISyntaxException {
         log.debug("REST request to create user: {}", command);
         User user = userLifecycleUseCase.create(command);
-        mailService.sendEmail(
-            command.getEmail(),
-            "Welcome to PizzaTalk!",
-            this.baseUrl + "/api/accounts/activate?activationKey=" + user.getActivationKey()
-        );
 
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(new URI("/api/users/" + user.getId()));
