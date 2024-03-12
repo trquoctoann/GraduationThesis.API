@@ -1,6 +1,7 @@
 package com.cheems.pizzatalk.modules.user.application.service;
 
 import com.cheems.pizzatalk.common.exception.BusinessException;
+import com.cheems.pizzatalk.entities.enumeration.UserKeyType;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.CreateUserCommand;
 import com.cheems.pizzatalk.modules.user.application.port.in.command.UpdateUserCommand;
@@ -9,16 +10,13 @@ import com.cheems.pizzatalk.modules.user.application.port.in.share.UserLifecycle
 import com.cheems.pizzatalk.modules.user.application.port.in.share.UserRoleUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
+import com.cheems.pizzatalk.modules.userkey.application.port.in.share.UserKeyLifecycleUseCase;
 import com.cheems.pizzatalk.security.RoleConstants;
 import com.cheems.pizzatalk.service.MailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
 import java.util.Set;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,9 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserLifecycleService implements UserLifecycleUseCase {
 
     private static final Logger log = LoggerFactory.getLogger(UserLifecycleService.class);
-
-    @Value("${spring.application.base-url}")
-    private String baseUrl;
 
     private final ObjectMapper objectMapper;
 
@@ -42,6 +37,8 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
     private final UserRoleUseCase userRoleUseCase;
 
+    private final UserKeyLifecycleUseCase userKeyLifecycleUseCase;
+
     private final MailService mailService;
 
     public UserLifecycleService(
@@ -50,6 +47,7 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         PasswordEncoder passwordEncoder,
         QueryUserUseCase queryUserUseCase,
         UserRoleUseCase userRoleUseCase,
+        UserKeyLifecycleUseCase userKeyLifecycleUseCase,
         MailService mailService
     ) {
         this.objectMapper = objectMapper;
@@ -57,6 +55,7 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         this.passwordEncoder = passwordEncoder;
         this.queryUserUseCase = queryUserUseCase;
         this.userRoleUseCase = userRoleUseCase;
+        this.userKeyLifecycleUseCase = userKeyLifecycleUseCase;
         this.mailService = mailService;
     }
 
@@ -78,21 +77,9 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
         user = userPort.save(user);
         userRoleUseCase.saveRoleToUser(user.getId(), roles);
+        userKeyLifecycleUseCase.create(UserKeyType.ACTIVATION_KEY, user.getId());
+        mailService.sendActivationMailToUser(user.getEmail());
 
-        String activationUrl = this.baseUrl + "/api/accounts/activate?activationKey=" + user.getActivationKey();
-        try {
-            String htmlContent = mailService.loadHtmlContent("html/ActivationEmail.html");
-            htmlContent = htmlContent.replace("{{CUSTOMER_FIRSTNAME}}", command.getFirstName());
-            htmlContent = htmlContent.replace("{{ACTIVATION_LINK}}", activationUrl);
-            mailService.sendEmail(
-                command.getEmail(),
-                "Welcome to PizzaTalk!",
-                htmlContent,
-                true
-            );
-        } catch (IOException e) {
-            log.error("Failed to load email template", e);
-        }
         log.debug("Created user: {}", command);
         return user;
     }
@@ -106,10 +93,6 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         user.setId(existUser.getId());
         user.setUsername(existUser.getUsername());
         user.setEmail(existUser.getEmail());
-        user.setActivationKey(existUser.getActivationKey());
-        user.setActivationDate(existUser.getActivationDate());
-        user.setResetKey(existUser.getResetKey());
-        user.setResetDate(existUser.getResetDate());
         user.setStatus(existUser.getStatus());
         user.setRoles(existUser.getRoles());
 
@@ -138,7 +121,6 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
     private void setUserDefaultValue(User user) {
         user.setStatus(UserStatus.SUSPENDED);
-        user.setActivationKey(RandomStringUtils.randomNumeric(20));
 
         if (user.getLangKey() == null || user.getLangKey() == "") {
             user.setLangKey("vn");

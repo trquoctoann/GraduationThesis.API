@@ -31,10 +31,6 @@ public class UserCriteria extends QuerySelfValidating<UserCriteria> implements S
 
     private StringFilter langKey;
 
-    private StringFilter activationKey;
-
-    private StringFilter resetKey;
-
     private RangeFilter<Long> roleId;
 
     public UserCriteria() {}
@@ -47,8 +43,6 @@ public class UserCriteria extends QuerySelfValidating<UserCriteria> implements S
         this.email = other.email == null ? null : other.email.copy();
         this.status = other.status == null ? null : other.status.copy();
         this.langKey = other.langKey == null ? null : other.langKey.copy();
-        this.activationKey = other.activationKey == null ? null : other.activationKey.copy();
-        this.resetKey = other.resetKey == null ? null : other.resetKey.copy();
         this.roleId = other.roleId == null ? null : other.roleId.copy();
     }
 

@@ -1,17 +1,18 @@
 package com.cheems.pizzatalk.modules.account.application.service;
 
-import com.cheems.pizzatalk.common.filter.StringFilter;
+import com.cheems.pizzatalk.common.exception.BusinessException;
+import com.cheems.pizzatalk.entities.enumeration.UserKeyStatus;
+import com.cheems.pizzatalk.entities.enumeration.UserKeyType;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
-import com.cheems.pizzatalk.entities.filter.UserStatusFilter;
+import com.cheems.pizzatalk.modules.account.application.port.in.command.AccountResetPasswordCommand;
 import com.cheems.pizzatalk.modules.account.application.port.in.share.AccountLifecycleUseCase;
-import com.cheems.pizzatalk.modules.user.application.port.in.command.ResetPasswordUserPasswordCommand;
-import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.UserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
-import java.time.Instant;
-import java.util.Optional;
-import org.apache.commons.lang3.RandomStringUtils;
+import com.cheems.pizzatalk.modules.userkey.application.port.in.share.QueryUserKeyUseCase;
+import com.cheems.pizzatalk.modules.userkey.application.port.in.share.UserKeyLifecycleUseCase;
+import com.cheems.pizzatalk.modules.userkey.domain.UserKey;
+import com.cheems.pizzatalk.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,77 +31,78 @@ public class AccountLifecycleService implements AccountLifecycleUseCase {
 
     private final QueryUserUseCase queryUserUseCase;
 
-    public AccountLifecycleService(UserPort userPort, PasswordEncoder passwordEncoder, QueryUserUseCase queryUserUseCase) {
+    private final QueryUserKeyUseCase queryUserKeyUseCase;
+
+    private final UserKeyLifecycleUseCase userKeyLifecycleUseCase;
+
+    private final MailService mailService;
+
+    public AccountLifecycleService(
+        UserPort userPort,
+        PasswordEncoder passwordEncoder,
+        QueryUserUseCase queryUserUseCase,
+        QueryUserKeyUseCase queryUserKeyUseCase,
+        UserKeyLifecycleUseCase userKeyLifecycleUseCase,
+        MailService mailService
+    ) {
         this.userPort = userPort;
         this.passwordEncoder = passwordEncoder;
         this.queryUserUseCase = queryUserUseCase;
+        this.queryUserKeyUseCase = queryUserKeyUseCase;
+        this.userKeyLifecycleUseCase = userKeyLifecycleUseCase;
+        this.mailService = mailService;
     }
 
     @Override
-    public Optional<User> activateAccount(String activationKey) {
+    public User activateAccount(String activationKey) {
         log.debug("Activating account for activation key: {}", activationKey);
-        StringFilter activationKeyFilter = new StringFilter();
-        activationKeyFilter.setEquals(activationKey);
+        UserKey userKey;
+        try {
+            userKey = queryUserKeyUseCase.getByValue(activationKey);
+        } catch (BusinessException e) {
+            throw new BusinessException("Provided key is not exist");
+        }
 
-        UserCriteria criteria = new UserCriteria();
-        criteria.setActivationKey(activationKeyFilter);
+        User userOwnKey = queryUserUseCase.getById(userKey.getUserId());
+        if (userOwnKey.getStatus().equals(UserStatus.ACTIVATED)) {
+            throw new BusinessException("User is currently activated");
+        }
+        userOwnKey.setStatus(UserStatus.ACTIVATED);
+        userOwnKey = userPort.save(userOwnKey);
 
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setStatus(UserStatus.ACTIVATED);
-                user.setActivationKey(null);
-                user.setActivationDate(Instant.now());
-                user = userPort.save(user);
-                log.debug("Account {} has been activated", user.getId());
-                return user;
-            });
+        userKeyLifecycleUseCase.updateStatus(activationKey, UserKeyStatus.USED);
+
+        log.debug("Account {} has been activated", userOwnKey.getId());
+        return userOwnKey;
     }
 
     @Override
-    public Optional<User> requestResetPassword(String email) {
+    public User requestResetPassword(String email) {
         log.debug("Requesting reset password for account has email: {}", email);
-        StringFilter emailFilter = new StringFilter();
-        emailFilter.setEquals(email);
+        User user = queryUserUseCase.getByEmail(email);
+        userKeyLifecycleUseCase.create(UserKeyType.RESET_KEY, user.getId());
 
-        UserStatusFilter userStatusFilter = new UserStatusFilter();
-        userStatusFilter.setEquals(UserStatus.ACTIVATED);
-
-        UserCriteria criteria = new UserCriteria();
-        criteria.setEmail(emailFilter);
-        criteria.setStatus(userStatusFilter);
-
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setResetKey(RandomStringUtils.randomNumeric(20));
-                user = userPort.save(user);
-                log.debug("Reset key has been created for account {}", user.getId());
-                return user;
-            });
+        mailService.sendResetPasswordMailToUser(email);
+        log.debug("Reset key has been created for account {}", user.getId());
+        return user;
     }
 
     @Override
-    public Optional<User> resetPassword(ResetPasswordUserPasswordCommand command) {
-        String resetKey = command.getKey();
-        String newPassword = command.getNewPassword();
+    public User resetPassword(String resetKey, AccountResetPasswordCommand command) {
+        log.debug("Reseting password using reset key: {}", resetKey);
+        UserKey userKey;
+        try {
+            userKey = queryUserKeyUseCase.getByValue(resetKey);
+        } catch (BusinessException e) {
+            throw new BusinessException("Provided key is not exist");
+        }
 
-        log.debug("Reset account password for reset key {}", resetKey);
-        StringFilter resetKeyFilter = new StringFilter();
-        resetKeyFilter.setEquals(resetKey);
+        User userOwnKey = queryUserUseCase.getById(userKey.getUserId());
+        userOwnKey.setPassword(passwordEncoder.encode(command.getNewPassword()));
+        userOwnKey = userPort.save(userOwnKey);
 
-        UserCriteria criteria = new UserCriteria();
-        criteria.setResetKey(resetKeyFilter);
-
-        return queryUserUseCase
-            .findByCriteria(criteria)
-            .map(user -> {
-                user.setPassword(passwordEncoder.encode(newPassword));
-                user.setResetKey(resetKey);
-                user.setResetDate(Instant.now());
-                user = userPort.save(user);
-                log.debug("Reset password successfully for account {}", user.getId());
-                return user;
-            });
+        userKeyLifecycleUseCase.updateStatus(resetKey, UserKeyStatus.USED);
+        log.debug("Reset password sucessfully for account, ID: {}", userOwnKey.getId());
+        return userOwnKey;
     }
 }

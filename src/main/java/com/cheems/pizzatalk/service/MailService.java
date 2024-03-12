@@ -1,8 +1,14 @@
 package com.cheems.pizzatalk.service;
 
+import com.cheems.pizzatalk.entities.enumeration.UserKeyType;
+import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
+import com.cheems.pizzatalk.modules.user.domain.User;
+import com.cheems.pizzatalk.modules.userkey.application.port.in.share.QueryUserKeyUseCase;
+import com.cheems.pizzatalk.modules.userkey.domain.UserKey;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
@@ -21,6 +27,9 @@ public class MailService {
 
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
+    @Value("${spring.application.base-url}")
+    private String baseUrl;
+
     @Value("${spring.mail.username}")
     private String sourceMail;
 
@@ -28,9 +37,20 @@ public class MailService {
 
     private final ResourceLoader resourceLoader;
 
-    public MailService(JavaMailSender javaMailSender, ResourceLoader resourceLoader) {
+    private final QueryUserUseCase queryUserUseCase;
+
+    private final QueryUserKeyUseCase queryUserKeyUseCase;
+
+    public MailService(
+        JavaMailSender javaMailSender,
+        ResourceLoader resourceLoader,
+        QueryUserUseCase queryUserUseCase,
+        QueryUserKeyUseCase queryUserKeyUseCase
+    ) {
         this.javaMailSender = javaMailSender;
         this.resourceLoader = resourceLoader;
+        this.queryUserUseCase = queryUserUseCase;
+        this.queryUserKeyUseCase = queryUserKeyUseCase;
     }
 
     @Async
@@ -58,5 +78,35 @@ public class MailService {
     public String loadHtmlContent(String resourcePath) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:" + resourcePath);
         return new String(Files.readAllBytes(resource.getFile().toPath()), StandardCharsets.UTF_8);
+    }
+
+    public void sendActivationMailToUser(String email) {
+        User user = queryUserUseCase.getByEmail(email);
+        List<UserKey> userKey = queryUserKeyUseCase.findActiveKeyByUserId(UserKeyType.ACTIVATION_KEY, user.getId());
+
+        String activationUrl = this.baseUrl + "/api/accounts/activate?activationKey=" + userKey.get(0).getValue();
+        try {
+            String htmlContent = loadHtmlContent("html/ActivationEmail.html");
+            htmlContent = htmlContent.replace("{{CUSTOMER_FIRSTNAME}}", user.getFirstName());
+            htmlContent = htmlContent.replace("{{ACTIVATION_LINK}}", activationUrl);
+            sendEmail(email, "Welcome to PizzaTalk!", htmlContent, true);
+        } catch (IOException e) {
+            log.error("Failed to load email template", e);
+        }
+    }
+
+    public void sendResetPasswordMailToUser(String email) {
+        User user = queryUserUseCase.getByEmail(email);
+        List<UserKey> userKey = queryUserKeyUseCase.findActiveKeyByUserId(UserKeyType.RESET_KEY, user.getId());
+
+        String activationUrl = this.baseUrl + "/api/accounts/reset-password?resetKey=" + userKey.get(0).getValue();
+        try {
+            String htmlContent = loadHtmlContent("html/ResetPasswordEmail.html");
+            htmlContent = htmlContent.replace("{{CUSTOMER_FIRSTNAME}}", user.getFirstName());
+            htmlContent = htmlContent.replace("{{PASSWORD_RESET_LINK}}", activationUrl);
+            sendEmail(email, "Password Reset for PizzaTalk", htmlContent, true);
+        } catch (IOException e) {
+            log.error("Failed to load email template", e);
+        }
     }
 }

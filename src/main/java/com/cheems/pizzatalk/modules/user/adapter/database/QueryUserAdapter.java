@@ -12,7 +12,6 @@ import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.out.QueryUserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
 import com.cheems.pizzatalk.repository.UserRepository;
-import com.cheems.pizzatalk.repository.UserRoleRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -35,18 +34,10 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
 
     private final RoleMapper roleMapper;
 
-    private final UserRoleRepository userRoleRepository;
-
-    public QueryUserAdapter(
-        UserRepository userRepository,
-        UserMapper userMapper,
-        RoleMapper roleMapper,
-        UserRoleRepository userRoleRepository
-    ) {
+    public QueryUserAdapter(UserRepository userRepository, UserMapper userMapper, RoleMapper roleMapper) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.roleMapper = roleMapper;
-        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -104,12 +95,6 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
             }
             if (criteria.getLangKey() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLangKey(), UserEntity_.langKey));
-            }
-            if (criteria.getActivationKey() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getActivationKey(), UserEntity_.activationKey));
-            }
-            if (criteria.getResetKey() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getResetKey(), UserEntity_.resetKey));
             }
             if (criteria.getRoleId() != null) {
                 specification = specification.and(buildSpecificationFindByRoleId(criteria.getRoleId()));

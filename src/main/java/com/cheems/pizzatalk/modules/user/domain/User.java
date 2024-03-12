@@ -5,7 +5,6 @@ import com.cheems.pizzatalk.entities.enumeration.UserStatus;
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Set;
 import javax.validation.constraints.*;
 import lombok.Data;
@@ -40,18 +39,6 @@ public class User implements Serializable {
 
     @Size(max = 300)
     private String imageURL;
-
-    @Size(max = 20)
-    @JsonIgnore
-    private String activationKey;
-
-    private Instant activationDate;
-
-    @Size(max = 20)
-    @JsonIgnore
-    private String resetKey;
-
-    private Instant resetDate;
 
     @NotNull
     private UserStatus status;
