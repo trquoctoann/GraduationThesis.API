@@ -1,6 +1,7 @@
 package com.cheems.pizzatalk.modules.area.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.AreaMapper;
+import com.cheems.pizzatalk.modules.area.adapter.api.dto.PayloadUpdateAreaStatus;
 import com.cheems.pizzatalk.modules.area.application.port.in.command.CreateAreaCommand;
 import com.cheems.pizzatalk.modules.area.application.port.in.command.UpdateAreaCommand;
 import com.cheems.pizzatalk.modules.area.application.port.in.query.AreaCriteria;
@@ -118,5 +119,15 @@ public class AreaResource {
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + id.toString());
 
         return ResponseEntity.noContent().headers(headers).build();
+    }
+
+    @PutMapping("/areas/{id}/update-status")
+    public ResponseEntity<Void> updateAreaOperationalStatus(
+        @PathVariable(value = "id", required = true) Long id,
+        @Valid @RequestBody PayloadUpdateAreaStatus payload
+    ) {
+        log.debug("REST request to update status of area, ID: {}", id);
+        areaLifecycleUseCase.updateStatus(id, payload.getStatus());
+        return ResponseEntity.noContent().build();
     }
 }
