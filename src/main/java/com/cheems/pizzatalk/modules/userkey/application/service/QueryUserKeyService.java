@@ -103,6 +103,10 @@ public class QueryUserKeyService implements QueryUserKeyUseCase {
         UserKeyStatusFilter userKeyStatusFilter = new UserKeyStatusFilter();
         userKeyStatusFilter.setEquals(UserKeyStatus.ACTIVE);
 
+        criteria.setUserId(userIdFilter);
+        criteria.setType(userKeyTypeFilter);
+        criteria.setStatus(userKeyStatusFilter);
+
         return queryUserKeyPort.findListByCriteria(criteria);
     }
 }

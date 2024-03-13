@@ -72,7 +72,7 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
     private Specification<UserEntity> createSpecification(UserCriteria criteria) {
         Set<String> fetchAttributes = criteria.getFetchAttributes();
         Specification<UserEntity> specification = Specification.where(null);
-        specification.and((root, criteriaQuery, builder) -> builder.notEqual(root.get(UserEntity_.username), UserStatus.DELETED));
+        specification.and((root, criteriaQuery, builder) -> builder.notEqual(root.get(UserEntity_.status), UserStatus.DELETED));
 
         if (criteria != null) {
             if (criteria.getId() != null) {

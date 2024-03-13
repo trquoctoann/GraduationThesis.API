@@ -56,14 +56,7 @@ public class AccountLifecycleService implements AccountLifecycleUseCase {
     @Override
     public User activateAccount(String activationKey) {
         log.debug("Activating account for activation key: {}", activationKey);
-        UserKey userKey;
-        try {
-            userKey = queryUserKeyUseCase.getByValue(activationKey);
-        } catch (BusinessException e) {
-            throw new BusinessException("Provided key is not exist");
-        }
-
-        User userOwnKey = queryUserUseCase.getById(userKey.getUserId());
+        User userOwnKey = getUserByKey(activationKey);
         if (userOwnKey.getStatus().equals(UserStatus.ACTIVATED)) {
             throw new BusinessException("User is currently activated");
         }
@@ -90,19 +83,25 @@ public class AccountLifecycleService implements AccountLifecycleUseCase {
     @Override
     public User resetPassword(String resetKey, AccountResetPasswordCommand command) {
         log.debug("Reseting password using reset key: {}", resetKey);
+        User userOwnKey = getUserByKey(resetKey);
+        userOwnKey.setPassword(passwordEncoder.encode(command.getNewPassword()));
+        userOwnKey = userPort.save(userOwnKey);
+
+        userKeyLifecycleUseCase.updateStatus(resetKey, UserKeyStatus.USED);
+
+        log.debug("Reset password sucessfully for account, ID: {}", userOwnKey.getId());
+        return userOwnKey;
+    }
+
+    private User getUserByKey(String key) {
         UserKey userKey;
         try {
-            userKey = queryUserKeyUseCase.getByValue(resetKey);
+            userKey = queryUserKeyUseCase.getByValue(key);
         } catch (BusinessException e) {
             throw new BusinessException("Provided key is not exist");
         }
 
         User userOwnKey = queryUserUseCase.getById(userKey.getUserId());
-        userOwnKey.setPassword(passwordEncoder.encode(command.getNewPassword()));
-        userOwnKey = userPort.save(userOwnKey);
-
-        userKeyLifecycleUseCase.updateStatus(resetKey, UserKeyStatus.USED);
-        log.debug("Reset password sucessfully for account, ID: {}", userOwnKey.getId());
         return userOwnKey;
     }
 }
