@@ -11,16 +11,20 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = { AreaMapper.class })
 public interface StoreMapper extends EntityMapper<Store, StoreEntity> {
     String DOMAIN_AREA = "area";
+    String DOMAIN_STOCK_ITEM = "stockItems";
 
     String ENTITY_AREA = "area";
+    String ENTITY_STOCK_ITEM = "stockItems";
 
     @Override
     @Mapping(target = "area", source = "areaId")
+    @Mapping(target = "stockItems", ignore = true)
     StoreEntity toEntity(Store domain);
 
     @Override
     @Mapping(target = "areaId", source = "area.id")
     @Mapping(target = "area", ignore = true)
+    @Mapping(target = "stockItems", ignore = true)
     Store toDomain(StoreEntity entity);
 
     // prettier-ignore
@@ -30,6 +34,9 @@ public interface StoreMapper extends EntityMapper<Store, StoreEntity> {
             domainAttribute -> {
                 if (domainAttribute.equals(DOMAIN_AREA)) {
                     entityAttributes.add(ENTITY_AREA);
+                }
+                if (domainAttribute.equals(DOMAIN_STOCK_ITEM)) {
+                    entityAttributes.add(ENTITY_STOCK_ITEM);
                 }
             }
         );

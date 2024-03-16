@@ -31,10 +31,6 @@ public class ProductCriteria extends QuerySelfValidating<ProductCriteria> implem
 
     private CommerceStatusFilter status;
 
-    private RangeFilter<Float> price;
-
-    private RangeFilter<Long> quantity;
-
     private StringFilter imagePath;
 
     private RangeFilter<Long> parentProductId;
@@ -44,6 +40,8 @@ public class ProductCriteria extends QuerySelfValidating<ProductCriteria> implem
     private RangeFilter<Long> productVariationId;
 
     private RangeFilter<Long> optionId;
+
+    private RangeFilter<Long> storeId;
 
     public ProductCriteria() {}
 
@@ -55,13 +53,12 @@ public class ProductCriteria extends QuerySelfValidating<ProductCriteria> implem
         this.description = other.description == null ? null : other.description.copy();
         this.sku = other.sku == null ? null : other.sku.copy();
         this.status = other.status == null ? null : other.status.copy();
-        this.price = other.price == null ? null : other.price.copy();
-        this.quantity = other.quantity == null ? null : other.quantity.copy();
         this.imagePath = other.imagePath == null ? null : other.imagePath.copy();
         this.parentProductId = other.parentProductId == null ? null : other.parentProductId.copy();
         this.categoryId = other.categoryId == null ? null : other.categoryId.copy();
         this.productVariationId = other.productVariationId == null ? null : other.productVariationId.copy();
         this.optionId = other.optionId == null ? null : other.optionId.copy();
+        this.storeId = other.storeId == null ? null : other.storeId.copy();
     }
 
     @Override

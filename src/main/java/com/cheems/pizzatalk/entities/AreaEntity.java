@@ -49,7 +49,7 @@ public class AreaEntity extends AbstractAuditingEntity {
     private String priceGroupId;
 
     @OneToMany(mappedBy = "area")
-    @JsonIgnoreProperties(value = { "area" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "stockItems", "area" }, allowSetters = true)
     private Set<StoreEntity> stores = new HashSet<>();
 
     public Long getId() {

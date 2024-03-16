@@ -6,8 +6,10 @@ import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.OptionDetailEntity;
 import com.cheems.pizzatalk.entities.OptionDetailEntity_;
 import com.cheems.pizzatalk.entities.OptionEntity_;
+import com.cheems.pizzatalk.entities.StockItemEntity_;
 import com.cheems.pizzatalk.entities.mapper.OptionDetailMapper;
 import com.cheems.pizzatalk.entities.mapper.OptionMapper;
+import com.cheems.pizzatalk.entities.mapper.StockItemMapper;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.query.OptionDetailCriteria;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.out.QueryOptionDetailPort;
 import com.cheems.pizzatalk.modules.optiondetail.domain.OptionDetail;
@@ -33,14 +35,18 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
 
     private final OptionMapper optionMapper;
 
+    private final StockItemMapper stockItemMapper;
+
     public QueryOptionDetailAdapter(
         OptionDetailRepository optionDetailRepository,
         OptionDetailMapper optionDetailMapper,
-        OptionMapper optionMapper
+        OptionMapper optionMapper,
+        StockItemMapper stockItemMapper
     ) {
         this.optionDetailRepository = optionDetailRepository;
         this.optionDetailMapper = optionDetailMapper;
         this.optionMapper = optionMapper;
+        this.stockItemMapper = stockItemMapper;
     }
 
     @Override
@@ -87,8 +93,8 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), OptionDetailEntity_.id));
             }
-            if (criteria.getValue() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getValue(), OptionDetailEntity_.value));
+            if (criteria.getName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getName(), OptionDetailEntity_.name));
             }
             if (criteria.getSku() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getSku(), OptionDetailEntity_.sku));
@@ -102,18 +108,21 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), OptionDetailEntity_.status));
             }
-            if (criteria.getPrice() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrice(), OptionDetailEntity_.price));
-            }
-            if (criteria.getQuantity() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getQuantity(), OptionDetailEntity_.quantity));
-            }
             if (criteria.getOptionId() != null) {
                 specification =
                     specification.and(
                         buildSpecification(
                             criteria.getOptionId(),
                             root -> root.join(OptionDetailEntity_.option, JoinType.LEFT).get(OptionEntity_.id)
+                        )
+                    );
+            }
+            if (criteria.getStockItemId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(
+                            criteria.getStockItemId(),
+                            root -> root.join(OptionDetailEntity_.stockItems, JoinType.LEFT).get(StockItemEntity_.id)
                         )
                     );
             }
@@ -142,6 +151,15 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
 
         if (domainAttributes.contains(OptionDetailMapper.DOMAIN_OPTION)) {
             optionDetail.setOption(optionMapper.toDomain(optionDetailEntity.getOption()));
+        }
+        if (domainAttributes.contains(OptionDetailMapper.DOMAIN_STOCK_ITEMS)) {
+            optionDetail.setStockItems(
+                optionDetailEntity
+                    .getStockItems()
+                    .stream()
+                    .map(stockItemEntity -> stockItemMapper.toDomain(stockItemEntity))
+                    .collect(Collectors.toSet())
+            );
         }
         return optionDetail;
     }

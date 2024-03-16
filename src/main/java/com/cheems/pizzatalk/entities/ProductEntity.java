@@ -46,27 +46,25 @@ public class ProductEntity extends AbstractAuditingEntity {
     @Column(name = "status", nullable = false)
     private CommerceStatus status;
 
-    @Column(name = "price")
-    private Float price;
-
-    @Column(name = "quantity")
-    private Long quantity;
-
     @Size(max = 300)
     @Column(name = "image_path", length = 300)
     private String imagePath;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
     private ProductEntity parentProduct;
 
     @OneToMany(mappedBy = "parentProduct")
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
     private Set<ProductEntity> productVariations = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
     @JsonIgnoreProperties(value = { "product", "option", "productOptionDetails" }, allowSetters = true)
     private Set<ProductOptionEntity> productOptions = new HashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties(value = { "store", "product", "optionDetail", "stockBatches" }, allowSetters = true)
+    private Set<StockItemEntity> stockItems = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
@@ -163,32 +161,6 @@ public class ProductEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public Float getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public ProductEntity price(Float price) {
-        this.price = price;
-        return this;
-    }
-
-    public Long getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public ProductEntity quantity(Long quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
     public String getImagePath() {
         return this.imagePath;
     }
@@ -259,6 +231,37 @@ public class ProductEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public Set<StockItemEntity> getStockItems() {
+        return this.stockItems;
+    }
+
+    public void setStockItems(Set<StockItemEntity> stockItems) {
+        if (this.stockItems != null) {
+            this.stockItems.forEach(stockItem -> stockItem.setProduct(null));
+        }
+        if (stockItems != null) {
+            stockItems.forEach(stockItem -> stockItem.setProduct(this));
+        }
+        this.stockItems = stockItems;
+    }
+
+    public ProductEntity stockItems(Set<StockItemEntity> stockItems) {
+        this.setStockItems(stockItems);
+        return this;
+    }
+
+    public ProductEntity addStockItem(StockItemEntity stockItem) {
+        stockItem.setProduct(this);
+        this.stockItems.add(stockItem);
+        return this;
+    }
+
+    public ProductEntity removeStockItem(StockItemEntity stockItem) {
+        stockItem.setProduct(null);
+        this.stockItems.remove(stockItem);
+        return this;
+    }
+
     public CategoryEntity getCategory() {
         return this.category;
     }
@@ -311,12 +314,6 @@ public class ProductEntity extends AbstractAuditingEntity {
             "'" +
             ", status='" +
             getStatus() +
-            "'" +
-            ", price='" +
-            getPrice() +
-            "'" +
-            ", quantity='" +
-            getQuantity() +
             "'" +
             ", imagePath='" +
             getImagePath() +

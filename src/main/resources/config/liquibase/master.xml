@@ -42,4 +42,6 @@
     <include file="config/liquibase/changelog/20240310103200_added_default_UserRole.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240312083100_added_table_UserKey.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240312083400_added_table_constraints_UserKey.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240316213900_added_table_StockItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240316214100_added_table_constraints_StockItem.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

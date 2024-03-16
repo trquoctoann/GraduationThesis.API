@@ -21,11 +21,12 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
 
     @NotNull
     @Size(max = 100)
-    @Column(name = "value", length = 100, nullable = false)
-    private String value;
+    @Column(name = "name", length = 100, nullable = false)
+    private String name;
 
+    @NotNull
     @Size(min = 6, max = 6)
-    @Column(name = "sku", unique = true, length = 6)
+    @Column(name = "sku", unique = true, nullable = false, length = 6)
     private String sku;
 
     @Size(max = 20)
@@ -41,14 +42,6 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     @Column(name = "status", nullable = false)
     private CommerceStatus status;
 
-    @NotNull
-    @Column(name = "price", nullable = false)
-    private Float price;
-
-    @NotNull
-    @Column(name = "quantity", nullable = false)
-    private Long quantity;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "productOptions", "optionDetails" }, allowSetters = true)
     private OptionEntity option;
@@ -56,6 +49,10 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     @OneToMany(mappedBy = "optionDetail")
     @JsonIgnoreProperties(value = { "productOption", "optionDetail" }, allowSetters = true)
     private Set<ProductOptionDetailEntity> productOptionDetails = new HashSet<>();
+
+    @OneToMany(mappedBy = "optionDetail")
+    @JsonIgnoreProperties(value = { "store", "product", "optionDetail", "stockBatches" }, allowSetters = true)
+    private Set<StockItemEntity> stockItems = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -70,16 +67,16 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public String getValue() {
-        return this.value;
+    public String getName() {
+        return this.name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public OptionDetailEntity value(String value) {
-        this.value = value;
+    public OptionDetailEntity name(String name) {
+        this.name = name;
         return this;
     }
 
@@ -135,32 +132,6 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public Float getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
-
-    public OptionDetailEntity price(Float price) {
-        this.price = price;
-        return this;
-    }
-
-    public Long getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
-
-    public OptionDetailEntity quantity(Long quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
     public OptionEntity getOption() {
         return this.option;
     }
@@ -203,6 +174,37 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public Set<StockItemEntity> getStockItems() {
+        return this.stockItems;
+    }
+
+    public void setStockItems(Set<StockItemEntity> stockItems) {
+        if (this.stockItems != null) {
+            this.stockItems.forEach(stockItem -> stockItem.setOptionDetail(null));
+        }
+        if (stockItems != null) {
+            stockItems.forEach(stockItem -> stockItem.setOptionDetail(this));
+        }
+        this.stockItems = stockItems;
+    }
+
+    public OptionDetailEntity stockItems(Set<StockItemEntity> stockItems) {
+        this.setStockItems(stockItems);
+        return this;
+    }
+
+    public OptionDetailEntity addStockItem(StockItemEntity stockItem) {
+        stockItem.setOptionDetail(this);
+        this.stockItems.add(stockItem);
+        return this;
+    }
+
+    public OptionDetailEntity removeStockItem(StockItemEntity stockItem) {
+        stockItem.setOptionDetail(null);
+        this.stockItems.remove(stockItem);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -225,8 +227,8 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
             "OptionDetail={" +
             "id=" +
             getId() +
-            ", value='" +
-            getValue() +
+            ", name='" +
+            getName() +
             "'" +
             ", sku='" +
             getSku() +
@@ -239,12 +241,6 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
             "'" +
             ", status='" +
             getStatus() +
-            "'" +
-            ", price='" +
-            getPrice() +
-            "'" +
-            ", quantity='" +
-            getQuantity() +
             "'" +
             "}"
         );

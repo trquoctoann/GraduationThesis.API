@@ -3,6 +3,8 @@ package com.cheems.pizzatalk.entities;
 import com.cheems.pizzatalk.common.entity.AbstractAuditingEntity;
 import com.cheems.pizzatalk.entities.enumeration.OperationalStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -75,6 +77,10 @@ public class StoreEntity extends AbstractAuditingEntity {
     @Size(max = 300)
     @Column(name = "image_path", length = 300)
     private String imagePath;
+
+    @OneToMany(mappedBy = "store")
+    @JsonIgnoreProperties(value = { "store", "product", "optionDetail", "stockBatches" }, allowSetters = true)
+    private Set<StockItemEntity> stockItems = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "stores" }, allowSetters = true)
@@ -272,6 +278,37 @@ public class StoreEntity extends AbstractAuditingEntity {
 
     public StoreEntity imagePath(String imagePath) {
         this.imagePath = imagePath;
+        return this;
+    }
+
+    public Set<StockItemEntity> getStockItems() {
+        return this.stockItems;
+    }
+
+    public void setStockItems(Set<StockItemEntity> stockItems) {
+        if (this.stockItems != null) {
+            this.stockItems.forEach(stockItem -> stockItem.setStore(null));
+        }
+        if (stockItems != null) {
+            stockItems.forEach(stockItem -> stockItem.setStore(this));
+        }
+        this.stockItems = stockItems;
+    }
+
+    public StoreEntity stockItems(Set<StockItemEntity> stockItems) {
+        this.setStockItems(stockItems);
+        return this;
+    }
+
+    public StoreEntity addStockItem(StockItemEntity stockItem) {
+        stockItem.setStore(this);
+        this.stockItems.add(stockItem);
+        return this;
+    }
+
+    public StoreEntity removeStockItem(StockItemEntity stockItem) {
+        stockItem.setStore(null);
+        this.stockItems.remove(stockItem);
         return this;
     }
 

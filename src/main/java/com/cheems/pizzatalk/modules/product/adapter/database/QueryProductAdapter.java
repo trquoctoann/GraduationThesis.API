@@ -9,9 +9,13 @@ import com.cheems.pizzatalk.entities.ProductEntity;
 import com.cheems.pizzatalk.entities.ProductEntity_;
 import com.cheems.pizzatalk.entities.ProductOptionEntity;
 import com.cheems.pizzatalk.entities.ProductOptionEntity_;
+import com.cheems.pizzatalk.entities.StockItemEntity;
+import com.cheems.pizzatalk.entities.StockItemEntity_;
 import com.cheems.pizzatalk.entities.mapper.CategoryMapper;
+import com.cheems.pizzatalk.entities.mapper.OptionDetailMapper;
 import com.cheems.pizzatalk.entities.mapper.OptionMapper;
 import com.cheems.pizzatalk.entities.mapper.ProductMapper;
+import com.cheems.pizzatalk.entities.mapper.StockItemMapper;
 import com.cheems.pizzatalk.modules.product.application.port.in.query.ProductCriteria;
 import com.cheems.pizzatalk.modules.product.application.port.out.QueryProductPort;
 import com.cheems.pizzatalk.modules.product.domain.Product;
@@ -40,16 +44,24 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
 
     private final OptionMapper optionMapper;
 
+    private final OptionDetailMapper optionDetailMapper;
+
+    private final StockItemMapper stockItemMapper;
+
     public QueryProductAdapter(
         ProductRepository productRepository,
         ProductMapper productMapper,
         CategoryMapper categoryMapper,
-        OptionMapper optionMapper
+        OptionMapper optionMapper,
+        OptionDetailMapper optionDetailMapper,
+        StockItemMapper stockItemMapper
     ) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
         this.categoryMapper = categoryMapper;
         this.optionMapper = optionMapper;
+        this.optionDetailMapper = optionDetailMapper;
+        this.stockItemMapper = stockItemMapper;
     }
 
     @Override
@@ -107,12 +119,6 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), ProductEntity_.status));
             }
-            if (criteria.getPrice() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getPrice(), ProductEntity_.price));
-            }
-            if (criteria.getQuantity() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getQuantity(), ProductEntity_.quantity));
-            }
             if (criteria.getImagePath() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getImagePath(), ProductEntity_.imagePath));
             }
@@ -146,6 +152,9 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
             if (criteria.getOptionId() != null) {
                 specification = specification.and(buildSpecificationFindByOptionId(criteria.getOptionId()));
             }
+            if (criteria.getStoreId() != null) {
+                specification = specification.and(buildSpecificationFindByStoreId(criteria.getStoreId()));
+            }
             if (!CollectionUtils.isEmpty(fetchAttributes)) {
                 specification = specification.and(SpecificationUtils.fetchAttributes(productMapper.toEntityAttributes(fetchAttributes)));
             }
@@ -164,6 +173,21 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
                     false
                 );
                 return builder.equal(joinProductOption.get(ProductOptionEntity_.option), optionId.getEquals());
+            };
+        }
+        return null;
+    }
+
+    private Specification<ProductEntity> buildSpecificationFindByStoreId(RangeFilter<Long> storeId) {
+        if (storeId.getEquals() != null) {
+            return (root, query, builder) -> {
+                Join<ProductEntity, StockItemEntity> joinStockItem = SpecificationUtils.getJoinFetch(
+                    root,
+                    "stockItems",
+                    JoinType.LEFT,
+                    false
+                );
+                return builder.equal(joinStockItem.get(StockItemEntity_.store), storeId.getEquals());
             };
         }
         return null;
@@ -200,6 +224,25 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
                     .getProductOptions()
                     .stream()
                     .map(productOptionEntity -> optionMapper.toDomain(productOptionEntity.getOption()))
+                    .collect(Collectors.toSet())
+            );
+        }
+        if (domainAttributes.contains(ProductMapper.DOMAIN_OPTION_DETAILS)) {
+            product.setOptionDetails(
+                productEntity
+                    .getProductOptions()
+                    .stream()
+                    .flatMap(productOptionEntity -> productOptionEntity.getProductOptionDetails().stream())
+                    .map(productOptionDetailEntity -> optionDetailMapper.toDomain(productOptionDetailEntity.getOptionDetail()))
+                    .collect(Collectors.toSet())
+            );
+        }
+        if (domainAttributes.contains(ProductMapper.DOMAIN_STOCK_ITEMS)) {
+            product.setStockItems(
+                productEntity
+                    .getStockItems()
+                    .stream()
+                    .map(stockItemEntity -> stockItemMapper.toDomain(stockItemEntity))
                     .collect(Collectors.toSet())
             );
         }

@@ -2,7 +2,9 @@ package com.cheems.pizzatalk.modules.store.domain;
 
 import com.cheems.pizzatalk.entities.enumeration.OperationalStatus;
 import com.cheems.pizzatalk.modules.area.domain.Area;
+import com.cheems.pizzatalk.modules.stockitem.domain.StockItem;
 import java.io.Serializable;
+import java.util.Set;
 import javax.validation.constraints.*;
 import lombok.Data;
 import lombok.ToString;
@@ -61,4 +63,6 @@ public class Store implements Serializable {
     private Long areaId;
 
     private Area area;
+
+    private Set<StockItem> stockItems;
 }

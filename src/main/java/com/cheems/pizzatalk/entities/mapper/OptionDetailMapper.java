@@ -11,16 +11,20 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = { OptionMapper.class })
 public interface OptionDetailMapper extends EntityMapper<OptionDetail, OptionDetailEntity> {
     String DOMAIN_OPTION = "option";
+    String DOMAIN_STOCK_ITEMS = "stockItems";
 
     String ENTITY_OPTION = "option";
+    String ENTITY_STOCK_ITEMS = "stockItems";
 
     @Override
     @Mapping(target = "option", source = "optionId")
+    @Mapping(target = "stockItems", ignore = true)
     OptionDetailEntity toEntity(OptionDetail domain);
 
     @Override
     @Mapping(target = "optionId", source = "option.id")
     @Mapping(target = "option", ignore = true)
+    @Mapping(target = "stockItems", ignore = true)
     OptionDetail toDomain(OptionDetailEntity entity);
 
     // prettier-ignore
@@ -31,6 +35,9 @@ public interface OptionDetailMapper extends EntityMapper<OptionDetail, OptionDet
             domainAttribute -> {
                 if (domainAttribute.equals(DOMAIN_OPTION)) {
                     entityAttributes.add(ENTITY_OPTION);
+                }
+                if (domainAttribute.equals(DOMAIN_STOCK_ITEMS)) {
+                    entityAttributes.add(ENTITY_STOCK_ITEMS);
                 }
             });
         return entityAttributes;

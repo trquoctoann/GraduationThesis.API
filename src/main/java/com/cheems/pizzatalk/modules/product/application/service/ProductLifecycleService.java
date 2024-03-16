@@ -12,6 +12,7 @@ import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLif
 import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.out.ProductPort;
 import com.cheems.pizzatalk.modules.product.domain.Product;
+import com.cheems.pizzatalk.modules.stockitem.application.port.in.share.StockItemLifecycleUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Optional;
 import java.util.Set;
@@ -34,16 +35,20 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
 
     private final QueryCategoryUseCase queryCategoryUseCase;
 
+    private final StockItemLifecycleUseCase stockItemLifecycleUseCase;
+
     public ProductLifecycleService(
         ObjectMapper objectMapper,
         ProductPort productPort,
         QueryProductUseCase queryProductUseCase,
-        QueryCategoryUseCase queryCategoryUseCase
+        QueryCategoryUseCase queryCategoryUseCase,
+        StockItemLifecycleUseCase stockItemLifecycleUseCase
     ) {
         this.objectMapper = objectMapper;
         this.productPort = productPort;
         this.queryProductUseCase = queryProductUseCase;
         this.queryCategoryUseCase = queryCategoryUseCase;
+        this.stockItemLifecycleUseCase = stockItemLifecycleUseCase;
     }
 
     @Override
@@ -86,9 +91,11 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
 
         if (deletingProductVariations != null && deletingProductVariations.size() > 0) {
             for (Product productVariation : deletingProductVariations) {
+                stockItemLifecycleUseCase.removeAllStoreOfProduct(productVariation.getId());
                 productPort.deleteById(productVariation.getId());
             }
         }
+        stockItemLifecycleUseCase.removeAllStoreOfProduct(id);
         productPort.deleteById(id);
         log.debug("Deleted product, id: {}", id);
     }
@@ -111,12 +118,14 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
             Set<Product> existProductVariations = existProduct.getProductVariations();
             if (existProductVariations != null && existProductVariations.size() > 0) {
                 for (Product productVariation : existProductVariations) {
+                    stockItemLifecycleUseCase.removeAllStoreOfProduct(productVariation.getId());
                     productVariation.setStatus(command.getStatus());
                     productPort.save(productVariation);
                 }
             }
         }
 
+        stockItemLifecycleUseCase.removeAllStoreOfProduct(command.getId());
         existProduct.setStatus(command.getStatus());
         existProduct = productPort.save(existProduct);
         log.debug(

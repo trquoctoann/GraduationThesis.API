@@ -74,7 +74,11 @@ public class OptionDetailResource {
     @GetMapping("/option-details/{id}")
     public ResponseEntity<OptionDetail> getOptionDetail(@PathVariable(value = "id", required = true) Long id) {
         log.debug("REST request to get option detail, ID: {}", id);
-        Optional<OptionDetail> optionalOptionDetail = queryOptionDetailUseCase.findById(id, OptionDetailMapper.DOMAIN_OPTION);
+        Optional<OptionDetail> optionalOptionDetail = queryOptionDetailUseCase.findById(
+            id,
+            OptionDetailMapper.DOMAIN_OPTION,
+            OptionDetailMapper.DOMAIN_STOCK_ITEMS
+        );
         return optionalOptionDetail
             .map(optionDetail -> ResponseEntity.ok().body(optionDetail))
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

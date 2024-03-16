@@ -7,6 +7,7 @@ import com.cheems.pizzatalk.entities.AreaEntity_;
 import com.cheems.pizzatalk.entities.StoreEntity;
 import com.cheems.pizzatalk.entities.StoreEntity_;
 import com.cheems.pizzatalk.entities.mapper.AreaMapper;
+import com.cheems.pizzatalk.entities.mapper.StockItemMapper;
 import com.cheems.pizzatalk.entities.mapper.StoreMapper;
 import com.cheems.pizzatalk.modules.store.application.port.in.query.StoreCriteria;
 import com.cheems.pizzatalk.modules.store.application.port.out.QueryStorePort;
@@ -33,10 +34,18 @@ public class QueryStoreAdapter extends QueryService<StoreEntity> implements Quer
 
     private final AreaMapper areaMapper;
 
-    public QueryStoreAdapter(StoreRepository storeRepository, StoreMapper storeMapper, AreaMapper areaMapper) {
+    private final StockItemMapper stockItemMapper;
+
+    public QueryStoreAdapter(
+        StoreRepository storeRepository,
+        StoreMapper storeMapper,
+        AreaMapper areaMapper,
+        StockItemMapper stockItemMapper
+    ) {
         this.storeRepository = storeRepository;
         this.storeMapper = storeMapper;
         this.areaMapper = areaMapper;
+        this.stockItemMapper = stockItemMapper;
     }
 
     @Override
@@ -144,6 +153,15 @@ public class QueryStoreAdapter extends QueryService<StoreEntity> implements Quer
 
         if (domainAttributes.contains(StoreMapper.DOMAIN_AREA)) {
             store.setArea(areaMapper.toDomain(storeEntity.getArea()));
+        }
+        if (domainAttributes.contains(StoreMapper.DOMAIN_STOCK_ITEM)) {
+            store.setStockItems(
+                storeEntity
+                    .getStockItems()
+                    .stream()
+                    .map(stockItemEntity -> stockItemMapper.toDomain(stockItemEntity))
+                    .collect(Collectors.toSet())
+            );
         }
         return store;
     }

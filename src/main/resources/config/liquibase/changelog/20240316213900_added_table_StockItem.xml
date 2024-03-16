@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240316213900-1" author="trquoctoan">
+        <createTable tableName="stock_item">
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sku" type="varchar(6)">
+                <constraints unique="true" nullable="false" uniqueConstraintName="unique_stock_item_sku" />
+            </column>
+            <column name="unit" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_quantity" type="int"/>
+            <column name="reorder_level" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reorder_quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="selling_price" type="decimal(10, 2)">
+                <constraints nullable="false" />
+            </column>
+            <column name="store_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="product_id" type="bigint"/>
+            <column name="option_detail_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

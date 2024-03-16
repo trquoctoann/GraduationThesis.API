@@ -15,17 +15,20 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
     String DOMAIN_PRODUCT_VARIATIONS = "productVariations";
     String DOMAIN_OPTIONS = "options";
     String DOMAIN_OPTION_DETAILS = "optionDetails";
+    String DOMAIN_STOCK_ITEMS = "stockItems";
 
     String ENTITY_PARENT_PRODUCT = "parentProduct";
     String ENTITY_CATEGORY = "category";
     String ENTITY_PRODUCT_VARIATIONS = "productVariations";
     String ENTITY_OPTIONS = "productOptions.option";
     String ENTITY_OPTION_DETAILS = "productOptions.productOptionDetails.optionDetail";
+    String ENTITY_STOCK_ITEMS = "stockItems";
 
     @Override
     @Mapping(target = "parentProduct", source = "parentProductId")
     @Mapping(target = "category", source = "categoryId")
     @Mapping(target = "productVariations", ignore = true)
+    @Mapping(target = "stockItems", ignore = true)
     ProductEntity toEntity(Product domain);
 
     @Override
@@ -34,6 +37,7 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
     @Mapping(target = "parentProduct", ignore = true)
     @Mapping(target = "category", ignore = true)
     @Mapping(target = "productVariations", ignore = true)
+    @Mapping(target = "stockItems", ignore = true)
     Product toDomain(ProductEntity entity);
 
     // prettier-ignore
@@ -56,6 +60,9 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
                 }
                 if (domainAttribute.equals(DOMAIN_OPTION_DETAILS)) {
                     entityAttributes.add(ENTITY_OPTION_DETAILS);
+                }
+                if (domainAttribute.equals(DOMAIN_STOCK_ITEMS)) {
+                    entityAttributes.add(ENTITY_STOCK_ITEMS);
                 }
             });
         return entityAttributes;

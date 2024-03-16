@@ -17,7 +17,7 @@ public class ProductOptionEntity implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
     private ProductEntity product;
 
     @ManyToOne(fetch = FetchType.LAZY)

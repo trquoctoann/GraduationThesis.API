@@ -5,6 +5,7 @@ import com.cheems.pizzatalk.entities.enumeration.OperationalStatus;
 import com.cheems.pizzatalk.modules.area.application.port.in.share.QueryAreaUseCase;
 import com.cheems.pizzatalk.modules.area.application.port.out.AreaPort;
 import com.cheems.pizzatalk.modules.area.domain.Area;
+import com.cheems.pizzatalk.modules.stockitem.application.port.in.share.StockItemLifecycleUseCase;
 import com.cheems.pizzatalk.modules.store.application.port.in.command.CreateStoreCommand;
 import com.cheems.pizzatalk.modules.store.application.port.in.command.UpdateStoreCommand;
 import com.cheems.pizzatalk.modules.store.application.port.in.share.QueryStoreUseCase;
@@ -33,18 +34,22 @@ public class StoreLifecycleService implements StoreLifecycleUseCase {
 
     private final QueryAreaUseCase queryAreaUseCase;
 
+    private final StockItemLifecycleUseCase stockItemLifecycleUseCase;
+
     public StoreLifecycleService(
         ObjectMapper objectMapper,
         StorePort storePort,
         AreaPort areaPort,
         QueryStoreUseCase queryStoreUseCase,
-        QueryAreaUseCase queryAreaUseCase
+        QueryAreaUseCase queryAreaUseCase,
+        StockItemLifecycleUseCase stockItemLifecycleUseCase
     ) {
         this.objectMapper = objectMapper;
         this.storePort = storePort;
         this.areaPort = areaPort;
         this.queryStoreUseCase = queryStoreUseCase;
         this.queryAreaUseCase = queryAreaUseCase;
+        this.stockItemLifecycleUseCase = stockItemLifecycleUseCase;
     }
 
     @Override
@@ -85,6 +90,7 @@ public class StoreLifecycleService implements StoreLifecycleUseCase {
         areaOfDeletingStore.setStoreCount(areaOfDeletingStore.getStoreCount() - 1);
         areaPort.save(areaOfDeletingStore);
 
+        stockItemLifecycleUseCase.removeAllStockItemsOfStore(id);
         storePort.deleteById(id);
         log.debug("Deleted store, id: {}", id);
     }

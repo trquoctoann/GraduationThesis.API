@@ -11,7 +11,7 @@
             <column name="id" type="bigint" autoIncrement="true" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="value" type="varchar(100)">
+            <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="sku" type="varchar(6)">
@@ -20,12 +20,6 @@
             <column name="code" type="varchar(20)"/>
             <column name="uom_id" type="varchar(20)"/>
             <column name="status" type="varchar(20)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="price" type="float">
-                <constraints nullable="false"/>
-            </column>
-            <column name="quantity" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="option_id" type="bigint">

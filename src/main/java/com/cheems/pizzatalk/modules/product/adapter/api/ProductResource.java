@@ -77,7 +77,9 @@ public class ProductResource {
             ProductMapper.DOMAIN_CATEGORY,
             ProductMapper.DOMAIN_OPTIONS,
             ProductMapper.DOMAIN_PARENT_PRODUCT,
-            ProductMapper.DOMAIN_PRODUCT_VARIATIONS
+            ProductMapper.DOMAIN_PRODUCT_VARIATIONS,
+            ProductMapper.DOMAIN_OPTION_DETAILS,
+            ProductMapper.DOMAIN_STOCK_ITEMS
         );
         return optionalProduct
             .map(product -> ResponseEntity.ok().body(product))

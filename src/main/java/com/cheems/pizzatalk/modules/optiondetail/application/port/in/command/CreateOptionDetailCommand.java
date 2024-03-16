@@ -15,7 +15,7 @@ public class CreateOptionDetailCommand extends CommandSelfValidating<CreateOptio
 
     @NotNull
     @Size(max = 100)
-    private String value;
+    private String name;
 
     @Size(min = 6, max = 6)
     private String sku;
@@ -28,12 +28,6 @@ public class CreateOptionDetailCommand extends CommandSelfValidating<CreateOptio
 
     @NotNull
     private CommerceStatus status;
-
-    @NotNull
-    private Float price;
-
-    @NotNull
-    private Long quantity;
 
     @NotNull
     private Long optionId;

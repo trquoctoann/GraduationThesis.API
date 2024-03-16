@@ -72,7 +72,7 @@ public class StoreResource {
     @GetMapping("/stores/{id}")
     public ResponseEntity<Store> getStore(@PathVariable(value = "id", required = true) Long id) {
         log.debug("REST request to get store, ID: {}", id);
-        Optional<Store> optionalStore = queryStoreUseCase.findById(id, StoreMapper.DOMAIN_AREA);
+        Optional<Store> optionalStore = queryStoreUseCase.findById(id, StoreMapper.DOMAIN_AREA, StoreMapper.DOMAIN_STOCK_ITEM);
         return optionalStore
             .map(store -> ResponseEntity.ok().body(store))
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));

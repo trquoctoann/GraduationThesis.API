@@ -87,7 +87,7 @@ public class SpecificationUtils {
                 }
 
                 for (int i = 1; i < attributeNames.length; i++) {
-                    join = getJoinFetch(join, attributeNames[1], JoinType.LEFT, false);
+                    join = getJoinFetch(join, attributeNames[i], JoinType.LEFT, false);
                 }
             }
             return builder.and();

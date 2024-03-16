@@ -33,10 +33,6 @@ public class CreateProductCommand extends CommandSelfValidating<CreateProductCom
     @NotNull
     private CommerceStatus status;
 
-    private Float price;
-
-    private Long quantity;
-
     @Size(max = 300)
     private String imagePath;
 

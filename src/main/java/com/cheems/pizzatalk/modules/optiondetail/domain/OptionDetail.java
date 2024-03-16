@@ -2,7 +2,9 @@ package com.cheems.pizzatalk.modules.optiondetail.domain;
 
 import com.cheems.pizzatalk.entities.enumeration.CommerceStatus;
 import com.cheems.pizzatalk.modules.option.domain.Option;
+import com.cheems.pizzatalk.modules.stockitem.domain.StockItem;
 import java.io.Serializable;
+import java.util.Set;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Data;
@@ -16,7 +18,7 @@ public class OptionDetail implements Serializable {
 
     @NotNull
     @Size(max = 100)
-    private String value;
+    private String name;
 
     @Size(min = 6, max = 6)
     private String sku;
@@ -30,13 +32,9 @@ public class OptionDetail implements Serializable {
     @NotNull
     private CommerceStatus status;
 
-    @NotNull
-    private Float price;
-
-    @NotNull
-    private Long quantity;
-
     private Long optionId;
 
     private Option option;
+
+    private Set<StockItem> stockItems;
 }

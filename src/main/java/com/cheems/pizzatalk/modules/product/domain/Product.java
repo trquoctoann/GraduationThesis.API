@@ -3,6 +3,8 @@ package com.cheems.pizzatalk.modules.product.domain;
 import com.cheems.pizzatalk.entities.enumeration.CommerceStatus;
 import com.cheems.pizzatalk.modules.category.domain.Category;
 import com.cheems.pizzatalk.modules.option.domain.Option;
+import com.cheems.pizzatalk.modules.optiondetail.domain.OptionDetail;
+import com.cheems.pizzatalk.modules.stockitem.domain.StockItem;
 import java.io.Serializable;
 import java.util.Set;
 import javax.validation.constraints.NotNull;
@@ -36,10 +38,6 @@ public class Product implements Serializable {
     @NotNull
     private CommerceStatus status;
 
-    private Float price;
-
-    private Long quantity;
-
     @Size(max = 300)
     private String imagePath;
 
@@ -54,4 +52,8 @@ public class Product implements Serializable {
     private Set<Product> productVariations;
 
     private Set<Option> options;
+
+    private Set<OptionDetail> optionDetails;
+
+    private Set<StockItem> stockItems;
 }

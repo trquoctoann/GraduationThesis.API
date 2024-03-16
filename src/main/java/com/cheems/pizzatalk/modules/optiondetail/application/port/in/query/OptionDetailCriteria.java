@@ -19,7 +19,7 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
 
     private RangeFilter<Long> id;
 
-    private StringFilter value;
+    private StringFilter name;
 
     private StringFilter sku;
 
@@ -29,24 +29,21 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
 
     private CommerceStatusFilter status;
 
-    private RangeFilter<Float> price;
-
-    private RangeFilter<Long> quantity;
-
     private RangeFilter<Long> optionId;
+
+    private RangeFilter<Long> stockItemId;
 
     public OptionDetailCriteria() {}
 
     public OptionDetailCriteria(OptionDetailCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
-        this.value = other.value == null ? null : other.value.copy();
+        this.name = other.name == null ? null : other.name.copy();
         this.sku = other.sku == null ? null : other.sku.copy();
         this.code = other.code == null ? null : other.code.copy();
         this.uomId = other.uomId == null ? null : other.uomId.copy();
         this.status = other.status == null ? null : other.status.copy();
-        this.price = other.price == null ? null : other.price.copy();
-        this.quantity = other.quantity == null ? null : other.quantity.copy();
         this.optionId = other.optionId == null ? null : other.optionId.copy();
+        this.stockItemId = other.stockItemId == null ? null : other.stockItemId.copy();
     }
 
     @Override
