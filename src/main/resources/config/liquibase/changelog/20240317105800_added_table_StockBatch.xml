@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240317105800-1" author="trquoctoan">
+        <createTable tableName="stock_batch">
+            <column name="id" type="bigint" autoIncrement="true" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unit" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="purchase_price_per_unit" type="decimal(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="remaining_quantity" type="int"/>
+            <column name="ordered_quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="received_quantity" type="int"/>
+            <column name="ordered_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="received_date" type="datetime"/>
+            <column name="expiration_date" type="datetime"/>
+            <column name="stock_item_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

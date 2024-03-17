@@ -44,4 +44,6 @@
     <include file="config/liquibase/changelog/20240312083400_added_table_constraints_UserKey.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240316213900_added_table_StockItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240316214100_added_table_constraints_StockItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240317105800_added_table_StockBatch.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240317110100_added_table_constraints_StockBatch.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
