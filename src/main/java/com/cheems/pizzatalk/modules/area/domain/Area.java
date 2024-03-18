@@ -29,7 +29,6 @@ public class Area implements Serializable {
     @NotNull
     private OperationalStatus status;
 
-    @NotNull
     private Long storeCount;
 
     @NotNull

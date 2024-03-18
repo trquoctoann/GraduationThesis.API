@@ -20,6 +20,11 @@ public class OptionEntity extends AbstractAuditingEntity {
     private Long id;
 
     @NotNull
+    @Size(max = 30)
+    @Column(name = "name", unique = true, nullable = false)
+    private String name;
+
+    @NotNull
     @Size(max = 10)
     @Column(name = "code", unique = true, nullable = false)
     private String code;
@@ -55,6 +60,19 @@ public class OptionEntity extends AbstractAuditingEntity {
 
     public OptionEntity id(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public OptionEntity name(String name) {
+        this.name = name;
         return this;
     }
 
@@ -194,6 +212,9 @@ public class OptionEntity extends AbstractAuditingEntity {
             "Option={" +
             "id=" +
             getId() +
+            ", name='" +
+            getName() +
+            "'" +
             ", code='" +
             getCode() +
             "'" +

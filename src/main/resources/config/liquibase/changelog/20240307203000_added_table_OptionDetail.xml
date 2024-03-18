@@ -17,8 +17,8 @@
             <column name="sku" type="varchar(6)">
                 <constraints unique="true" uniqueConstraintName="unique_option_detail_sku"/>
             </column>
-            <column name="code" type="varchar(20)"/>
-            <column name="uom_id" type="varchar(20)"/>
+            <column name="code" type="varchar(30)"/>
+            <column name="size" type="varchar(2)"/>
             <column name="status" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>

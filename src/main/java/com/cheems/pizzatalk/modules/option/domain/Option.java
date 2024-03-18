@@ -17,6 +17,10 @@ public class Option implements Serializable {
     private Long id;
 
     @NotNull
+    @Size(max = 30)
+    private String name;
+
+    @NotNull
     @Size(max = 10)
     private String code;
 

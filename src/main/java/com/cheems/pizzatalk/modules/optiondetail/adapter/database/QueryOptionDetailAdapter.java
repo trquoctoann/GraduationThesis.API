@@ -102,8 +102,8 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
             if (criteria.getCode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCode(), OptionDetailEntity_.code));
             }
-            if (criteria.getUomId() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getUomId(), OptionDetailEntity_.uomId));
+            if (criteria.getSize() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getSize(), OptionDetailEntity_.size));
             }
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), OptionDetailEntity_.status));

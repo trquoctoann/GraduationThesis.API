@@ -36,7 +36,7 @@ public class StoreEntity extends AbstractAuditingEntity {
 
     @Email
     @Size(min = 5, max = 254)
-    @Column(name = "email", length = 254, nullable = false)
+    @Column(name = "email", length = 254)
     private String email;
 
     @NotNull

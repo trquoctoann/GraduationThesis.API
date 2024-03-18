@@ -14,6 +14,10 @@ import lombok.ToString;
 public class CreateOptionCommand extends CommandSelfValidating<CreateOptionCommand> {
 
     @NotNull
+    @Size(max = 30)
+    private String name;
+
+    @NotNull
     @Size(max = 10)
     private String code;
 

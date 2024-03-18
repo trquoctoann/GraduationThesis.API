@@ -47,6 +47,7 @@ public class AreaLifecycleService implements AreaLifecycleUseCase {
         }
 
         Area area = objectMapper.convertValue(command, Area.class);
+        area.setStoreCount((long) 0);
         area = areaPort.save(area);
 
         log.debug("Created area: {}", command);

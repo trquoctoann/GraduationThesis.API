@@ -90,6 +90,9 @@ public class QueryOptionAdapter extends QueryService<OptionEntity> implements Qu
             if (criteria.getId() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getId(), OptionEntity_.id));
             }
+            if (criteria.getName() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getName(), OptionEntity_.name));
+            }
             if (criteria.getCode() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getCode(), OptionEntity_.code));
             }

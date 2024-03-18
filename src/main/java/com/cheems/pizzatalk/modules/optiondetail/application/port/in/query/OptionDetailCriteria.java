@@ -25,7 +25,7 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
 
     private StringFilter code;
 
-    private StringFilter uomId;
+    private StringFilter size;
 
     private CommerceStatusFilter status;
 
@@ -40,7 +40,7 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
         this.name = other.name == null ? null : other.name.copy();
         this.sku = other.sku == null ? null : other.sku.copy();
         this.code = other.code == null ? null : other.code.copy();
-        this.uomId = other.uomId == null ? null : other.uomId.copy();
+        this.size = other.size == null ? null : other.size.copy();
         this.status = other.status == null ? null : other.status.copy();
         this.optionId = other.optionId == null ? null : other.optionId.copy();
         this.stockItemId = other.stockItemId == null ? null : other.stockItemId.copy();

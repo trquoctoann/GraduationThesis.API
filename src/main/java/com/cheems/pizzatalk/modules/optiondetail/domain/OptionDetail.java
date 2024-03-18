@@ -23,11 +23,11 @@ public class OptionDetail implements Serializable {
     @Size(min = 6, max = 6)
     private String sku;
 
-    @Size(max = 20)
+    @Size(max = 30)
     private String code;
 
-    @Size(max = 20)
-    private String uomId;
+    @Size(max = 2)
+    private String size;
 
     @NotNull
     private CommerceStatus status;

@@ -29,13 +29,13 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     @Column(name = "sku", unique = true, nullable = false, length = 6)
     private String sku;
 
-    @Size(max = 20)
-    @Column(name = "code", length = 20)
+    @Size(max = 30)
+    @Column(name = "code", length = 30)
     private String code;
 
-    @Size(max = 20)
-    @Column(name = "uom_id", length = 20)
-    private String uomId;
+    @Size(max = 2)
+    @Column(name = "size", nullable = false, length = 2)
+    private String size;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -106,16 +106,16 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public String getUomId() {
-        return this.uomId;
+    public String getSize() {
+        return this.size;
     }
 
-    public void setUomId(String uomId) {
-        this.uomId = uomId;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public OptionDetailEntity uomId(String uomId) {
-        this.uomId = uomId;
+    public OptionDetailEntity size(String size) {
+        this.size = size;
         return this;
     }
 
@@ -236,8 +236,8 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
             ", code='" +
             getCode() +
             "'" +
-            ", uomId='" +
-            getUomId() +
+            ", size='" +
+            getSize() +
             "'" +
             ", status='" +
             getStatus() +

@@ -20,6 +20,8 @@ public class OptionCriteria extends QuerySelfValidating<OptionCriteria> implemen
 
     private RangeFilter<Long> id;
 
+    private StringFilter name;
+
     private StringFilter code;
 
     private CommerceStatusFilter status;
@@ -36,6 +38,7 @@ public class OptionCriteria extends QuerySelfValidating<OptionCriteria> implemen
 
     public OptionCriteria(OptionCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
+        this.name = other.name == null ? null : other.name.copy();
         this.code = other.code == null ? null : other.code.copy();
         this.status = other.status == null ? null : other.status.copy();
         this.isMulti = other.isMulti == null ? null : other.isMulti.copy();

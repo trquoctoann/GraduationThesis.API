@@ -28,7 +28,6 @@ public class CreateAreaCommand extends CommandSelfValidating<CreateAreaCommand> 
     @NotNull
     private OperationalStatus status;
 
-    @NotNull
     private Long storeCount;
 
     @NotNull
