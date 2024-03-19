@@ -1,6 +1,7 @@
 package com.cheems.pizzatalk.modules.category.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.CategoryMapper;
+import com.cheems.pizzatalk.modules.category.adapter.api.dto.PayloadUpdateCategoryStatus;
 import com.cheems.pizzatalk.modules.category.application.port.in.command.CreateCategoryCommand;
 import com.cheems.pizzatalk.modules.category.application.port.in.command.UpdateCategoryCommand;
 import com.cheems.pizzatalk.modules.category.application.port.in.query.CategoryCriteria;
@@ -119,5 +120,15 @@ public class CategoryResource {
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + id.toString());
 
         return ResponseEntity.noContent().headers(headers).build();
+    }
+
+    @PutMapping("/categories/{id}/update-status")
+    public ResponseEntity<Void> updateCategoryStatus(
+        @PathVariable(value = "id", required = true) Long id,
+        @RequestBody PayloadUpdateCategoryStatus payload
+    ) {
+        log.debug("REST request to update category status, ID: {}", id);
+        categoryLifecycleUseCase.updateCommerceStatus(id, payload.getNewStatus());
+        return ResponseEntity.noContent().build();
     }
 }

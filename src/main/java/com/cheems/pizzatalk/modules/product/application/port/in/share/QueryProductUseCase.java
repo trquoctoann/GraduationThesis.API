@@ -23,4 +23,6 @@ public interface QueryProductUseCase {
     List<Product> findListByCriteria(ProductCriteria criteria);
 
     Page<Product> findPageByCriteria(ProductCriteria criteria, Pageable pageable);
+
+    List<Product> findProductsByCategoryId(Long categoryId);
 }

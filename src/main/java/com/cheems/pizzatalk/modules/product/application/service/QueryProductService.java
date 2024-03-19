@@ -84,4 +84,15 @@ public class QueryProductService implements QueryProductUseCase {
     public Page<Product> findPageByCriteria(ProductCriteria criteria, Pageable pageable) {
         return queryProductPort.findPageByCriteria(criteria, pageable);
     }
+
+    @Override
+    public List<Product> findProductsByCategoryId(Long categoryId) {
+        ProductCriteria criteria = new ProductCriteria();
+
+        RangeFilter<Long> categoryIdFilter = new RangeFilter<>();
+        categoryIdFilter.setEquals(categoryId);
+
+        criteria.setCategoryId(categoryIdFilter);
+        return queryProductPort.findListByCriteria(criteria);
+    }
 }

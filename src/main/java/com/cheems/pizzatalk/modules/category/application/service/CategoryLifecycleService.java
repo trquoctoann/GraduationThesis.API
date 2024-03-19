@@ -1,13 +1,18 @@
 package com.cheems.pizzatalk.modules.category.application.service;
 
 import com.cheems.pizzatalk.common.exception.BusinessException;
+import com.cheems.pizzatalk.entities.enumeration.CommerceStatus;
 import com.cheems.pizzatalk.modules.category.application.port.in.command.CreateCategoryCommand;
 import com.cheems.pizzatalk.modules.category.application.port.in.command.UpdateCategoryCommand;
 import com.cheems.pizzatalk.modules.category.application.port.in.share.CategoryLifecycleUseCase;
 import com.cheems.pizzatalk.modules.category.application.port.in.share.QueryCategoryUseCase;
 import com.cheems.pizzatalk.modules.category.application.port.out.CategoryPort;
 import com.cheems.pizzatalk.modules.category.domain.Category;
+import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLifecycleUseCase;
+import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
+import com.cheems.pizzatalk.modules.product.domain.Product;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -25,10 +30,22 @@ public class CategoryLifecycleService implements CategoryLifecycleUseCase {
 
     private final QueryCategoryUseCase queryCategoryUseCase;
 
-    public CategoryLifecycleService(ObjectMapper objectMapper, CategoryPort categoryPort, QueryCategoryUseCase queryCategoryUseCase) {
+    private final ProductLifecycleUseCase productLifecycleUseCase;
+
+    private final QueryProductUseCase queryProductUseCase;
+
+    public CategoryLifecycleService(
+        ObjectMapper objectMapper,
+        CategoryPort categoryPort,
+        QueryCategoryUseCase queryCategoryUseCase,
+        ProductLifecycleUseCase productLifecycleUseCase,
+        QueryProductUseCase queryProductUseCase
+    ) {
         this.objectMapper = objectMapper;
         this.categoryPort = categoryPort;
         this.queryCategoryUseCase = queryCategoryUseCase;
+        this.productLifecycleUseCase = productLifecycleUseCase;
+        this.queryProductUseCase = queryProductUseCase;
     }
 
     @Override
@@ -53,6 +70,7 @@ public class CategoryLifecycleService implements CategoryLifecycleUseCase {
         Category category = objectMapper.convertValue(command, Category.class);
         category.setId(existCategory.getId());
         category.setName(existCategory.getName());
+        category.setStatus(existCategory.getStatus());
 
         category = categoryPort.save(category);
         log.debug("Updated category, id: {}", command.getId());
@@ -62,7 +80,40 @@ public class CategoryLifecycleService implements CategoryLifecycleUseCase {
     @Override
     public void deleteById(Long id) {
         log.debug("Deleting category, id: {}", id);
+        List<Product> productsInCategory = queryProductUseCase.findProductsByCategoryId(id);
+        productsInCategory.forEach(product -> productLifecycleUseCase.deleteById(product.getId()));
+
         categoryPort.deleteById(id);
         log.debug("Deleted category, id: {}", id);
+    }
+
+    @Override
+    public Category updateCommerceStatus(Long id, CommerceStatus newStatus) {
+        log.debug("Updating commerce status of category, id: {}", id);
+        Category existCategory = queryCategoryUseCase.getById(id);
+        CommerceStatus oldStatus = existCategory.getStatus();
+
+        if (
+            newStatus.equals(CommerceStatus.UPCOMING) ||
+            oldStatus.equals(CommerceStatus.DISCONTINUED) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.DISCONTINUED)) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.INACTIVE))
+        ) {
+            throw new BusinessException("Cannot change status from " + oldStatus + " to " + newStatus);
+        }
+
+        if (newStatus.equals(CommerceStatus.DISCONTINUED)) {
+            List<Product> productsInCategory = queryProductUseCase.findProductsByCategoryId(existCategory.getId());
+
+            productsInCategory
+                .stream()
+                .filter(product -> product.getParentProductId() == null)
+                .forEach(product -> productLifecycleUseCase.updateCommerceStatus(product.getId(), CommerceStatus.DISCONTINUED));
+        }
+
+        existCategory.setStatus(newStatus);
+        existCategory = categoryPort.save(existCategory);
+        log.debug("Updated commerce status of category, id: {} from {} to {}", id, oldStatus, newStatus);
+        return existCategory;
     }
 }
