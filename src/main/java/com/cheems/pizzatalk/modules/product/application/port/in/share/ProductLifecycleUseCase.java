@@ -1,8 +1,8 @@
 package com.cheems.pizzatalk.modules.product.application.port.in.share;
 
+import com.cheems.pizzatalk.entities.enumeration.CommerceStatus;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.CreateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductCommand;
-import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductStatusCommand;
 import com.cheems.pizzatalk.modules.product.domain.Product;
 
 public interface ProductLifecycleUseCase {
@@ -12,5 +12,5 @@ public interface ProductLifecycleUseCase {
 
     void deleteById(Long id);
 
-    Product updateCommerceStatus(UpdateProductStatusCommand command);
+    Product updateCommerceStatus(Long id, CommerceStatus newStatus);
 }

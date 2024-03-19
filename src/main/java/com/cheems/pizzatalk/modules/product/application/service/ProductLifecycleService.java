@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.category.application.port.in.share.QueryCate
 import com.cheems.pizzatalk.modules.category.domain.Category;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.CreateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductCommand;
-import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductStatusCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLifecycleUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.out.ProductPort;
@@ -101,39 +100,35 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
     }
 
     @Override
-    public Product updateCommerceStatus(UpdateProductStatusCommand command) {
-        log.debug("Updating commerce status of product, id: {}", command.getId());
-        Product existProduct = queryProductUseCase.getById(command.getId(), ProductMapper.DOMAIN_PRODUCT_VARIATIONS);
+    public Product updateCommerceStatus(Long id, CommerceStatus newStatus) {
+        log.debug("Updating commerce status of product, id: {}", id);
+        Product existProduct = queryProductUseCase.getById(id, ProductMapper.DOMAIN_PRODUCT_VARIATIONS);
+        CommerceStatus oldStatus = existProduct.getStatus();
 
         if (
-            command.getStatus().equals(CommerceStatus.UPCOMING) ||
-            existProduct.getStatus().equals(CommerceStatus.DISCONTINUED) ||
-            (existProduct.getStatus().equals(CommerceStatus.UPCOMING) && command.getStatus().equals(CommerceStatus.DISCONTINUED)) ||
-            (existProduct.getStatus().equals(CommerceStatus.UPCOMING) && command.getStatus().equals(CommerceStatus.INACTIVE))
+            newStatus.equals(CommerceStatus.UPCOMING) ||
+            oldStatus.equals(CommerceStatus.DISCONTINUED) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.DISCONTINUED)) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.INACTIVE))
         ) {
-            throw new BusinessException("Cannot change status from " + existProduct.getStatus() + " to " + command.getStatus());
+            throw new BusinessException("Cannot change status from " + oldStatus + " to " + newStatus);
         }
 
-        if (command.getStatus().equals(CommerceStatus.DISCONTINUED)) {
+        if (newStatus.equals(CommerceStatus.DISCONTINUED)) {
             Set<Product> existProductVariations = existProduct.getProductVariations();
             if (existProductVariations != null && existProductVariations.size() > 0) {
                 for (Product productVariation : existProductVariations) {
                     stockItemLifecycleUseCase.removeAllStoreOfProduct(productVariation.getId());
-                    productVariation.setStatus(command.getStatus());
+                    productVariation.setStatus(newStatus);
                     productPort.save(productVariation);
                 }
             }
         }
 
-        stockItemLifecycleUseCase.removeAllStoreOfProduct(command.getId());
-        existProduct.setStatus(command.getStatus());
+        stockItemLifecycleUseCase.removeAllStoreOfProduct(id);
+        existProduct.setStatus(newStatus);
         existProduct = productPort.save(existProduct);
-        log.debug(
-            "Updated commerce status of product, id: {} from {} to {}",
-            command.getId(),
-            existProduct.getStatus(),
-            command.getStatus()
-        );
+        log.debug("Updated commerce status of product, id: {} from {} to {}", id, oldStatus, newStatus);
         return existProduct;
     }
 

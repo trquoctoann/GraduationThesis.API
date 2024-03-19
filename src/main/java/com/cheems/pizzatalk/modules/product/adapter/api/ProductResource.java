@@ -1,9 +1,9 @@
 package com.cheems.pizzatalk.modules.product.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.ProductMapper;
+import com.cheems.pizzatalk.modules.product.adapter.api.dto.PayloadUpdateProductStatus;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.CreateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductCommand;
-import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductStatusCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.query.ProductCriteria;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLifecycleUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
@@ -133,10 +133,10 @@ public class ProductResource {
     @PutMapping("/products/{id}/update-status")
     public ResponseEntity<Void> updateProductCommerceStatus(
         @PathVariable(value = "id", required = true) Long id,
-        @Valid @RequestBody UpdateProductStatusCommand command
+        @RequestBody PayloadUpdateProductStatus payload
     ) {
         log.debug("REST request to update status of product, ID: {}", id);
-        productLifecycleUseCase.updateCommerceStatus(command);
+        productLifecycleUseCase.updateCommerceStatus(id, payload.getNewStatus());
         return ResponseEntity.noContent().build();
     }
 }
