@@ -1,14 +1,17 @@
 package com.cheems.pizzatalk.modules.optiondetail.application.service;
 
 import com.cheems.pizzatalk.common.exception.BusinessException;
+import com.cheems.pizzatalk.entities.enumeration.CommerceStatus;
 import com.cheems.pizzatalk.modules.option.application.port.in.share.QueryOptionUseCase;
 import com.cheems.pizzatalk.modules.option.domain.Option;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.command.CreateOptionDetailCommand;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.command.UpdateOptionDetailCommand;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.share.OptionDetailLifecycleUseCase;
+import com.cheems.pizzatalk.modules.optiondetail.application.port.in.share.OptionDetailProductUseCase;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.share.QueryOptionDetailUseCase;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.out.OptionDetailPort;
 import com.cheems.pizzatalk.modules.optiondetail.domain.OptionDetail;
+import com.cheems.pizzatalk.modules.stockitem.application.port.in.share.StockItemLifecycleUseCase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -26,18 +29,26 @@ public class OptionDetailLifecycleService implements OptionDetailLifecycleUseCas
 
     private final OptionDetailPort optionDetailPort;
 
+    private final OptionDetailProductUseCase optionDetailProductUseCase;
+
     private final QueryOptionDetailUseCase queryOptionDetailUseCase;
+
+    private final StockItemLifecycleUseCase stockItemLifecycleUseCase;
 
     private final QueryOptionUseCase queryOptionUseCase;
 
     public OptionDetailLifecycleService(
         ObjectMapper objectMapper,
         OptionDetailPort optionDetailPort,
+        OptionDetailProductUseCase optionDetailProductUseCase,
+        StockItemLifecycleUseCase stockItemLifecycleUseCase,
         QueryOptionDetailUseCase queryOptionDetailUseCase,
         QueryOptionUseCase queryOptionUseCase
     ) {
         this.objectMapper = objectMapper;
         this.optionDetailPort = optionDetailPort;
+        this.optionDetailProductUseCase = optionDetailProductUseCase;
+        this.stockItemLifecycleUseCase = stockItemLifecycleUseCase;
         this.queryOptionDetailUseCase = queryOptionDetailUseCase;
         this.queryOptionUseCase = queryOptionUseCase;
     }
@@ -75,8 +86,36 @@ public class OptionDetailLifecycleService implements OptionDetailLifecycleUseCas
     }
 
     @Override
+    public OptionDetail updateCommerceStatus(Long id, CommerceStatus newStatus) {
+        log.debug("Updating commerce status of option detail, id: {}", id);
+        OptionDetail existOptionDetail = queryOptionDetailUseCase.getById(id);
+        CommerceStatus oldStatus = existOptionDetail.getStatus();
+
+        if (
+            newStatus.equals(CommerceStatus.UPCOMING) ||
+            oldStatus.equals(CommerceStatus.DISCONTINUED) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.DISCONTINUED)) ||
+            (oldStatus.equals(CommerceStatus.UPCOMING) && newStatus.equals(CommerceStatus.INACTIVE))
+        ) {
+            throw new BusinessException("Cannot change status from " + oldStatus + " to " + newStatus);
+        }
+
+        if (newStatus.equals(CommerceStatus.DISCONTINUED)) {
+            stockItemLifecycleUseCase.removeAllStoreOfOptionDetail(id);
+            optionDetailProductUseCase.removeAllProductOfOptionDetail(id);
+        }
+
+        existOptionDetail.setStatus(newStatus);
+        existOptionDetail = optionDetailPort.save(existOptionDetail);
+
+        log.debug("Updated commerce status of option detail, id: {}", id);
+        return existOptionDetail;
+    }
+
+    @Override
     public void deleteById(Long id) {
         log.debug("Deleting option detail, id: {}", id);
+        optionDetailProductUseCase.removeAllProductOfOptionDetail(id);
         optionDetailPort.deleteById(id);
         log.debug("Deleted option detail, id: {}", id);
     }

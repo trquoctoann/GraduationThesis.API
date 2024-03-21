@@ -1,6 +1,7 @@
 package com.cheems.pizzatalk.modules.optiondetail.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.OptionDetailMapper;
+import com.cheems.pizzatalk.modules.optiondetail.adapter.api.dto.PayloadUpdateOptionDetailStatus;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.command.CreateOptionDetailCommand;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.command.UpdateOptionDetailCommand;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.query.OptionDetailCriteria;
@@ -125,5 +126,15 @@ public class OptionDetailResource {
         headers.add("X-applicationName-params", ENTITY_NAME + ":" + id.toString());
 
         return ResponseEntity.noContent().headers(headers).build();
+    }
+
+    @PutMapping("/option-details/{id}/update-status")
+    public ResponseEntity<Void> updateOptionDetailStatus(
+        @PathVariable(value = "id", required = true) Long id,
+        @RequestBody PayloadUpdateOptionDetailStatus payload
+    ) {
+        log.debug("REST request to update status of option detail, ID: {}", id);
+        optionDetailLifecycleUseCase.updateCommerceStatus(id, payload.getNewStatus());
+        return ResponseEntity.noContent().build();
     }
 }
