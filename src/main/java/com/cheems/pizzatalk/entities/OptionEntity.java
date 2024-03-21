@@ -43,11 +43,11 @@ public class OptionEntity extends AbstractAuditingEntity {
     private Boolean isRequired;
 
     @OneToMany(mappedBy = "option")
-    @JsonIgnoreProperties(value = { "product", "option", "productOptionDetails" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "product", "option", "optionDetail" }, allowSetters = true)
     private Set<ProductOptionEntity> productOptions = new HashSet<>();
 
     @OneToMany(mappedBy = "option")
-    @JsonIgnoreProperties(value = { "option", "productOptionDetails", "stockItems" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems" }, allowSetters = true)
     private Set<OptionDetailEntity> optionDetails = new HashSet<>();
 
     public Long getId() {

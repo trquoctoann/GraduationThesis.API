@@ -8,6 +8,7 @@ import com.cheems.pizzatalk.modules.category.domain.Category;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.CreateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLifecycleUseCase;
+import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductOptionUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.out.ProductPort;
 import com.cheems.pizzatalk.modules.product.domain.Product;
@@ -34,6 +35,8 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
 
     private final QueryCategoryUseCase queryCategoryUseCase;
 
+    private final ProductOptionUseCase productOptionUseCase;
+
     private final StockItemLifecycleUseCase stockItemLifecycleUseCase;
 
     public ProductLifecycleService(
@@ -41,12 +44,14 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
         ProductPort productPort,
         QueryProductUseCase queryProductUseCase,
         QueryCategoryUseCase queryCategoryUseCase,
+        ProductOptionUseCase productOptionUseCase,
         StockItemLifecycleUseCase stockItemLifecycleUseCase
     ) {
         this.objectMapper = objectMapper;
         this.productPort = productPort;
         this.queryProductUseCase = queryProductUseCase;
         this.queryCategoryUseCase = queryCategoryUseCase;
+        this.productOptionUseCase = productOptionUseCase;
         this.stockItemLifecycleUseCase = stockItemLifecycleUseCase;
     }
 
@@ -91,10 +96,12 @@ public class ProductLifecycleService implements ProductLifecycleUseCase {
         if (deletingProductVariations != null && deletingProductVariations.size() > 0) {
             for (Product productVariation : deletingProductVariations) {
                 stockItemLifecycleUseCase.removeAllStoreOfProduct(productVariation.getId());
+                productOptionUseCase.removeAllOptionOfProduct(productVariation.getId());
                 productPort.deleteById(productVariation.getId());
             }
         }
         stockItemLifecycleUseCase.removeAllStoreOfProduct(id);
+        productOptionUseCase.removeAllOptionOfProduct(id);
         productPort.deleteById(id);
         log.debug("Deleted product, id: {}", id);
     }

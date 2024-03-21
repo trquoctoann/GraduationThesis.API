@@ -47,8 +47,8 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     private OptionEntity option;
 
     @OneToMany(mappedBy = "optionDetail")
-    @JsonIgnoreProperties(value = { "productOption", "optionDetail" }, allowSetters = true)
-    private Set<ProductOptionDetailEntity> productOptionDetails = new HashSet<>();
+    @JsonIgnoreProperties(value = { "product", "option", "optionDetail" }, allowSetters = true)
+    private Set<ProductOptionEntity> productOptions = new HashSet<>();
 
     @OneToMany(mappedBy = "optionDetail")
     @JsonIgnoreProperties(value = { "store", "product", "optionDetail", "stockBatches" }, allowSetters = true)
@@ -145,32 +145,34 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
         return this;
     }
 
-    public Set<ProductOptionDetailEntity> getProductOptionDetails() {
-        return this.productOptionDetails;
+    public Set<ProductOptionEntity> getProductOptions() {
+        return this.productOptions;
     }
 
-    public void setProductOptionDetails(Set<ProductOptionDetailEntity> productOptionDetails) {
-        if (this.productOptionDetails != null) {
-            this.productOptionDetails.forEach(productOptionDetail -> productOptionDetail.setOptionDetail(null));
+    public void setProductOptions(Set<ProductOptionEntity> productOptions) {
+        if (this.productOptions != null) {
+            this.productOptions.forEach(productOption -> productOption.setOptionDetail(null));
         }
-        if (productOptionDetails != null) {
-            productOptionDetails.forEach(productOptionDetail -> productOptionDetail.setOptionDetail(this));
+        if (productOptions != null) {
+            productOptions.forEach(productOption -> productOption.setOptionDetail(this));
         }
-        this.productOptionDetails = productOptionDetails;
+        this.productOptions = productOptions;
     }
 
-    public OptionDetailEntity productOptionDetails(Set<ProductOptionDetailEntity> productOptionDetails) {
-        this.setProductOptionDetails(productOptionDetails);
+    public OptionDetailEntity productOptions(Set<ProductOptionEntity> productOptions) {
+        this.setProductOptions(productOptions);
         return this;
     }
 
-    public OptionDetailEntity addProductOptionDetail(ProductOptionDetailEntity productOptionDetail) {
-        productOptionDetail.setOptionDetail(this);
+    public OptionDetailEntity addProductOption(ProductOptionEntity productOption) {
+        productOption.setOptionDetail(this);
+        this.productOptions.add(productOption);
         return this;
     }
 
-    public OptionDetailEntity removeProductOptionDetail(ProductOptionDetailEntity productOptionDetail) {
-        productOptionDetail.setOptionDetail(null);
+    public OptionDetailEntity removeProductOption(ProductOptionEntity productOption) {
+        productOption.setOptionDetail(null);
+        this.productOptions.remove(productOption);
         return this;
     }
 

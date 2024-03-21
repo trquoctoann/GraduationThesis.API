@@ -29,6 +29,8 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
 
     private CommerceStatusFilter status;
 
+    private RangeFilter<Long> productId;
+
     private RangeFilter<Long> optionId;
 
     private RangeFilter<Long> stockItemId;
@@ -42,6 +44,7 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
         this.code = other.code == null ? null : other.code.copy();
         this.size = other.size == null ? null : other.size.copy();
         this.status = other.status == null ? null : other.status.copy();
+        this.productId = other.productId == null ? null : other.productId.copy();
         this.optionId = other.optionId == null ? null : other.optionId.copy();
         this.stockItemId = other.stockItemId == null ? null : other.stockItemId.copy();
     }

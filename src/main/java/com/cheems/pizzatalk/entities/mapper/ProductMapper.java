@@ -21,7 +21,7 @@ public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
     String ENTITY_CATEGORY = "category";
     String ENTITY_PRODUCT_VARIATIONS = "productVariations";
     String ENTITY_OPTIONS = "productOptions.option";
-    String ENTITY_OPTION_DETAILS = "productOptions.productOptionDetails.optionDetail";
+    String ENTITY_OPTION_DETAILS = "productOptions.optionDetail";
     String ENTITY_STOCK_ITEMS = "stockItems";
 
     @Override

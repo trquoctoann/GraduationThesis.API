@@ -19,5 +19,11 @@
                                  constraintName="fk_product_option__option_id"
                                  referencedColumnNames="id"
                                  referencedTableName="option"/>
+
+        <addForeignKeyConstraint baseColumnNames="option_detail_id"
+                                 baseTableName="product_option"
+                                 constraintName="fk_product_option__option_detail_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="option_detail"/>
     </changeSet>
 </databaseChangeLog>

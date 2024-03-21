@@ -59,7 +59,7 @@ public class ProductEntity extends AbstractAuditingEntity {
     private Set<ProductEntity> productVariations = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
-    @JsonIgnoreProperties(value = { "product", "option", "productOptionDetails" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "product", "option", "optionDetail" }, allowSetters = true)
     private Set<ProductOptionEntity> productOptions = new HashSet<>();
 
     @OneToMany(mappedBy = "product")

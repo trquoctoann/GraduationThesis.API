@@ -1,11 +1,13 @@
 package com.cheems.pizzatalk.modules.product.adapter.api;
 
 import com.cheems.pizzatalk.entities.mapper.ProductMapper;
+import com.cheems.pizzatalk.modules.product.adapter.api.dto.PayloadSaveOptionToProduct;
 import com.cheems.pizzatalk.modules.product.adapter.api.dto.PayloadUpdateProductStatus;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.CreateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.command.UpdateProductCommand;
 import com.cheems.pizzatalk.modules.product.application.port.in.query.ProductCriteria;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductLifecycleUseCase;
+import com.cheems.pizzatalk.modules.product.application.port.in.share.ProductOptionUseCase;
 import com.cheems.pizzatalk.modules.product.application.port.in.share.QueryProductUseCase;
 import com.cheems.pizzatalk.modules.product.domain.Product;
 import java.net.URI;
@@ -45,10 +47,17 @@ public class ProductResource {
 
     private final ProductLifecycleUseCase productLifecycleUseCase;
 
+    private final ProductOptionUseCase productOptionUseCase;
+
     private final QueryProductUseCase queryProductUseCase;
 
-    public ProductResource(ProductLifecycleUseCase productLifecycleUseCase, QueryProductUseCase queryProductUseCase) {
+    public ProductResource(
+        ProductLifecycleUseCase productLifecycleUseCase,
+        ProductOptionUseCase productOptionUseCase,
+        QueryProductUseCase queryProductUseCase
+    ) {
         this.productLifecycleUseCase = productLifecycleUseCase;
+        this.productOptionUseCase = productOptionUseCase;
         this.queryProductUseCase = queryProductUseCase;
     }
 
@@ -137,6 +146,16 @@ public class ProductResource {
     ) {
         log.debug("REST request to update status of product, ID: {}", id);
         productLifecycleUseCase.updateCommerceStatus(id, payload.getNewStatus());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/products/{id}/save-option-detail")
+    public ResponseEntity<Void> saveOptionToProduct(
+        @PathVariable(value = "id", required = true) Long id,
+        @RequestBody PayloadSaveOptionToProduct payload
+    ) {
+        log.debug("REST request to save option detail: {} to product, ID: {}", payload.getOptionDetailIds(), id);
+        productOptionUseCase.saveOptionToProduct(id, payload.getOptionId(), payload.getOptionDetailIds());
         return ResponseEntity.noContent().build();
     }
 }

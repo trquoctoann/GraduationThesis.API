@@ -7,6 +7,8 @@ import com.cheems.pizzatalk.modules.optiondetail.application.port.in.query.Optio
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.share.QueryOptionDetailUseCase;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.out.QueryOptionDetailPort;
 import com.cheems.pizzatalk.modules.optiondetail.domain.OptionDetail;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -85,5 +87,32 @@ public class QueryOptionDetailService implements QueryOptionDetailUseCase {
     @Override
     public Page<OptionDetail> findPageByCriteria(OptionDetailCriteria criteria, Pageable pageable) {
         return queryOptionDetailPort.findPageByCriteria(criteria, pageable);
+    }
+
+    @Override
+    public List<OptionDetail> findListByListIds(List<Long> ids) {
+        OptionDetailCriteria criteria = new OptionDetailCriteria();
+
+        RangeFilter<Long> idFilter = new RangeFilter<>();
+        idFilter.setIn(new ArrayList<>(ids));
+        criteria.setId(idFilter);
+
+        return findListByCriteria(criteria);
+    }
+
+    @Override
+    public List<OptionDetail> findListByProductIdAndOptionId(Long productId, Long optionId) {
+        OptionDetailCriteria criteria = new OptionDetailCriteria();
+
+        RangeFilter<Long> productIdFilter = new RangeFilter<>();
+        productIdFilter.setEquals(productId);
+
+        RangeFilter<Long> optionIdFilter = new RangeFilter<>();
+        optionIdFilter.setEquals(optionId);
+
+        criteria.setProductId(productIdFilter);
+        criteria.setOptionId(optionIdFilter);
+
+        return findListByCriteria(criteria);
     }
 }

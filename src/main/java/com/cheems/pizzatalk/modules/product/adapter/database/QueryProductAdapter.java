@@ -232,8 +232,7 @@ public class QueryProductAdapter extends QueryService<ProductEntity> implements 
                 productEntity
                     .getProductOptions()
                     .stream()
-                    .flatMap(productOptionEntity -> productOptionEntity.getProductOptionDetails().stream())
-                    .map(productOptionDetailEntity -> optionDetailMapper.toDomain(productOptionDetailEntity.getOptionDetail()))
+                    .map(productOptionEntity -> optionDetailMapper.toDomain(productOptionEntity.getOptionDetail()))
                     .collect(Collectors.toSet())
             );
         }

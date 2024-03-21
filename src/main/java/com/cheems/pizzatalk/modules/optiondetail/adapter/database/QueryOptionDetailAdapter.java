@@ -1,11 +1,14 @@
 package com.cheems.pizzatalk.modules.optiondetail.adapter.database;
 
 import com.cheems.pizzatalk.common.exception.AdapterException;
+import com.cheems.pizzatalk.common.filter.RangeFilter;
 import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.OptionDetailEntity;
 import com.cheems.pizzatalk.entities.OptionDetailEntity_;
 import com.cheems.pizzatalk.entities.OptionEntity_;
+import com.cheems.pizzatalk.entities.ProductOptionEntity;
+import com.cheems.pizzatalk.entities.ProductOptionEntity_;
 import com.cheems.pizzatalk.entities.StockItemEntity_;
 import com.cheems.pizzatalk.entities.mapper.OptionDetailMapper;
 import com.cheems.pizzatalk.entities.mapper.OptionMapper;
@@ -18,6 +21,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -108,6 +113,9 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
             if (criteria.getStatus() != null) {
                 specification = specification.and(buildSpecification(criteria.getStatus(), OptionDetailEntity_.status));
             }
+            if (criteria.getProductId() != null) {
+                specification = specification.and(buildSpecificationFindByProductId(criteria.getProductId()));
+            }
             if (criteria.getOptionId() != null) {
                 specification =
                     specification.and(
@@ -133,6 +141,16 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
             specification = specification.and(SpecificationUtils.distinct(true));
         }
         return specification;
+    }
+
+    private Specification<OptionDetailEntity> buildSpecificationFindByProductId(RangeFilter<Long> productId) {
+        if (productId.getEquals() != null) {
+            return (root, query, builder) -> {
+                Join<OptionDetailEntity, ProductOptionEntity> joinProductOption = SpecificationUtils.getJoinFetch(root, "productOptions", JoinType.LEFT, false);
+                return builder.equal(joinProductOption.get(ProductOptionEntity_.product), productId.getEquals());
+            };
+        }
+        return null;
     }
 
     private OptionDetail toDomainModel(OptionDetailEntity optionDetailEntity, Set<String> domainAttributes) {

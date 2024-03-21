@@ -2,8 +2,6 @@ package com.cheems.pizzatalk.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -24,9 +22,9 @@ public class ProductOptionEntity implements Serializable {
     @JsonIgnoreProperties(value = { "productOptions", "optionDetails" }, allowSetters = true)
     private OptionEntity option;
 
-    @OneToMany(mappedBy = "productOption")
-    @JsonIgnoreProperties(value = { "productOption", "optionDetail" }, allowSetters = true)
-    private Set<ProductOptionDetailEntity> productOptionDetails = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems" }, allowSetters = true)
+    private OptionDetailEntity optionDetail;
 
     public Long getId() {
         return this.id;
@@ -67,34 +65,16 @@ public class ProductOptionEntity implements Serializable {
         return this;
     }
 
-    public Set<ProductOptionDetailEntity> getProductOptionDetails() {
-        return this.productOptionDetails;
+    public OptionDetailEntity getOptionDetail() {
+        return this.optionDetail;
     }
 
-    public void setProductOptionDetails(Set<ProductOptionDetailEntity> productOptionDetails) {
-        if (this.productOptionDetails != null) {
-            this.productOptionDetails.forEach(productOptionDetail -> productOptionDetail.setProductOption(null));
-        }
-        if (productOptionDetails != null) {
-            productOptionDetails.forEach(productOptionDetail -> productOptionDetail.setProductOption(this));
-        }
-        this.productOptionDetails = productOptionDetails;
+    public void setOptionDetail(OptionDetailEntity optionDetail) {
+        this.optionDetail = optionDetail;
     }
 
-    public ProductOptionEntity productOptionDetails(Set<ProductOptionDetailEntity> productOptionDetails) {
-        this.setProductOptionDetails(productOptionDetails);
-        return this;
-    }
-
-    public ProductOptionEntity addProductOptionDetail(ProductOptionDetailEntity productOptionDetail) {
-        productOptionDetail.setProductOption(this);
-        this.productOptionDetails.add(productOptionDetail);
-        return this;
-    }
-
-    public ProductOptionEntity removeProductOptionDetail(ProductOptionDetailEntity productOptionDetail) {
-        productOptionDetail.setProductOption(null);
-        this.productOptionDetails.remove(productOptionDetail);
+    public ProductOptionEntity optionDetail(OptionDetailEntity optionDetail) {
+        this.optionDetail = optionDetail;
         return this;
     }
 

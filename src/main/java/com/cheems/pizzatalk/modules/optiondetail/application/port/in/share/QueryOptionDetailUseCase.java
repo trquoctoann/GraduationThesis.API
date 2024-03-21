@@ -23,4 +23,8 @@ public interface QueryOptionDetailUseCase {
     List<OptionDetail> findListByCriteria(OptionDetailCriteria criteria);
 
     Page<OptionDetail> findPageByCriteria(OptionDetailCriteria criteria, Pageable pageable);
+
+    List<OptionDetail> findListByListIds(List<Long> ids);
+
+    List<OptionDetail> findListByProductIdAndOptionId(Long productId, Long optionId);
 }
