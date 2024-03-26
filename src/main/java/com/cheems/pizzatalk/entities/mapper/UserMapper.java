@@ -11,9 +11,11 @@ import org.mapstruct.Mapper;
 public interface UserMapper extends EntityMapper<User, UserEntity> {
     String DOMAIN_ROLE = "roles";
     String DOMAIN_PERMISSION = "permissions";
+    String DOMAIN_CONVERSATION = "conversations";
 
     String ENTITY_ROLE = "userRoles.role";
     String ENTITY_PERMISSION = "userRoles.role.rolePermissions.permission";
+    String ENTITY_CONVERSATION = "participants.conversation";
 
     // prettier-ignore
     default Set<String> toEntityAttributes(Set<String> domainAttributes) {
@@ -25,6 +27,9 @@ public interface UserMapper extends EntityMapper<User, UserEntity> {
                 }
                 if (domainAttribute.equals(DOMAIN_PERMISSION)) {
                     entityAttributes.add(ENTITY_PERMISSION);
+                }
+                if (domainAttribute.equals(DOMAIN_CONVERSATION)) {
+                    entityAttributes.add(ENTITY_CONVERSATION);
                 }
             });
         return entityAttributes;

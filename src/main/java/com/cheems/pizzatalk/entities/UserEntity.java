@@ -5,6 +5,7 @@ import com.cheems.pizzatalk.constant.LoginConstants;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -61,6 +62,13 @@ public class UserEntity extends AbstractAuditingEntity {
     @Column(name = "lang_key", length = 5, nullable = false)
     private String langKey;
 
+    @NotNull
+    @Column(name = "is_online", nullable = false)
+    private Boolean isOnline;
+
+    @Column(name = "last_online_at")
+    private Instant lastOnlineAt;
+
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties(value = { "user", "role" }, allowSetters = true)
     private Set<UserRoleEntity> userRoles = new HashSet<>();
@@ -68,6 +76,10 @@ public class UserEntity extends AbstractAuditingEntity {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties(value = { "user" }, allowSetters = true)
     private Set<UserKeyEntity> userKeys = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties(value = { "user", "conversation", "chatMessages" }, allowSetters = true)
+    private Set<ParticipantEntity> participants = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -186,6 +198,32 @@ public class UserEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public Boolean getIsOnline() {
+        return this.isOnline;
+    }
+
+    public void setIsOnline(Boolean isOnline) {
+        this.isOnline = isOnline;
+    }
+
+    public UserEntity isOnline(Boolean isOnline) {
+        this.isOnline = isOnline;
+        return this;
+    }
+
+    public Instant getLastOnlineAt() {
+        return this.lastOnlineAt;
+    }
+
+    public void setLastOnlineAt(Instant lastOnlineAt) {
+        this.lastOnlineAt = lastOnlineAt;
+    }
+
+    public UserEntity lastOnlineAt(Instant lastOnlineAt) {
+        this.lastOnlineAt = lastOnlineAt;
+        return this;
+    }
+
     public Set<UserRoleEntity> getUserRoles() {
         return this.userRoles;
     }
@@ -248,6 +286,32 @@ public class UserEntity extends AbstractAuditingEntity {
         return this;
     }
 
+    public Set<ParticipantEntity> getParticipants() {
+        return this.participants;
+    }
+
+    public void setParticipants(Set<ParticipantEntity> participants) {
+        if (this.participants != null) {
+            this.participants.forEach(participant -> participant.setUser(null));
+        }
+        if (participants != null) {
+            participants.forEach(participant -> participant.setUser(this));
+        }
+        this.participants = participants;
+    }
+
+    public UserEntity addParticipant(ParticipantEntity participant) {
+        participant.setUser(this);
+        this.participants.add(participant);
+        return this;
+    }
+
+    public UserEntity removeParticipant(ParticipantEntity participant) {
+        participant.setUser(null);
+        this.participants.remove(participant);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -290,6 +354,12 @@ public class UserEntity extends AbstractAuditingEntity {
             "'" +
             ", langKey='" +
             getLangKey() +
+            "'" +
+            ", isOnline='" +
+            getIsOnline() +
+            "'" +
+            ", lastOnlineAt='" +
+            getLastOnlineAt() +
             "'" +
             "}"
         );

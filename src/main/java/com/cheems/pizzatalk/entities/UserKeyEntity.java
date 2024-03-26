@@ -44,7 +44,7 @@ public class UserKeyEntity implements Serializable {
     private Instant expirationDate = null;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "userRoles", "userKeys" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "userRoles", "userKeys", "participants" }, allowSetters = true)
     private UserEntity user;
 
     public Long getId() {
