@@ -6,10 +6,20 @@ services:
             - pizzatalk_data:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
+            - MYSQL_PASSWORD=Toan972002
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes
             - MYSQL_DATABASE=pizzatalk
         ports:
             - 3306:3306
         command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+    pizzatalk-redis:
+        image: redis:6.2.4
+        volumes:
+            - pizzatalk_cache:/data
+        ports:
+            - 6379:6379
+
 volumes:
     pizzatalk_data:
+    pizzatalk_cache:
