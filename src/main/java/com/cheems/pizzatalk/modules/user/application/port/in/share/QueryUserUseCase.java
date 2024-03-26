@@ -27,4 +27,6 @@ public interface QueryUserUseCase {
     List<User> findListByCriteria(UserCriteria criteria);
 
     Page<User> findPageByCriteria(UserCriteria criteria, Pageable pageable);
+
+    List<User> findListByListUsernames(List<String> usernames);
 }

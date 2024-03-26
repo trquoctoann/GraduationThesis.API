@@ -7,6 +7,7 @@ import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
 import com.cheems.pizzatalk.modules.user.application.port.in.share.QueryUserUseCase;
 import com.cheems.pizzatalk.modules.user.application.port.out.QueryUserPort;
 import com.cheems.pizzatalk.modules.user.domain.User;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -104,5 +105,16 @@ public class QueryUserService implements QueryUserUseCase {
     @Override
     public Page<User> findPageByCriteria(UserCriteria criteria, Pageable pageable) {
         return queryUserPort.findPageByCriteria(criteria, pageable);
+    }
+
+    @Override
+    public List<User> findListByListUsernames(List<String> usernames) {
+        UserCriteria criteria = new UserCriteria();
+
+        StringFilter usernameFilter = new StringFilter();
+        usernameFilter.setIn(new ArrayList<>(usernames));
+
+        criteria.setUsername(usernameFilter);
+        return findListByCriteria(criteria);
     }
 }

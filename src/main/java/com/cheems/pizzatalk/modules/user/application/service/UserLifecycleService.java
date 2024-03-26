@@ -95,6 +95,7 @@ public class UserLifecycleService implements UserLifecycleUseCase {
         user.setEmail(existUser.getEmail());
         user.setStatus(existUser.getStatus());
         user.setRoles(existUser.getRoles());
+        user.setIsOnline(existUser.getIsOnline());
 
         user = userPort.save(user);
         log.debug("Updated user, id: {}", command.getId());
@@ -128,5 +129,7 @@ public class UserLifecycleService implements UserLifecycleUseCase {
 
         String encryptedPassword = passwordEncoder.encode(user.getRawPassword());
         user.setPassword(encryptedPassword);
+
+        user.setIsOnline(false);
     }
 }

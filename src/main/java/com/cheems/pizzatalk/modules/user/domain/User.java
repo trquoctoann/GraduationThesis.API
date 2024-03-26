@@ -2,9 +2,11 @@ package com.cheems.pizzatalk.modules.user.domain;
 
 import com.cheems.pizzatalk.constant.LoginConstants;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
+import com.cheems.pizzatalk.modules.conversation.domain.Conversation;
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Set;
 import javax.validation.constraints.*;
 import lombok.Data;
@@ -47,7 +49,14 @@ public class User implements Serializable {
     @Size(max = 5)
     private String langKey;
 
+    @NotNull
+    private Boolean isOnline;
+
+    private Instant lastOnlineAt;
+
     private Set<Role> roles;
 
     private Set<String> permissions;
+
+    private Set<Conversation> conversations;
 }

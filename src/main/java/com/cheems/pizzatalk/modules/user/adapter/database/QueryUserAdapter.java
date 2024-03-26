@@ -6,6 +6,7 @@ import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.*;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
+import com.cheems.pizzatalk.entities.mapper.ConversationMapper;
 import com.cheems.pizzatalk.entities.mapper.RoleMapper;
 import com.cheems.pizzatalk.entities.mapper.UserMapper;
 import com.cheems.pizzatalk.modules.user.application.port.in.query.UserCriteria;
@@ -34,10 +35,18 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
 
     private final RoleMapper roleMapper;
 
-    public QueryUserAdapter(UserRepository userRepository, UserMapper userMapper, RoleMapper roleMapper) {
+    private final ConversationMapper conversationMapper;
+
+    public QueryUserAdapter(
+        UserRepository userRepository,
+        UserMapper userMapper,
+        RoleMapper roleMapper,
+        ConversationMapper conversationMapper
+    ) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.roleMapper = roleMapper;
+        this.conversationMapper = conversationMapper;
     }
 
     @Override
@@ -96,6 +105,12 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
             if (criteria.getLangKey() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getLangKey(), UserEntity_.langKey));
             }
+            if (criteria.getIsOnline() != null) {
+                specification = specification.and(buildSpecification(criteria.getIsOnline(), UserEntity_.isOnline));
+            }
+            if (criteria.getLastOnlineAt() != null) {
+                specification = specification.and(buildSpecification(criteria.getLastOnlineAt(), UserEntity_.lastOnlineAt));
+            }
             if (criteria.getRoleId() != null) {
                 specification = specification.and(buildSpecificationFindByRoleId(criteria.getRoleId()));
             }
@@ -111,7 +126,15 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
         if (roleId.getEquals() != null) {
             return (root, query, builder) -> {
                 Join<UserEntity, UserRoleEntity> joinUserRole = SpecificationUtils.getJoinFetch(root, "userRoles", JoinType.LEFT, false);
-                return builder.equal(joinUserRole.get(UserRoleEntity_.role), roleId.getEquals());
+                Join<UserRoleEntity, RoleEntity> joinRole = SpecificationUtils.getJoinFetch(joinUserRole, "role", JoinType.LEFT, false);
+                return builder.equal(joinRole.get(RoleEntity_.id), roleId.getEquals());
+            };
+        }
+        if (roleId.getIn() != null) {
+            return (root, query, builder) -> {
+                Join<UserEntity, UserRoleEntity> joinUserRole = SpecificationUtils.getJoinFetch(root, "userRoles", JoinType.LEFT, false);
+                Join<UserRoleEntity, RoleEntity> joinRole = SpecificationUtils.getJoinFetch(joinUserRole, "role", JoinType.LEFT, false);
+                return joinRole.get(RoleEntity_.id).in(roleId.getIn());
             };
         }
         return null;
@@ -143,6 +166,15 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
                     .stream()
                     .flatMap(userRoleEntity -> userRoleEntity.getRole().getRolePermissions().stream())
                     .map(rolePermissionEntity -> rolePermissionEntity.getPermission().getName())
+                    .collect(Collectors.toSet())
+            );
+        }
+        if (domainAttributes.contains(UserMapper.DOMAIN_CONVERSATION)) {
+            user.setConversations(
+                userEntity
+                    .getParticipants()
+                    .stream()
+                    .map(participantEntity -> conversationMapper.toDomain(participantEntity.getConversation()))
                     .collect(Collectors.toSet())
             );
         }
