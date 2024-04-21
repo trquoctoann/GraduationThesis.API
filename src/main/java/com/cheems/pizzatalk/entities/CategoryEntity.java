@@ -37,7 +37,10 @@ public class CategoryEntity extends AbstractAuditingEntity {
     private String imagePath;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category", "cartItems" },
+        allowSetters = true
+    )
     private Set<ProductEntity> products;
 
     public Long getId() {

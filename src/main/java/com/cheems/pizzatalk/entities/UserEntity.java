@@ -81,6 +81,10 @@ public class UserEntity extends AbstractAuditingEntity {
     @JsonIgnoreProperties(value = { "user", "conversation", "chatMessages" }, allowSetters = true)
     private Set<ParticipantEntity> participants = new HashSet<>();
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties(value = { "user", "cartItems" }, allowSetters = true)
+    private Set<CartEntity> carts = new HashSet<>();
+
     public Long getId() {
         return this.id;
     }
@@ -309,6 +313,37 @@ public class UserEntity extends AbstractAuditingEntity {
     public UserEntity removeParticipant(ParticipantEntity participant) {
         participant.setUser(null);
         this.participants.remove(participant);
+        return this;
+    }
+
+    public Set<CartEntity> getCarts() {
+        return this.carts;
+    }
+
+    public void setCarts(Set<CartEntity> carts) {
+        if (this.carts != null) {
+            this.carts.forEach(cart -> cart.setUser(null));
+        }
+        if (carts != null) {
+            carts.forEach(cart -> cart.setUser(this));
+        }
+        this.carts = carts;
+    }
+
+    public UserEntity carts(Set<CartEntity> carts) {
+        this.setCarts(carts);
+        return this;
+    }
+
+    public UserEntity addCart(CartEntity cart) {
+        cart.setUser(this);
+        this.carts.add(cart);
+        return this;
+    }
+
+    public UserEntity removeCart(CartEntity cart) {
+        cart.setUser(null);
+        this.carts.remove(cart);
         return this;
     }
 

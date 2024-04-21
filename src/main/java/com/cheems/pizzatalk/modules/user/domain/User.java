@@ -2,6 +2,7 @@ package com.cheems.pizzatalk.modules.user.domain;
 
 import com.cheems.pizzatalk.constant.LoginConstants;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
+import com.cheems.pizzatalk.modules.cart.domain.Cart;
 import com.cheems.pizzatalk.modules.conversation.domain.Conversation;
 import com.cheems.pizzatalk.modules.role.domain.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -59,4 +60,6 @@ public class User implements Serializable {
     private Set<String> permissions;
 
     private Set<Conversation> conversations;
+
+    private Set<Cart> carts;
 }

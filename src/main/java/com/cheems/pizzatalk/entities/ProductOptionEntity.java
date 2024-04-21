@@ -2,6 +2,8 @@ package com.cheems.pizzatalk.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +17,10 @@ public class ProductOptionEntity implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category", "cartItems" },
+        allowSetters = true
+    )
     private ProductEntity product;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,6 +30,10 @@ public class ProductOptionEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems" }, allowSetters = true)
     private OptionDetailEntity optionDetail;
+
+    @OneToMany(mappedBy = "productOption")
+    @JsonIgnoreProperties(value = { "cartItem", "productOption" }, allowSetters = true)
+    private Set<CartItemOptionEntity> cartItemOptions = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -75,6 +84,37 @@ public class ProductOptionEntity implements Serializable {
 
     public ProductOptionEntity optionDetail(OptionDetailEntity optionDetail) {
         this.optionDetail = optionDetail;
+        return this;
+    }
+
+    public Set<CartItemOptionEntity> getCartItemOptions() {
+        return this.cartItemOptions;
+    }
+
+    public void setCartItemOptions(Set<CartItemOptionEntity> cartItemOptions) {
+        if (this.cartItemOptions != null) {
+            this.cartItemOptions.forEach(cartItemOption -> cartItemOption.setProductOption(null));
+        }
+        if (cartItemOptions != null) {
+            cartItemOptions.forEach(cartItemOption -> cartItemOption.setProductOption(this));
+        }
+        this.cartItemOptions = cartItemOptions;
+    }
+
+    public ProductOptionEntity cartItemOptions(Set<CartItemOptionEntity> cartItemOptions) {
+        this.setCartItemOptions(cartItemOptions);
+        return this;
+    }
+
+    public ProductOptionEntity addCartItemOption(CartItemOptionEntity cartItemOption) {
+        cartItemOption.setProductOption(this);
+        this.cartItemOptions.add(cartItemOption);
+        return this;
+    }
+
+    public ProductOptionEntity removeCartItemOption(CartItemOptionEntity cartItemOption) {
+        cartItemOption.setProductOption(null);
+        this.cartItemOptions.remove(cartItemOption);
         return this;
     }
 

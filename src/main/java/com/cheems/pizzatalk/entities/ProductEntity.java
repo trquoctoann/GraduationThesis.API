@@ -51,11 +51,17 @@ public class ProductEntity extends AbstractAuditingEntity {
     private String imagePath;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category", "cartItems" },
+        allowSetters = true
+    )
     private ProductEntity parentProduct;
 
     @OneToMany(mappedBy = "parentProduct")
-    @JsonIgnoreProperties(value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category", "cartItems" },
+        allowSetters = true
+    )
     private Set<ProductEntity> productVariations = new HashSet<>();
 
     @OneToMany(mappedBy = "product")
@@ -69,6 +75,10 @@ public class ProductEntity extends AbstractAuditingEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "products" }, allowSetters = true)
     private CategoryEntity category;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties(value = { "cart", "product", "cartItemOptions" }, allowSetters = true)
+    private Set<CartItemEntity> cartItems = new HashSet<>();
 
     public Long getId() {
         return this.id;
@@ -272,6 +282,37 @@ public class ProductEntity extends AbstractAuditingEntity {
 
     public ProductEntity category(CategoryEntity category) {
         this.category = category;
+        return this;
+    }
+
+    public Set<CartItemEntity> getCartItems() {
+        return this.cartItems;
+    }
+
+    public void setCartItems(Set<CartItemEntity> cartItems) {
+        if (this.cartItems != null) {
+            this.cartItems.forEach(cartItem -> cartItem.setProduct(null));
+        }
+        if (cartItems != null) {
+            cartItems.forEach(cartItem -> cartItem.setProduct(this));
+        }
+        this.cartItems = cartItems;
+    }
+
+    public ProductEntity cartItems(Set<CartItemEntity> cartItems) {
+        this.setCartItems(cartItems);
+        return this;
+    }
+
+    public ProductEntity addCartItem(CartItemEntity cartItem) {
+        cartItem.setProduct(this);
+        this.cartItems.add(cartItem);
+        return this;
+    }
+
+    public ProductEntity removeCartItem(CartItemEntity cartItem) {
+        cartItem.setProduct(null);
+        this.cartItems.remove(cartItem);
         return this;
     }
 

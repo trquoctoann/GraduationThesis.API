@@ -34,7 +34,7 @@ public class ParticipantEntity implements Serializable {
     private Instant deletedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "userRoles", "userKeys", "participants" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "userRoles", "userKeys", "participants", "carts" }, allowSetters = true)
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY)

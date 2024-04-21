@@ -47,4 +47,6 @@
     <include file="config/liquibase/changelog/20240322191400_added_table_Conversation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240322213700_added_table_Participant.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240322215200_added_table_constraints_Participant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240421223900_added_table_Cart.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240421224300_added_table_constraints_Cart.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -6,6 +6,7 @@ import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.*;
 import com.cheems.pizzatalk.entities.enumeration.UserStatus;
+import com.cheems.pizzatalk.entities.mapper.CartMapper;
 import com.cheems.pizzatalk.entities.mapper.ConversationMapper;
 import com.cheems.pizzatalk.entities.mapper.RoleMapper;
 import com.cheems.pizzatalk.entities.mapper.UserMapper;
@@ -37,16 +38,20 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
 
     private final ConversationMapper conversationMapper;
 
+    private final CartMapper cartMapper;
+
     public QueryUserAdapter(
         UserRepository userRepository,
         UserMapper userMapper,
         RoleMapper roleMapper,
-        ConversationMapper conversationMapper
+        ConversationMapper conversationMapper,
+        CartMapper cartMapper
     ) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.roleMapper = roleMapper;
         this.conversationMapper = conversationMapper;
+        this.cartMapper = cartMapper;
     }
 
     @Override
@@ -177,6 +182,9 @@ public class QueryUserAdapter extends QueryService<UserEntity> implements QueryU
                     .map(participantEntity -> conversationMapper.toDomain(participantEntity.getConversation()))
                     .collect(Collectors.toSet())
             );
+        }
+        if (domainAttributes.contains(UserMapper.DOMAIN_CART)) {
+            user.setCarts(userEntity.getCarts().stream().map(cartEntity -> cartMapper.toDomain(cartEntity)).collect(Collectors.toSet()));
         }
         return user;
     }
