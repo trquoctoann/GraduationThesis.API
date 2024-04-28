@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { OptionMapper.class })
+@Mapper(componentModel = "spring", uses = { OptionMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface OptionDetailMapper extends EntityMapper<OptionDetail, OptionDetailEntity> {
     String DOMAIN_OPTION = "option";
     String DOMAIN_STOCK_ITEMS = "stockItems";

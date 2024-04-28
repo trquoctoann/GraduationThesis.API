@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { StockItemMapper.class })
+@Mapper(componentModel = "spring", uses = { StockItemMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface StockBatchMapper extends EntityMapper<StockBatch, StockBatchEntity> {
     String DOMAIN_STOCK_ITEM = "stockItem";
 

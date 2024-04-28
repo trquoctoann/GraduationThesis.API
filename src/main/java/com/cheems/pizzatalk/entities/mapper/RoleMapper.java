@@ -6,8 +6,9 @@ import com.cheems.pizzatalk.modules.role.domain.Role;
 import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface RoleMapper extends EntityMapper<Role, RoleEntity> {
     String DOMAIN_PERMISSION = "permissions";
 

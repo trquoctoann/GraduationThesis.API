@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { AreaMapper.class })
+@Mapper(componentModel = "spring", uses = { AreaMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface StoreMapper extends EntityMapper<Store, StoreEntity> {
     String DOMAIN_AREA = "area";
     String DOMAIN_STOCK_ITEM = "stockItems";

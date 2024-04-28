@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { CategoryMapper.class })
+@Mapper(componentModel = "spring", uses = { CategoryMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductMapper extends EntityMapper<Product, ProductEntity> {
     String DOMAIN_PARENT_PRODUCT = "parentProduct";
     String DOMAIN_CATEGORY = "category";

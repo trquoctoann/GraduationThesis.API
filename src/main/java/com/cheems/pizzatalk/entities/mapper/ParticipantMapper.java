@@ -7,8 +7,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { UserMapper.class, ConversationMapper.class })
+@Mapper(componentModel = "spring", uses = { UserMapper.class, ConversationMapper.class }, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ParticipantMapper extends EntityMapper<Participant, ParticipantEntity> {
     String DOMAIN_USER = "user";
     String DOMAIN_CONVERSATION = "conversation";

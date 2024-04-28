@@ -7,8 +7,13 @@ import java.util.HashSet;
 import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", uses = { StoreMapper.class, ProductMapper.class, OptionDetailMapper.class })
+@Mapper(
+    componentModel = "spring",
+    uses = { StoreMapper.class, ProductMapper.class, OptionDetailMapper.class },
+    unmappedTargetPolicy = ReportingPolicy.IGNORE
+)
 public interface StockItemMapper extends EntityMapper<StockItem, StockItemEntity> {
     String DOMAIN_STORE = "store";
     String DOMAIN_PRODUCT = "product";

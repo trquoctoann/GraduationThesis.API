@@ -36,7 +36,7 @@ public class SpecificationUtils {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public static <T, Y> Join<T, Y> getJoinFetch(From<?, ?> root, String attributeName, JoinType joinType, boolean isJoin) {
         if (joinType == null) {
             joinType = JoinType.LEFT;
