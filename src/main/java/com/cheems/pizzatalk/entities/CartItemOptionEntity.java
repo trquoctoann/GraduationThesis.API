@@ -5,8 +5,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product_option")
-public class ProductOptionEntity implements Serializable {
+@Table(name = "cart_item_option")
+public class CartItemOptionEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -15,15 +15,8 @@ public class ProductOptionEntity implements Serializable {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(
-        value = { "parentProduct", "productVariations", "productOptions", "stockItems", "category", "cartItems" },
-        allowSetters = true
-    )
-    private ProductEntity product;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "productOptions", "optionDetails" }, allowSetters = true)
-    private OptionEntity option;
+    @JsonIgnoreProperties(value = { "cart", "product", "cartItemOptions" }, allowSetters = true)
+    private CartItemEntity cartItem;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems", "cartItemOptions" }, allowSetters = true)
@@ -37,34 +30,21 @@ public class ProductOptionEntity implements Serializable {
         this.id = id;
     }
 
-    public ProductOptionEntity id(Long id) {
+    public CartItemOptionEntity id(Long id) {
         this.id = id;
         return this;
     }
 
-    public ProductEntity getProduct() {
-        return this.product;
+    public CartItemEntity getCartItem() {
+        return this.cartItem;
     }
 
-    public void setProduct(ProductEntity product) {
-        this.product = product;
+    public void setCartItem(CartItemEntity cartItem) {
+        this.cartItem = cartItem;
     }
 
-    public ProductOptionEntity product(ProductEntity product) {
-        this.product = product;
-        return this;
-    }
-
-    public OptionEntity getOption() {
-        return this.option;
-    }
-
-    public void setOption(OptionEntity option) {
-        this.option = option;
-    }
-
-    public ProductOptionEntity option(OptionEntity option) {
-        this.option = option;
+    public CartItemOptionEntity cartItem(CartItemEntity cartItem) {
+        this.cartItem = cartItem;
         return this;
     }
 
@@ -76,7 +56,7 @@ public class ProductOptionEntity implements Serializable {
         this.optionDetail = optionDetail;
     }
 
-    public ProductOptionEntity optionDetail(OptionDetailEntity optionDetail) {
+    public CartItemOptionEntity optionDetail(OptionDetailEntity optionDetail) {
         this.optionDetail = optionDetail;
         return this;
     }
@@ -86,10 +66,10 @@ public class ProductOptionEntity implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ProductOptionEntity)) {
+        if (!(o instanceof CartItemOptionEntity)) {
             return false;
         }
-        return id != null && id.equals(((ProductOptionEntity) o).id);
+        return id != null && id.equals(((CartItemOptionEntity) o).id);
     }
 
     @Override
@@ -99,6 +79,6 @@ public class ProductOptionEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "ProductOption{" + "id=" + getId() + "}";
+        return "CartItemOption{" + "id=" + getId() + "}";
     }
 }

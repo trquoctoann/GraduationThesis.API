@@ -7,7 +7,6 @@ import com.cheems.pizzatalk.modules.optiondetail.application.port.in.query.Optio
 import com.cheems.pizzatalk.modules.optiondetail.application.port.in.share.QueryOptionDetailUseCase;
 import com.cheems.pizzatalk.modules.optiondetail.application.port.out.QueryOptionDetailPort;
 import com.cheems.pizzatalk.modules.optiondetail.domain.OptionDetail;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -112,6 +111,17 @@ public class QueryOptionDetailService implements QueryOptionDetailUseCase {
 
         criteria.setProductId(productIdFilter);
         criteria.setOptionId(optionIdFilter);
+
+        return findListByCriteria(criteria);
+    }
+
+    @Override
+    public List<OptionDetail> findListByCartItemId(Long cartItemId) {
+        OptionDetailCriteria criteria = new OptionDetailCriteria();
+
+        RangeFilter<Long> cartItemIdFilter = new RangeFilter<>();
+        cartItemIdFilter.setEquals(cartItemId);
+        criteria.setCartItemId(cartItemIdFilter);
 
         return findListByCriteria(criteria);
     }

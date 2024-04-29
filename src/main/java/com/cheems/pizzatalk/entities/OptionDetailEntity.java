@@ -54,6 +54,10 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     @JsonIgnoreProperties(value = { "store", "product", "optionDetail", "stockBatches" }, allowSetters = true)
     private Set<StockItemEntity> stockItems = new HashSet<>();
 
+    @OneToMany(mappedBy = "optionDetail")
+    @JsonIgnoreProperties(value = { "cartItem", "optionDetail" }, allowSetters = true)
+    private Set<CartItemOptionEntity> cartItemOptions = new HashSet<>();
+
     public Long getId() {
         return this.id;
     }
@@ -204,6 +208,37 @@ public class OptionDetailEntity extends AbstractAuditingEntity {
     public OptionDetailEntity removeStockItem(StockItemEntity stockItem) {
         stockItem.setOptionDetail(null);
         this.stockItems.remove(stockItem);
+        return this;
+    }
+
+    public Set<CartItemOptionEntity> getCartItemOptions() {
+        return this.cartItemOptions;
+    }
+
+    public void setCartItemOptions(Set<CartItemOptionEntity> cartItemOptions) {
+        if (this.cartItemOptions != null) {
+            this.cartItemOptions.forEach(cartItemOption -> cartItemOption.setOptionDetail(null));
+        }
+        if (cartItemOptions != null) {
+            cartItemOptions.forEach(cartItemOption -> cartItemOption.setOptionDetail(this));
+        }
+        this.cartItemOptions = cartItemOptions;
+    }
+
+    public OptionDetailEntity cartItemOptions(Set<CartItemOptionEntity> cartItemOptions) {
+        this.setCartItemOptions(cartItemOptions);
+        return this;
+    }
+
+    public OptionDetailEntity addCartItemOption(CartItemOptionEntity cartItemOption) {
+        cartItemOption.setOptionDetail(this);
+        this.cartItemOptions.add(cartItemOption);
+        return this;
+    }
+
+    public OptionDetailEntity removeCartItemOption(CartItemOptionEntity cartItemOption) {
+        cartItemOption.setOptionDetail(null);
+        this.cartItemOptions.remove(cartItemOption);
         return this;
     }
 

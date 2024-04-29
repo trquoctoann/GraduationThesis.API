@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240322214900-1" author="trquoctoan">
+        <addForeignKeyConstraint baseColumnNames="conversation_id"
+                                 baseTableName="chat_message"
+                                 constraintName="fk_chat_message__conversation_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="conversation"/>
+
+        <addForeignKeyConstraint baseColumnNames="participant_id"
+                                 baseTableName="chat_message"
+                                 constraintName="fk_chat_message__participant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="participant"/>
+    </changeSet>
+</databaseChangeLog>

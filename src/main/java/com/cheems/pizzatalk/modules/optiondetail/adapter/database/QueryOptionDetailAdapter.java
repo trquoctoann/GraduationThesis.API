@@ -4,6 +4,8 @@ import com.cheems.pizzatalk.common.exception.AdapterException;
 import com.cheems.pizzatalk.common.filter.RangeFilter;
 import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
+import com.cheems.pizzatalk.entities.CartItemOptionEntity;
+import com.cheems.pizzatalk.entities.CartItemOptionEntity_;
 import com.cheems.pizzatalk.entities.OptionDetailEntity;
 import com.cheems.pizzatalk.entities.OptionDetailEntity_;
 import com.cheems.pizzatalk.entities.OptionEntity_;
@@ -21,7 +23,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import org.springframework.data.domain.Page;
@@ -134,6 +135,9 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
                         )
                     );
             }
+            if (criteria.getCartItemId() != null) {
+                specification = specification.and(buildSpecificationFindByCartItemId(criteria.getCartItemId()));
+            }
             if (!CollectionUtils.isEmpty(fetchAttributes)) {
                 specification =
                     specification.and(SpecificationUtils.fetchAttributes(optionDetailMapper.toEntityAttributes(fetchAttributes)));
@@ -146,8 +150,28 @@ public class QueryOptionDetailAdapter extends QueryService<OptionDetailEntity> i
     private Specification<OptionDetailEntity> buildSpecificationFindByProductId(RangeFilter<Long> productId) {
         if (productId.getEquals() != null) {
             return (root, query, builder) -> {
-                Join<OptionDetailEntity, ProductOptionEntity> joinProductOption = SpecificationUtils.getJoinFetch(root, "productOptions", JoinType.LEFT, false);
+                Join<OptionDetailEntity, ProductOptionEntity> joinProductOption = SpecificationUtils.getJoinFetch(
+                    root,
+                    "productOptions",
+                    JoinType.LEFT,
+                    false
+                );
                 return builder.equal(joinProductOption.get(ProductOptionEntity_.product), productId.getEquals());
+            };
+        }
+        return null;
+    }
+
+    private Specification<OptionDetailEntity> buildSpecificationFindByCartItemId(RangeFilter<Long> cartItemId) {
+        if (cartItemId.getEquals() != null) {
+            return (root, query, builder) -> {
+                Join<OptionDetailEntity, CartItemOptionEntity> joinCartItemOption = SpecificationUtils.getJoinFetch(
+                    root,
+                    "cartItemOptions",
+                    JoinType.LEFT,
+                    false
+                );
+                return builder.equal(joinCartItemOption.get(CartItemOptionEntity_.cartItem), cartItemId.getEquals());
             };
         }
         return null;

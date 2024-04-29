@@ -35,6 +35,8 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
 
     private RangeFilter<Long> stockItemId;
 
+    private RangeFilter<Long> cartItemId;
+
     public OptionDetailCriteria() {}
 
     public OptionDetailCriteria(OptionDetailCriteria other) {
@@ -47,6 +49,7 @@ public class OptionDetailCriteria extends QuerySelfValidating<OptionDetailCriter
         this.productId = other.productId == null ? null : other.productId.copy();
         this.optionId = other.optionId == null ? null : other.optionId.copy();
         this.stockItemId = other.stockItemId == null ? null : other.stockItemId.copy();
+        this.cartItemId = other.cartItemId == null ? null : other.cartItemId.copy();
     }
 
     @Override

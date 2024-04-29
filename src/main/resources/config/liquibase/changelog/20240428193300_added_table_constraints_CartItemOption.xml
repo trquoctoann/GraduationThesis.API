@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240428193300-1" author="trquoctoann">
+        <addForeignKeyConstraint baseColumnNames="cart_item_id"
+                                 baseTableName="cart_item_option"
+                                 constraintName="fk_cart_item_option__cart_item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cart_item"/>
+
+        <addForeignKeyConstraint baseColumnNames="option_detail_id"
+                                 baseTableName="cart_item_option"
+                                 constraintName="fk_cart_item_option__option_detail_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="option_detail"/>
+    </changeSet>
+</databaseChangeLog>

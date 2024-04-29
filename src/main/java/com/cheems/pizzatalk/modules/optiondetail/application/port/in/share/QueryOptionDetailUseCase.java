@@ -27,4 +27,6 @@ public interface QueryOptionDetailUseCase {
     List<OptionDetail> findListByListIds(List<Long> ids);
 
     List<OptionDetail> findListByProductIdAndOptionId(Long productId, Long optionId);
+
+    List<OptionDetail> findListByCartItemId(Long cartItemId);
 }

@@ -61,7 +61,7 @@ public class StockItemEntity implements Serializable {
     private ProductEntity product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "option", "productOptions", "stockItems", "cartItemOptions" }, allowSetters = true)
     private OptionDetailEntity optionDetail;
 
     @OneToMany(mappedBy = "stockItem")
