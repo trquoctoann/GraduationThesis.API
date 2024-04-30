@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240430102100-1" author="trquoctoann">
+        <insert tableName="store">
+            <column name="id" value="1"/>
+            <column name="name" value="Pepperonis Nguyễn Sơn"/>
+            <column name="address" value="Số 1 Nguyễn Sơn, Phường Bồ Đề, Quận Long Biên, TP Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02438723608"/>
+            <column name="email" value="pepperonis-hn.ns@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNLB"/>
+            <column name="longitude" value="105.8795925"/>
+            <column name="latitude" value="21.0442705"/>
+            <column name="opening_hour" value="10:45 - 21:30"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2323.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="2"/>
+            <column name="name" value="Jaspas Hai Bà Trưng"/>
+            <column name="address" value="4th Floor, Hanoi Towers, 49 Hai Ba Trung, Hoan Kiem, Hanoi"/>
+            <column name="phone_number" value="02439348325"/>
+            <column name="email" value="jaspas-hn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="longitude" value="105.846185"/>
+            <column name="latitude" value="21.0257026"/>
+            <column name="opening_hour" value="07:00 - 22:00"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="3"/>
+            <column name="name" value="Pepperonis Lê Duẩn"/>
+            <column name="address" value="216 Đường Lê Duẩn, Hai Bà Trưng, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02439447199"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHBT"/>
+            <column name="longitude" value="105.8415455"/>
+            <column name="latitude" value="21.0170908"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1791.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="4"/>
+            <column name="name" value="AL Fresco's Hàm Nghi"/>
+            <column name="address" value="B2-05a Shop house Vinhomes Hàm Nghi, Mỹ Đình, Nam Từ Liêm, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02432017168"/>
+            <column name="email" value="alfrescos-hn.hmn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNNTL"/>
+            <column name="longitude" value="105.7607592"/>
+            <column name="latitude" value="21.0360385"/>
+            <column name="opening_hour" value="10:00 - 21:30"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1881.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="5"/>
+            <column name="name" value="Pepperonis Láng Hạ"/>
+            <column name="address" value="81 Phố Láng Hạ, Lang Ha, Đống Đa, Hanoi, Vietnam"/>
+            <column name="phone_number" value="02437765277"/>
+            <column name="email" value="pepperonis-hn.lh@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNDD"/>
+            <column name="longitude" value="105.816411"/>
+            <column name="latitude" value="21.018195"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1792.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="6"/>
+            <column name="name" value="AL Fresco's Tô Ngọc Vân"/>
+            <column name="address" value="26 Ngõ 52 Đường Tô Ngọc Vân, Quang An, Tây Hồ, Hanoi, Vietnam"/>
+            <column name="phone_number" value="02437195322"/>
+            <column name="email" value="alfrescos-hn.tnv@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNTH"/>
+            <column name="longitude" value="105.8239472"/>
+            <column name="latitude" value="21.0695111"/>
+            <column name="opening_hour" value="10:30 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1381.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="7"/>
+            <column name="name" value="Al Fresco's Ciputra"/>
+            <column name="address" value="G2-G3 Swimming Pool, Đường Nguyễn Hoàng Tôn, Khu đô thị Ciputra, Xuân La, Tây Hồ, Hanoi, Vietnam"/>
+            <column name="phone_number" value="02432018092"/>
+            <column name="email" value="alfrescos-hn.cpt@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNTH"/>
+            <column name="longitude" value="105.808661"/>
+            <column name="latitude" value="21.0709902"/>
+            <column name="opening_hour" value="10:30 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-552.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="8"/>
+            <column name="name" value="Papa Joe's"/>
+            <column name="address" value="Đại Sứ Quán Hoa Kỳ, Phố Láng Hạ, Thành Công, Ba Đình, Hanoi, Vietnam"/>
+            <column name="phone_number" value="02439364597"/>
+            <column name="email" value="papajoes@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="false"/>
+            <column name="allow_pickup" valueBoolean="false"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="longitude" value="105.8189773"/>
+            <column name="latitude" value="21.02162"/>
+            <column name="opening_hour" value="07:00 - 19:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/img-papajoes-1.png"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="9"/>
+            <column name="name" value="Jacksons Steakhouse"/>
+            <column name="address" value="23j Phố Hai Bà Trưng, phường Tràng Tiền, quận Hoàn Kiếm, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02439388388"/>
+            <column name="email" value="jacksons@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHK"/>
+            <column name="longitude" value="105.8531903"/>
+            <column name="latitude" value="21.0239432"/>
+            <column name="opening_hour" value="09:30 - 23:30"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/img-jackson-1.png"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="10"/>
+            <column name="name" value="Al Fresco's Vincom Ocean Park Gia Lâ"/>
+            <column name="address" value="L4-20 TTTM Vincom Ocean Park Gia Lâm"/>
+            <column name="phone_number" value="02432020358"/>
+            <column name="email" value="alfrescos-hn.op@afg.v"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNGL"/>
+            <column name="longitude" value="105.9601404"/>
+            <column name="latitude" value="20.9940474"/>
+            <column name="opening_hour" value="11:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1380.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="11"/>
+            <column name="name" value="Jaspas Hà Nội - 49 Hai Bà Trưng, Hoàn Kiếm"/>
+            <column name="address" value="Tầng 4, Tháp Hà Nội, 49 Hai Bà Trưng, Trần Hưng Đạo, Hoàn Kiếm, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02439348325"/>
+            <column name="email" value="jaspas-hn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHK"/>
+            <column name="longitude" value="105.8460117"/>
+            <column name="latitude" value="21.0256528"/>
+            <column name="opening_hour" value="06:30 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/1594188996487store-hn.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="12"/>
+            <column name="name" value="Pepperonis Nguyễn Chí Thanh"/>
+            <column name="address" value="114B2 Nguyễn Chí Thanh, Ba Đình, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02437710160"/>
+            <column name="email" value="pepperonis-hn.nct@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNBD"/>
+            <column name="longitude" value="105.8051157"/>
+            <column name="latitude" value="21.0160222"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2324.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="13"/>
+            <column name="name" value="Pepperonis Linh Đàm"/>
+            <column name="address" value="Ki ốt 26, Tòa nhà HH1A, Khu đô thị Linh Đàm, Phường Hoàng Liệt, Hoàng Mai, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02432052888"/>
+            <column name="email" value="pepperonis-hn.ld@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHM"/>
+            <column name="longitude" value="105.826191"/>
+            <column name="latitude" value="20.964117"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2330.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="14"/>
+            <column name="name" value="Pepperonis Bạch Mai"/>
+            <column name="address" value="510 Bạch Mai, Trương Định, Hai Bà Trưng, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02436270319"/>
+            <column name="email" value="pepperonis-hn.bm@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHBT"/>
+            <column name="longitude" value="105.8499625"/>
+            <column name="latitude" value="20.9969377"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2331.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="15"/>
+            <column name="name" value="Pepperonis Lạc Long Quân"/>
+            <column name="address" value="112 Đường Lạc Long Quân, Tây Hồ, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02437593401"/>
+            <column name="email" value="pepperonis-hn.llq@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNTH"/>
+            <column name="longitude" value="105.8080279"/>
+            <column name="latitude" value="21.05109"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2329.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="16"/>
+            <column name="name" value="Pepperonis Trần Phú"/>
+            <column name="address" value="14 Trần Phú, Khu đô thị Bắc Hà, Mộ Lao, Hà Đông, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02433113969"/>
+            <column name="email" value="pepperonis-hn.tp@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHDO"/>
+            <column name="longitude" value="105.7904869"/>
+            <column name="latitude" value="20.9828559"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2326.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="17"/>
+            <column name="name" value="Pepperonis Trần Đăng Ninh"/>
+            <column name="address" value="37 Trần Đăng Ninh, Dịch Vọng, Cầu Giấy, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02437932488"/>
+            <column name="email" value="pepperonis-hn.tdn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNCG"/>
+            <column name="longitude" value="105.7937491"/>
+            <column name="latitude" value="21.0363501"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2327.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="18"/>
+            <column name="name" value="Pepperonis Hàng Trống"/>
+            <column name="address" value="98 Hàng Trống, Hoàn Kiếm, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02439287030"/>
+            <column name="email" value="pepperonis-hn.ht@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHK"/>
+            <column name="longitude" value="105.8502226"/>
+            <column name="latitude" value="21.0296419"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2325.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="19"/>
+            <column name="name" value="Al Fresco's Garden"/>
+            <column name="address" value="Cửa chính TTTM The Garden, Mễ Trì, Mỹ Đình, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02437878598"/>
+            <column name="email" value="alfrescos-hn.gd@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNNTL"/>
+            <column name="longitude" value="105.7774806"/>
+            <column name="latitude" value="21.0147735"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1379.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="20"/>
+            <column name="name" value="Al Fresco's Long Biên"/>
+            <column name="address" value="Tầng 4, Gian hàng L4-02B TTTM Vincom Center, Long Biên, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02436574576"/>
+            <column name="email" value="alfrescos-hn.vc@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNLB"/>
+            <column name="longitude" value="105.916618"/>
+            <column name="latitude" value="21.050994"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/b445e643-5bf5-4021-bad1-222f0fd97908.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="21"/>
+            <column name="name" value="Al Fresco's Trần Thái Tông"/>
+            <column name="address" value="Số 106 lô C ô D5 khu ĐTM Cầu Giấy, Trần Thái Tông, P. Dịch Vọng Hậu, Cầu Giấy, Hà Nội"/>
+            <column name="phone_number" value="02462690633"/>
+            <column name="email" value="alfrescos-hn.ttt@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNCG"/>
+            <column name="longitude" value="105.7883697"/>
+            <column name="latitude" value="21.0324335"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1378.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="22"/>
+            <column name="name" value="Al Fresco's Aeon Hà Đông"/>
+            <column name="address" value="Tầng 1, TTTM Aeon Mall Hà Đông, Tổ Dân Phố Hoàng Văn Thụ, Phường Dương Nội, Quận Hà Đông, Hà Nội."/>
+            <column name="phone_number" value="02432020899"/>
+            <column name="email" value="alfrescos-hn.aeonhd@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHDO"/>
+            <column name="longitude" value="105.75128"/>
+            <column name="latitude" value="20.98991"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/28810981-d7d7-4ed4-acab-b2e2470d5dde.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="23"/>
+            <column name="name" value="Al Fresco's Royal City"/>
+            <column name="address" value="Lô B2-R6-29A Royal City, 72A Nguyễn Trãi, Khu đô thị Royal City, Thượng Đình, Thanh Xuân, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02466645566"/>
+            <column name="email" value="alfrescos-hn.royal@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNTX"/>
+            <column name="longitude" value="105.8151956"/>
+            <column name="latitude" value="21.0021365"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1377.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="24"/>
+            <column name="name" value="Al Fresco's Aeon Mall Long Biên"/>
+            <column name="address" value="Aeon Mall - Tầng 3-308, 27 Đường Cổ Linh, Làng Trạm, p. Long Biên, Long Biên, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02432002951"/>
+            <column name="email" value="alfrescos-hn.aeon@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNLB"/>
+            <column name="longitude" value="105.8991304"/>
+            <column name="latitude" value="21.0277832"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1376.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="25"/>
+            <column name="name" value="Al Fresco's Kim Mã"/>
+            <column name="address" value="L2-11 Tầng 2 - TTTM Vincom Center Metropolis, 29 Liễu Giai, Ngọc Khánh, Ba Đình, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02438538555"/>
+            <column name="email" value="alfrescos-hn.km@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNBD"/>
+            <column name="longitude" value="105.8138147"/>
+            <column name="latitude" value="21.0312229"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1375.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+
+        <insert tableName="store">
+            <column name="id" value="26"/>
+            <column name="name" value="Al Fresco's Vincom Nguyễn Chí Thanh"/>
+            <column name="address" value="Gian L5-16-17 TTTM Vincom 54a Nguyễn Chí Thanh, Ngọc Khánh, Đống Đa, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02432003694"/>
+            <column name="email" value="alfrescos-hn.nct@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNDD"/>
+            <column name="longitude" value="105.809093"/>
+            <column name="latitude" value="21.0233929"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1374.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="27"/>
+            <column name="name" value="Al Fresco's Láng Hạ"/>
+            <column name="address" value="108K1 Láng Hạ, Thành Công, Ba Đình, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02437723555"/>
+            <column name="email" value="alfrescos-hn.lh@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNBD"/>
+            <column name="longitude" value="105.818423"/>
+            <column name="latitude" value="21.0215679"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1373.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="28"/>
+            <column name="name" value="Al Fresco's Hoàng Ngân"/>
+            <column name="address" value="240 Phố Hoàng Ngân, Trung Hoà, Cầu Giấy, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02435569822"/>
+            <column name="email" value="alfrescos-hn.hn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNCG"/>
+            <column name="longitude" value="105.802262"/>
+            <column name="latitude" value="21.0092675"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1372.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="29"/>
+            <column name="name" value="Al Fresco's Hai Bà Trưng"/>
+            <column name="address" value="23l Hai Bà Trưng, Tràng Tiền, Hoàn Kiếm, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02438267782"/>
+            <column name="email" value="alfrescos-hn.hbt@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHK"/>
+            <column name="longitude" value="105.853552"/>
+            <column name="latitude" value="21.023961"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1371.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="30"/>
+            <column name="name" value="Al Fresco's Times City"/>
+            <column name="address" value="Gian 6-9-B1 TTTM Vincom Times City, 458 Phố Minh Khai, Khu đô thị Times City, Vĩnh Tuy, Hai Bà Trưng, Hà Nội, Việt Nam"/>
+            <column name="phone_number" value="02432000888"/>
+            <column name="email" value="alfrescos-hn.tc@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HN"/>
+            <column name="district" value="HNHBT"/>
+            <column name="longitude" value="105.8688126"/>
+            <column name="latitude" value="20.9953308"/>
+            <column name="opening_hour" value="11:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1370.jpg"/>
+            <column name="area_id" value="1"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="31"/>
+            <column name="name" value="Al Fresco's Estella Place"/>
+            <column name="address" value="L3-02, Số 88 Đường Song Hành, P An Phú, Tp Thủ Đức, TPHCM"/>
+            <column name="phone_number" value="02835356470"/>
+            <column name="email" value="alfrescos-hcm.estella@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ2"/>
+            <column name="longitude" value="106.7484195"/>
+            <column name="latitude" value="10.8018189"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1790.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="32"/>
+            <column name="name" value="Jaspas Thảo Điền - 15 Tống Hữu Định, Quận 2"/>
+            <column name="address" value="15 Tống Hữu Định, Thảo Điền, Quận 2, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02836368822"/>
+            <column name="email" value="jaspas-hcm.td@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ2"/>
+            <column name="longitude" value="106.733003"/>
+            <column name="latitude" value="10.806141"/>
+            <column name="opening_hour" value="10:00 - 20:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/1594182625285store-hcm.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="33"/>
+            <column name="name" value="Al Fresco's Tân Phú"/>
+            <column name="address" value="Lô T27, Lầu 3, Aeon Mall Tân Phú, 30 Bờ Bao Tân Thắng, Celadon City, Sơn Kỳ, Tân Phú, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02836208401"/>
+            <column name="email" value="alfrescos-hcm.tp@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMTP"/>
+            <column name="longitude" value="106.6172025"/>
+            <column name="latitude" value="10.8013663"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1385.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="34"/>
+            <column name="name" value="Al Fresco's Phan Xích Long"/>
+            <column name="address" value="199 Phan Xích Long, phường 2, Phú Nhuận, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02835172568"/>
+            <column name="email" value="alfrescos-hcm.pxl@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMPN"/>
+            <column name="longitude" value="106.6873366"/>
+            <column name="latitude" value="10.7984449"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-2328.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="35"/>
+            <column name="name" value="Al Fresco's Xuân Thuỷ"/>
+            <column name="address" value="92 Xuân Thủy, phường Thảo Điền, Thủ Đức, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02835194260"/>
+            <column name="email" value="alfrescos-hcm.xt@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ2"/>
+            <column name="longitude" value="106.7347199"/>
+            <column name="latitude" value="10.8036799"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1707.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="36"/>
+            <column name="name" value="Al Fresco's Phú Mỹ Hưng"/>
+            <column name="address" value="105 Nguyễn Đức Cảnh, phường Tân Phong, Quận 7, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02854101093"/>
+            <column name="email" value="alfrescos-hcm.pmh@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ7"/>
+            <column name="longitude" value="106.7088364"/>
+            <column name="latitude" value="10.7258661"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-985.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="37"/>
+            <column name="name" value="Al Fresco's Mạc Đĩnh Chi"/>
+            <column name="address" value="31Bis Mạc Đĩnh Chi, Đa Kao, Quận 1, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02838238427"/>
+            <column name="email" value="alfrescos-hcm.mdc@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ1"/>
+            <column name="longitude" value="106.699358"/>
+            <column name="latitude" value="10.784659"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/AL-FRESCOS-MDC02.JPG"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="38"/>
+            <column name="name" value="Al Fresco's Nguyễn Thị Nghĩa"/>
+            <column name="address" value="16 Nguyễn Thị Nghĩa, Bến Thành, Quận 1, Hồ Chí Minh, Việt Nam"/>
+            <column name="phone_number" value="02839260036"/>
+            <column name="email" value="alfrescos-hcm.ntn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMQ1"/>
+            <column name="longitude" value="106.693654"/>
+            <column name="latitude" value="10.770472"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1680.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="39"/>
+            <column name="name" value="Al Fresco's Cộng Hòa"/>
+            <column name="address" value="111 Cộng Hòa, P.12, Q.Tân Bình,Hồ Chí Minh, Ho Chi Minh City, 70000"/>
+            <column name="phone_number" value="02839482631"/>
+            <column name="email" value="alfrescos-hcm.ch@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HCM"/>
+            <column name="district" value="HCMTB"/>
+            <column name="longitude" value="106.6522862"/>
+            <column name="latitude" value="10.8013098"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/undefined-1382.jpg"/>
+            <column name="area_id" value="2"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="40"/>
+            <column name="name" value="Al Fresco's Trần Hưng Đạo"/>
+            <column name="address" value="515 Đường Trần Hưng Đạo, An Hải, An Hải Tây, Sơn Trà, Đà Nẵng, Việt Nam"/>
+            <column name="phone_number" value="02363569899"/>
+            <column name="email" value="alfrescos-dn.thd@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="DNA"/>
+            <column name="district" value="DNA"/>
+            <column name="longitude" value="108.2302236"/>
+            <column name="latitude" value="16.0627431"/>
+            <column name="opening_hour" value="10:00 - 22:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/ALFTHD.jpg"/>
+            <column name="area_id" value="3"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="41"/>
+            <column name="name" value="Al Fresco's Trần Phú"/>
+            <column name="address" value="210 Đường Trần Phú, Phước Ninh, Hải Châu, Đà Nẵng, Việt Nam"/>
+            <column name="phone_number" value="02363566866"/>
+            <column name="email" value="danang-alfrescos@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="DNA"/>
+            <column name="district" value="DNAHC"/>
+            <column name="longitude" value="108.2232655"/>
+            <column name="latitude" value="16.0640671"/>
+            <column name="opening_hour" value="11:00 - 21:30"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/6dbab81b-2386-4a31-804a-74dbdcb8fc1d.jpg"/>
+            <column name="area_id" value="3"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="42"/>
+            <column name="name" value="Al Fresco's Vincom Đà Nẵng"/>
+            <column name="address" value="910a Ngô Quyền, An Hải, An Hải Bắc, Sơn Trà, Đà Nẵng, Việt Nam"/>
+            <column name="phone_number" value="02363530230"/>
+            <column name="email" value="alfrescos-dn.vc@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="false"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="DNA"/>
+            <column name="district" value="DNAST"/>
+            <column name="longitude" value="108.230739"/>
+            <column name="latitude" value="16.0712769"/>
+            <column name="opening_hour" value="11:00 - 20:45"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/ae8b9cc8-cf31-4e11-88ea-0c965359f945.jpg"/>
+            <column name="area_id" value="3"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="43"/>
+            <column name="name" value="Alfresco's Aeon Hải Phòng"/>
+            <column name="address" value="T-130 Tầng 1, TTTM Aeon Hải Phòng Lê Chân, Kênh Dương, Lê Chân, Hải Phòng"/>
+            <column name="phone_number" value="02253899688"/>
+            <column name="email" value="alfrescos-hp.aeon@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HP"/>
+            <column name="district" value="HPLCA"/>
+            <column name="longitude" value="106.6822778"/>
+            <column name="latitude" value="20.8324937"/>
+            <column name="opening_hour" value="10:00 - 21:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/ALF-AEON-LE-CHAN-HP.jpg"/>
+            <column name="area_id" value="4"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="44"/>
+            <column name="name" value="Al Fresco's Bình Dương"/>
+            <column name="address" value="Aeon Bình Dương Canary, Tầng Trệt, G-26, Quốc lộ 13, Thuận An, Bình Dương, Việt Nam"/>
+            <column name="phone_number" value="02743763481"/>
+            <column name="email" value="alfrescos-hcm.bd@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="BDU"/>
+            <column name="district" value="BDUTA"/>
+            <column name="longitude" value="106.7119938"/>
+            <column name="latitude" value="10.9323347"/>
+            <column name="opening_hour" value="10:00 - 20:0"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/AL-FRESCOS-BD.jpg"/>
+            <column name="area_id" value="5"/>
+        </insert>
+        <insert tableName="store">
+            <column name="id" value="45"/>
+            <column name="name" value="Al Fresco's Ecopark"/>
+            <column name="address" value="Ecopark Delivery - A 17 Phố Trúc - Khu Đô Thị Ecopark, Xuân Quang, Văn Giang, Hưng Yên, Việt Nam"/>
+            <column name="phone_number" value="02462618622"/>
+            <column name="email" value="alfrescos-eco.hn@afg.vn"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="allow_delivery" valueBoolean="true"/>
+            <column name="allow_pickup" valueBoolean="true"/>
+            <column name="country" value="VN"/>
+            <column name="state" value="HY"/>
+            <column name="district" value="HYECO"/>
+            <column name="longitude" value="105.9239998"/>
+            <column name="latitude" value="20.967797"/>
+            <column name="opening_hour" value="11:00 - 20:00"/>
+            <column name="image_path" value="https://core.afg.vn//uploads/images/4b425e91-381c-49b0-872a-4906803a6dba.jpg"/>
+            <column name="area_id" value="6"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,1195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240430114100-1" author="trquoctoann">
+        <insert tableName="product">
+            <column name="id" value="1"/>
+            <column name="name" value="PIZZA MARGHERITA"/>
+            <column name="slug" value="1-margherita"/>
+            <column name="description" value="Pizza với xốt cà chua và phô mai."/>
+            <column name="sku" value="PI001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-769.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="2"/>
+            <column name="name" value="PIZZA MARGHERITA (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="1-margherita"/>
+            <column name="description" value="Pizza với xốt cà chua và phô mai."/>
+            <column name="sku" value="PI001S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-770.jpg"/>
+            <column name="parent_product_id" value="1"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="3"/>
+            <column name="name" value="PIZZA MARGHERITA (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="1-margherita"/>
+            <column name="description" value="Pizza với xốt cà chua và phô mai."/>
+            <column name="sku" value="PI001L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-771.jpg"/>
+            <column name="parent_product_id" value="1"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="4"/>
+            <column name="name" value="PIZZA MARGHERITA (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="1-margherita"/>
+            <column name="description" value="Pizza với xốt cà chua và phô mai."/>
+            <column name="sku" value="PI001X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-772.jpg"/>
+            <column name="parent_product_id" value="1"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="5"/>
+            <column name="name" value="PIZZA HAWAIIAN"/>
+            <column name="slug" value="2-hawaiian"/>
+            <column name="description" value="Pizza với xốt cà chua, jămbông, thơm và phô mai."/>
+            <column name="sku" value="PI002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-773.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="6"/>
+            <column name="name" value="PIZZA HAWAIIAN (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="2-hawaiian"/>
+            <column name="description" value="Pizza với xốt cà chua, jămbông, thơm và phô mai."/>
+            <column name="sku" value="PI002S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-774.jpg"/>
+            <column name="parent_product_id" value="5"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="7"/>
+            <column name="name" value="PIZZA HAWAIIAN (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="2-hawaiian"/>
+            <column name="description" value="Pizza với xốt cà chua, jămbông, thơm và phô mai."/>
+            <column name="sku" value="PI002L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-775.jpg"/>
+            <column name="parent_product_id" value="5"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="8"/>
+            <column name="name" value="PIZZA HAWAIIAN (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="2-hawaiian"/>
+            <column name="description" value="Pizza với xốt cà chua, jămbông, thơm và phô mai."/>
+            <column name="sku" value="PI002X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-776.jpg"/>
+            <column name="parent_product_id" value="5"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="9"/>
+            <column name="name" value="PIZZA TROPICANA SEAFOOD"/>
+            <column name="slug" value="3-tropicana-seafood"/>
+            <column name="description" value="Pizza hải sản, thơm, xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-777.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="10"/>
+            <column name="name" value="PIZZA TROPICANA SEAFOOD (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="3-tropicana-seafood"/>
+            <column name="description" value="Pizza hải sản, thơm, xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI003S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-778.jpg"/>
+            <column name="parent_product_id" value="9"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="11"/>
+            <column name="name" value="PIZZA TROPICANA SEAFOOD (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="3-tropicana-seafood"/>
+            <column name="description" value="Pizza hải sản, thơm, xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI003L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-779.jpg"/>
+            <column name="parent_product_id" value="9"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="12"/>
+            <column name="name" value="PIZZA TROPICANA SEAFOOD (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="3-tropicana-seafood"/>
+            <column name="description" value="Pizza hải sản, thơm, xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI003X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-780.jpg"/>
+            <column name="parent_product_id" value="9"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="13"/>
+            <column name="name" value="PIZZA BBQ BEEFY"/>
+            <column name="slug" value="4-bbq-beefy-pizza"/>
+            <column name="description" value="Pizza với thịt ba chỉ bò và ba rọi xông khói nướng với xốt BBQ, khoai tây sợi và phô mai."/>
+            <column name="sku" value="PI004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-781.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="14"/>
+            <column name="name" value="PIZZA BBQ BEEFY (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="4-bbq-beefy-pizza"/>
+            <column name="description" value="Pizza với thịt ba chỉ bò và ba rọi xông khói nướng với xốt BBQ, khoai tây sợi và phô mai."/>
+            <column name="sku" value="PI004S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-782.jpg"/>
+            <column name="parent_product_id" value="13"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="15"/>
+            <column name="name" value="PIZZA BBQ BEEFY (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="4-bbq-beefy-pizza"/>
+            <column name="description" value="Pizza với thịt ba chỉ bò và ba rọi xông khói nướng với xốt BBQ, khoai tây sợi và phô mai."/>
+            <column name="sku" value="PI004L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-783.jpg"/>
+            <column name="parent_product_id" value="13"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="16"/>
+            <column name="name" value="PIZZA BBQ BEEFY (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="4-bbq-beefy-pizza"/>
+            <column name="description" value="Pizza với thịt ba chỉ bò và ba rọi xông khói nướng với xốt BBQ, khoai tây sợi và phô mai."/>
+            <column name="sku" value="PI004X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-784.jpg"/>
+            <column name="parent_product_id" value="13"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="17"/>
+            <column name="name" value="PIZZA BBQ CHICKEN"/>
+            <column name="slug" value="5-bbq-chicken"/>
+            <column name="description" value="Pizza với xốt BBQ, ớt chuông xanh, nấm, thịt ba chỉ, jămbông, thịt gà cay Mêhicô và phô mai."/>
+            <column name="sku" value="PI005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-785.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="18"/>
+            <column name="name" value="PIZZA BBQ CHICKEN (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="5-bbq-chicken"/>
+            <column name="description" value="Pizza với xốt BBQ, ớt chuông xanh, nấm, thịt ba chỉ, jămbông, thịt gà cay Mêhicô và phô mai."/>
+            <column name="sku" value="PI005S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-786.jpg"/>
+            <column name="parent_product_id" value="17"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="19"/>
+            <column name="name" value="PIZZA BBQ CHICKEN (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="5-bbq-chicken"/>
+            <column name="description" value="Pizza với xốt BBQ, ớt chuông xanh, nấm, thịt ba chỉ, jămbông, thịt gà cay Mêhicô và phô mai."/>
+            <column name="sku" value="PI005L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-787.jpg"/>
+            <column name="parent_product_id" value="17"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="20"/>
+            <column name="name" value="PIZZA BBQ CHICKEN (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="5-bbq-chicken"/>
+            <column name="description" value="Pizza với xốt BBQ, ớt chuông xanh, nấm, thịt ba chỉ, jămbông, thịt gà cay Mêhicô và phô mai."/>
+            <column name="sku" value="PI005X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-788.jpg"/>
+            <column name="parent_product_id" value="17"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="21"/>
+            <column name="name" value="PIZZA NEW OCEANIA"/>
+            <column name="slug" value="6-new-oceania"/>
+            <column name="description" value="Pizza với cá ngừ, ngao, ngô, hành tây, xốt Thousand Island, phomát và mùi tây."/>
+            <column name="sku" value="PI006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-757.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="22"/>
+            <column name="name" value="PIZZA NEW OCEANIA (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="6-new-oceania"/>
+            <column name="description" value="Pizza với cá ngừ, ngao, ngô, hành tây, xốt Thousand Island, phomát và mùi tây."/>
+            <column name="sku" value="PI006S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-758.jpg"/>
+            <column name="parent_product_id" value="21"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="23"/>
+            <column name="name" value="PIZZA NEW OCEANIA (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="6-new-oceania"/>
+            <column name="description" value="Pizza với cá ngừ, ngao, ngô, hành tây, xốt Thousand Island, phomát và mùi tây."/>
+            <column name="sku" value="PI006L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-759.jpg"/>
+            <column name="parent_product_id" value="21"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="24"/>
+            <column name="name" value="PIZZA NEW OCEANIA (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="6-new-oceania"/>
+            <column name="description" value="Pizza với cá ngừ, ngao, ngô, hành tây, xốt Thousand Island, phomát và mùi tây."/>
+            <column name="sku" value="PI006X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-760.jpg"/>
+            <column name="parent_product_id" value="21"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="25"/>
+            <column name="name" value="PIZZA DOUBLE CHEESE BURGER"/>
+            <column name="slug" value="7-double-cheese-burger"/>
+            <column name="description" value="Pizza với bò xay nướng xốt BBQ, hành tây xào, cà chua tươi và phô mai."/>
+            <column name="sku" value="PI007N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-789.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="26"/>
+            <column name="name" value="PIZZA DOUBLE CHEESE BURGER (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="7-double-cheese-burger"/>
+            <column name="description" value="Pizza với bò xay nướng xốt BBQ, hành tây xào, cà chua tươi và phô mai."/>
+            <column name="sku" value="PI007S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-790.jpg"/>
+            <column name="parent_product_id" value="25"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="27"/>
+            <column name="name" value="PIZZA DOUBLE CHEESE BURGER (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="7-double-cheese-burger"/>
+            <column name="description" value="Pizza với bò xay nướng xốt BBQ, hành tây xào, cà chua tươi và phô mai."/>
+            <column name="sku" value="PI007L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-791.jpg"/>
+            <column name="parent_product_id" value="25"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="28"/>
+            <column name="name" value="PIZZA DOUBLE CHEESE BURGER (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="7-double-cheese-burger"/>
+            <column name="description" value="Pizza với bò xay nướng xốt BBQ, hành tây xào, cà chua tươi và phô mai."/>
+            <column name="sku" value="PI007X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-792.jpg"/>
+            <column name="parent_product_id" value="25"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="29"/>
+            <column name="name" value="PIZZA MEAT LOVERS"/>
+            <column name="slug" value="8-meat-lovers"/>
+            <column name="description" value="Pizza với thịt gà Mêhicô, jămbông, hành tây, nấm, thịt ba chỉ bò, xốt BBQ và phomát."/>
+            <column name="sku" value="PI008N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-761.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="30"/>
+            <column name="name" value="PIZZA MEAT LOVERS (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="8-meat-lovers"/>
+            <column name="description" value="Pizza với thịt gà Mêhicô, jămbông, hành tây, nấm, thịt ba chỉ bò, xốt BBQ và phomát."/>
+            <column name="sku" value="PI008S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-762.jpg"/>
+            <column name="parent_product_id" value="29"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="31"/>
+            <column name="name" value="PIZZA MEAT LOVERS (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="8-meat-lovers"/>
+            <column name="description" value="Pizza với thịt gà Mêhicô, jămbông, hành tây, nấm, thịt ba chỉ bò, xốt BBQ và phomát."/>
+            <column name="sku" value="PI008L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-763.jpg"/>
+            <column name="parent_product_id" value="29"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="32"/>
+            <column name="name" value="PIZZA MEAT LOVERS (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="8-meat-lovers"/>
+            <column name="description" value="Pizza với thịt gà Mêhicô, jămbông, hành tây, nấm, thịt ba chỉ bò, xốt BBQ và phomát."/>
+            <column name="sku" value="PI008X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-764.jpg"/>
+            <column name="parent_product_id" value="29"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="33"/>
+            <column name="name" value="PIZZA SEAFOOD"/>
+            <column name="slug" value="9-seafood"/>
+            <column name="description" value="Pizza với tôm, cá, mực, ngao, tỏi với xốt cà chua và phomát."/>
+            <column name="sku" value="PI009N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-765.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="34"/>
+            <column name="name" value="PIZZA SEAFOOD (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="9-seafood"/>
+            <column name="description" value="Pizza với tôm, cá, mực, ngao, tỏi với xốt cà chua và phomát."/>
+            <column name="sku" value="PI009S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-766.jpg"/>
+            <column name="parent_product_id" value="33"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="35"/>
+            <column name="name" value="PIZZA SEAFOOD (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="9-seafood"/>
+            <column name="description" value="Pizza với tôm, cá, mực, ngao, tỏi với xốt cà chua và phomát."/>
+            <column name="sku" value="PI009L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-767.jpg"/>
+            <column name="parent_product_id" value="33"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="36"/>
+            <column name="name" value="PIZZA SEAFOOD (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="9-seafood"/>
+            <column name="description" value="Pizza với tôm, cá, mực, ngao, tỏi với xốt cà chua và phomát."/>
+            <column name="sku" value="PI009X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-768.jpg"/>
+            <column name="parent_product_id" value="33"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="37"/>
+            <column name="name" value="PIZZA SEAFOOD DELUXE"/>
+            <column name="slug" value="10-seafood-deluxe"/>
+            <column name="description" value="Pizza với tôm, sò điệp, thanh cua, nấm, hành tây với xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI010N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-793.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="38"/>
+            <column name="name" value="PIZZA SEAFOOD DELUXE (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="10-seafood-deluxe"/>
+            <column name="description" value="Pizza với tôm, sò điệp, thanh cua, nấm, hành tây với xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI010S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-794.jpg"/>
+            <column name="parent_product_id" value="37"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="39"/>
+            <column name="name" value="PIZZA SEAFOOD DELUXE (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="10-seafood-deluxe"/>
+            <column name="description" value="Pizza với tôm, sò điệp, thanh cua, nấm, hành tây với xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI010L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-795.jpg"/>
+            <column name="parent_product_id" value="37"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="40"/>
+            <column name="name" value="PIZZA SEAFOOD DELUXE (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="10-seafood-deluxe"/>
+            <column name="description" value="Pizza với tôm, sò điệp, thanh cua, nấm, hành tây với xốt ớt chua ngọt và phô mai."/>
+            <column name="sku" value="PI010X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-796.jpg"/>
+            <column name="parent_product_id" value="37"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="41"/>
+            <column name="name" value="PIZZA PEPPERONI"/>
+            <column name="slug" value="11-pepperoni"/>
+            <column name="description" value="Pizza với xúc xích cay, xốt cà chua và phomát."/>
+            <column name="sku" value="PI011N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-797.jpg"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="42"/>
+            <column name="name" value="PIZZA PEPPERONI (S)"/>
+            <column name="size" value="S"/>
+            <column name="slug" value="11-pepperoni"/>
+            <column name="description" value="Pizza với xúc xích cay, xốt cà chua và phô mai."/>
+            <column name="sku" value="PI011S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-798.jpg"/>
+            <column name="parent_product_id" value="41"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="43"/>
+            <column name="name" value="PIZZA PEPPERONI (L)"/>
+            <column name="size" value="L"/>
+            <column name="slug" value="11-pepperoni"/>
+            <column name="description" value="Pizza với xúc xích cay, xốt cà chua và phô mai."/>
+            <column name="sku" value="PI011L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-799.jpg"/>
+            <column name="parent_product_id" value="41"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="44"/>
+            <column name="name" value="PIZZA PEPPERONI (XL)"/>
+            <column name="size" value="XL"/>
+            <column name="slug" value="11-pepperoni"/>
+            <column name="description" value="Pizza với xúc xích cay, xốt cà chua và phô mai."/>
+            <column name="sku" value="PI011X"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-800.jpg"/>
+            <column name="parent_product_id" value="41"/>
+            <column name="category_id" value="1"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="45"/>
+            <column name="name" value="SOUP OF THE DAY"/>
+            <column name="slug" value="soup-of-the-day"/>
+            <column name="description" value="Các món súp đặc biệt trong ngày."/>
+            <column name="sku" value="ST001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Soup-Of-The-Day.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="46"/>
+            <column name="name" value="CREAMY MUSHROOM SOUP"/>
+            <column name="slug" value="creamy-mushroom-soup"/>
+            <column name="description" value="Súp nấm"/>
+            <column name="sku" value="ST002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/7ef0eedb-4c5e-4d5e-9cfa-6115af8906c3.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="47"/>
+            <column name="name" value="CREAMY CHICKEN CORN SOUP"/>
+            <column name="slug" value="soup-corn"/>
+            <column name="description" value="Súp gà với bắp hạt"/>
+            <column name="sku" value="ST003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/884cd4a1-8e0f-4f32-84e0-8a234f8b7eaa.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="48"/>
+            <column name="name" value="SEAFOOD TOMATO SOUP"/>
+            <column name="slug" value="seafood-tomato-soup"/>
+            <column name="description" value="Súp cà chua hải sản"/>
+            <column name="sku" value="ST004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/7c90563d-cf4a-463b-a37f-35c6537f3a70.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="49"/>
+            <column name="name" value="PUMKIN SOUP"/>
+            <column name="slug" value="pumkin-soup"/>
+            <column name="description" value="Súp bí đỏ"/>
+            <column name="sku" value="ST005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/0b8b9054-0e85-454b-acb4-5d7cf272e544.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="50"/>
+            <column name="name" value="GARLIC BREAD"/>
+            <column name="slug" value="garlic-bread"/>
+            <column name="description" value="Bánh mỳ bơ tỏi."/>
+            <column name="sku" value="ST006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Garlic-Bread.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="51"/>
+            <column name="name" value="AMERICAN FRIES"/>
+            <column name="slug" value="american-fries"/>
+            <column name="description" value="Khoai tây chiên kiểu Mỹ dùng kèm với xốt cà chua và xốt mayonnaise."/>
+            <column name="sku" value="ST007N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-American-Fries.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="52"/>
+            <column name="name" value="BBQ SAUSAGES"/>
+            <column name="slug" value="bbq-sausages"/>
+            <column name="description" value="Xúc xích Đức nướng"/>
+            <column name="sku" value="ST008N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-BBQ-Sausages.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="53"/>
+            <column name="name" value="CALAMARI RINGS"/>
+            <column name="slug" value="calamari-rings"/>
+            <column name="description" value="Mực tươi thái vòng tẩm bột chiên vàng, dùng kèm xốt Thousand Island. Không phục vụ kèm salát."/>
+            <column name="sku" value="ST009N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1568.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="54"/>
+            <column name="name" value="PYGMY RIBS"/>
+            <column name="slug" value="pygmy-ribs"/>
+            <column name="description" value="4 dẻ sườn nhỏ nướng dùng kèm khoai tây bổ cau chiên. Không phục vụ kèm salát."/>
+            <column name="sku" value="ST010N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2233.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="55"/>
+            <column name="name" value="POTATO WEDGES"/>
+            <column name="slug" value="potato-wedges"/>
+            <column name="description" value="Khoai tây bổ cau chiên giòn dùng kèm xốt kem chua và thịt ba chỉ xông khói."/>
+            <column name="sku" value="ST011N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Potato-Wedges.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="56"/>
+            <column name="name" value="GARLIC CHEESE LOA"/>
+            <column name="slug" value="garlic-cheese-loaf"/>
+            <column name="description" value="Bánh mỳ bơ tỏi nhồi phomát nướng."/>
+            <column name="sku" value="ST012N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2237.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="57"/>
+            <column name="name" value="AL'S CHICKEN WING"/>
+            <column name="slug" value="als-chicken-wing"/>
+            <column name="description" value="Lựa chọn cách chế biến: cánh gà nướng dùng kèm xốt BBQ, cánh gà chiên dùng kèm xốt BBQ và xốt cay, cánh gà nướng phủ xốt ớt cay Jalapeno. Không phục vụ kèm salát."/>
+            <column name="sku" value="ST013N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2235.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="58"/>
+            <column name="name" value="BBQ BUFFALO WINGS"/>
+            <column name="slug" value="als-chicken-wing"/>
+            <column name="description" value="Cánh gà nướng dùng kèm xốt BBQ."/>
+            <column name="sku" value="ST014N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Chicken-1.jpeg"/>
+            <column name="parent_product_id" value="57"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="59"/>
+            <column name="name" value="SOUTHERN FRIED WINGS"/>
+            <column name="slug" value="als-chicken-wing"/>
+            <column name="description" value="Cánh gà chiên dùng kèm xốt BBQ và xốt cay."/>
+            <column name="sku" value="ST015N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Chicken-2.jpeg"/>
+            <column name="parent_product_id" value="57"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="60"/>
+            <column name="name" value="SPICY KOREAN WINGS"/>
+            <column name="slug" value="als-chicken-wing"/>
+            <column name="description" value="Cánh gà nướng với xốt Hàn Quốc"/>
+            <column name="sku" value="ST016N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2236.jpg"/>
+            <column name="parent_product_id" value="57"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="61"/>
+            <column name="name" value="QUESADILLAS"/>
+            <column name="slug" value="quesadillas"/>
+            <column name="description" value="6 miếng bánh kẹp áp chảo Mêhicô, dùng kèm các loại xốt. Tự chọn nhân: Thịt gà cay và phô mai hoặc Thịt bò cay và phô mai"/>
+            <column name="sku" value="ST017N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2238.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="62"/>
+            <column name="name" value="QUESADILLAS (BEEF)"/>
+            <column name="slug" value="quesadillas"/>
+            <column name="description" value="6 miếng bánh kẹp áp chảo Mêhicô, dùng kèm các loại với xốt. Nhân thịt bò cay và phomát."/>
+            <column name="sku" value="ST018N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2239.jpg"/>
+            <column name="parent_product_id" value="61"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="63"/>
+            <column name="name" value="QUESADILLAS (CHICKEN)"/>
+            <column name="slug" value="quesadillas"/>
+            <column name="description" value="6 miếng ánh kẹp áp chảo, dùng kèm các loại xốt. Nhân: Thịt gà cay và phô mai."/>
+            <column name="sku" value="ST019N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2240.jpg"/>
+            <column name="parent_product_id" value="61"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="64"/>
+            <column name="name" value="KOREAN FIRED CHICKEN"/>
+            <column name="slug" value="korean-fried-chicken"/>
+            <column name="description" value="Má đùi gà chiên giòn xốt Hàn Quốc, phủ mè"/>
+            <column name="sku" value="ST020N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1490.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="65"/>
+            <column name="name" value=">BEEF SKEWERS (6)"/>
+            <column name="slug" value="beef-skewers-6"/>
+            <column name="description" value="Thịt bò nhập khẩu xiên nướng cùng ớt Đà Lạt và hành tây"/>
+            <column name="sku" value="ST021N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2234.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="66"/>
+            <column name="name" value="SEAFOOD TOM YUM"/>
+            <column name="slug" value="seafood-tom-yum"/>
+            <column name="description" value="Vẹm NZ và tôm sú nấu kiểu Tom Yum Thái cay"/>
+            <column name="sku" value="ST022N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2241.jpg"/>
+            <column name="category_id" value="2"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="67"/>
+            <column name="name" value="STARTER PLATTER"/>
+            <column name="slug" value="starter-platter"/>
+            <column name="description" value="Đĩa lớn gồm: Sườn nướng, khoai tây bổ cau chiên, mực tẩm bột chiên, cánh gà nướng, hành vòng tẩm bột chiên và bánh mỳ bơ tỏi."/>
+            <column name="sku" value="Pl001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1691.jpg"/>
+            <column name="category_id" value="3"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="68"/>
+            <column name="name" value="MEAT LOVER'S PLATTER"/>
+            <column name="slug" value="meat-lovers-platter"/>
+            <column name="description" value="Đĩa nướng tổng hợp gồm: cánh gà nướng, xúc xích nướng, bò nhập khẩu xiên nướng, sườn nướng, bánh mỳ bơ tỏi nhồi phomát nướng và khoai tây bổ cau chiên."/>
+            <column name="sku" value="Pl002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1702.jpg"/>
+            <column name="category_id" value="3"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="69"/>
+            <column name="name" value="CHICKEN PLATTER"/>
+            <column name="slug" value="chicken-platter"/>
+            <column name="description" value="Đĩa gà tổng hợp gồm: đùi gà rút xương tẩm bột chiên giòn phủ xốt Bulgogi, lườn gà tẩm bột chiên giòn, cánh gà chiên, khoai tây chiên kiểu Mỹ và các loại xốt."/>
+            <column name="sku" value="Pl003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2243.jpg"/>
+            <column name="category_id" value="3"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="70"/>
+            <column name="name" value="CAESAR SALAD"/>
+            <column name="slug" value="caesar-salad"/>
+            <column name="description" value="Salát Ceasar với xà lách thái nhỏ, bánh mỳ nướng, thịt ba chỉ xông khói, trứng chần, trộn xốt kem và phomát."/>
+            <column name="sku" value="SL001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-847.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="71"/>
+            <column name="name" value="GREEN GARDEN SALAD"/>
+            <column name="slug" value="green-garden-salad"/>
+            <column name="description" value="Xà lách, cà chua, dưa leo, hành tây, trộn xốt dầu giấm đặc biệt của Al Fresco’s."/>
+            <column name="sku" value="SL002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Green-Garden-Salad.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="72"/>
+            <column name="name" value="CHEF'S SPECIAL SALAD"/>
+            <column name="slug" value="al-frescos-special-salad"/>
+            <column name="description" value="Xà lách trộn xốt kem, phủ thịt gà nướng, bơ trái, xoài và phô mai Parmesan."/>
+            <column name="sku" value="SL003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2244.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="73"/>
+            <column name="name" value="BEEF SALAD"/>
+            <column name="slug" value="beef-salad"/>
+            <column name="description" value="Salát với thịt bò nhập khẩu tẩm xốt ớt cay nướng, khoai tây bi, ớt Đà Lạt bỏ lò, hành tím, xà lách, xốt cà chua salsa, xốt kem chua, lá bột mỳ chiên và xốt dầu dấm đặc biệt của AL Fresco's."/>
+            <column name="sku" value="SL004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2232.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="74"/>
+            <column name="name" value="MANGO AVOCADO PRAWN SALAD"/>
+            <column name="slug" value="mango-avocado-prawn-salad"/>
+            <column name="description" value="Salát tôm với xoài và quả bơ tươi, dùng kèm xốt mù tạt mật ong."/>
+            <column name="sku" value="SL005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2246.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="75"/>
+            <column name="name" value="ROSEMARY CHICKEN AVOCADO SALAD"/>
+            <column name="slug" value="rosemary-chicken-avocado-salad"/>
+            <column name="description" value="Xà lách trộn xốt kem, phủ thịt gà nướng, bơ trái, xoài và phô mai Parmesan."/>
+            <column name="sku" value="SL006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2245.jpg"/>
+            <column name="category_id" value="4"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="76"/>
+            <column name="name" value="STEAK AND MUSHROOM SPAGHETTI"/>
+            <column name="slug" value="steak--mushroom-spaghetti-l"/>
+            <column name="description" value="Mỳ Ý sợi dài với thịt bò Úc, nấm và xốt kem đậu đen."/>
+            <column name="sku" value="PA001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Steak-Mushroom-Spaghetti-2.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="77"/>
+            <column name="name" value="SPAGHETTI BOLOGNAISE"/>
+            <column name="slug" value="spaghetti-bolognaise-l"/>
+            <column name="description" value="Mỳ Ý sợi dài với xốt thịt bò hầm và cà chua."/>
+            <column name="sku" value="PA002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Spaghetti-Bolognaise-2.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="78"/>
+            <column name="name" value="SPAGHETTI CARBONARA"/>
+            <column name="slug" value="spaghetti-carbonara-"/>
+            <column name="description" value="Mỳ Ý sợi dài với jămbông và phô mai xốt kem."/>
+            <column name="sku" value="PA003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2231.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="79"/>
+            <column name="name" value="SPAGHETTI SEAFOOD"/>
+            <column name="slug" value="spaghetti-seafood"/>
+            <column name="description" value="Mỳ Ý sợi dài với hải sản. Lựa chọn: xốt cà chua cay hoặc xốt kem tỏi."/>
+            <column name="sku" value="PA004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2247.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="80"/>
+            <column name="name" value="SPAGHETTI SEAFOOD MARINARA"/>
+            <column name="slug" value="spaghetti-seafood-marinara"/>
+            <column name="description" value="Mỳ Ý sợi dài với hải sản với xốt cà chua cay"/>
+            <column name="sku" value="PA005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/1595497880925SPAGHETTISEAFOOD-Spicy.jpg"/>
+            <column name="parent_product_id" value="79"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="81"/>
+            <column name="name" value="SPAGHETTI SEAFOOD ALFREDO"/>
+            <column name="slug" value="spaghetti-seafood-alfredo"/>
+            <column name="description" value="Mỳ Ý sợi dài với hải sản và xốt kem tỏi"/>
+            <column name="sku" value="PA006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/1595497941087SPAGHETTISEAFOOD.jpg"/>
+            <column name="parent_product_id" value="79"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="82"/>
+            <column name="name" value="THAI SEAFOOD SPAGHETT"/>
+            <column name="slug" value="thai-seafood-spaghetti"/>
+            <column name="description" value="Mỳ Ý sợi dài với hải sản và xốt kem Tom Yum kiểu Thái đặc biệt"/>
+            <column name="sku" value="PA007N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2248.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="83"/>
+            <column name="name" value="GARLIC PRAWN SPAGHETTI"/>
+            <column name="slug" value="garlic-prawn-spaghetti"/>
+            <column name="description" value="Mỳ Ý sợi dài với tỏi, tôm và xốt kem cà chua"/>
+            <column name="sku" value="PA008N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2249.jpg"/>
+            <column name="category_id" value="5"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="84"/>
+            <column name="name" value="PYGMY PLATTER (6PCS)"/>
+            <column name="slug" value="pygmy-group-6"/>
+            <column name="description" value="6 dẻ sườn nhỏ nướng dùng kèm khoai tây bổ cau chiên. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Pygmy-Platter-6pcs.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="85"/>
+            <column name="name" value="PYGMY PLATTER (10PCS)"/>
+            <column name="slug" value="pygmy-group-10"/>
+            <column name="description" value="10 dẻ sườn nhỏ nướng dùng kèm khoai tây bổ cau chiên. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2257.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="86"/>
+            <column name="name" value="HALF RACK RIBS"/>
+            <column name="slug" value="half-rack-ribs"/>
+            <column name="description" value="5-6 dẻ sườn lớn nướng dùng kèm khoai tây bổ cau chiên. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2256.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="87"/>
+            <column name="name" value="JUMBO RIBS (OUR SPECIALTY)"/>
+            <column name="slug" value="jumbo-ribs-our-specialty"/>
+            <column name="description" value="10-12 dẻ sườn nhỏ nướng dùng kèm khoai tây bổ cau chiên. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Jumbo-Ribs.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="88"/>
+            <column name="name" value="CHEF'S SLICED STEAK (200GR)"/>
+            <column name="slug" value="chefs-sliced-steak-200g"/>
+            <column name="description" value="Thăn bò Mỹ nhập khẩu nướng. Dùng kèm bắp nướng, khoai tây sợi chiên. Không phục vụ kèm salát."/>
+            <column name="sku" value="RS005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2260.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="89"/>
+            <column name="name" value="NZ SIZZLING RIB EYE STEAK (250G)"/>
+            <column name="slug" value="nz-sizzling-rib-eye-steak-250g"/>
+            <column name="description" value="Thăn bò New Zealand nướng mềm dùng kèm hành tây và nấm xào. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/2fe82cd6-1dcc-461d-90ad-b2150e65ef14.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="90"/>
+            <column name="name" value="FAMILY SLICED STEAK (400G)"/>
+            <column name="slug" value="family-sliced-steak-400g"/>
+            <column name="description" value="400gr Thăn bò Mỹ nhập khẩu nướng. Dùng kèm bắp nướng. khoai tây chiên kiểu Mỹ."/>
+            <column name="sku" value="RS007N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2259.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="91"/>
+            <column name="name" value="NZ RIB EYE STEAK (250G)"/>
+            <column name="slug" value="rib-eye-steak"/>
+            <column name="description" value="Thăn bò New Zealand nướng mềm và món dùng kèm. Không phục vụ kèm salát"/>
+            <column name="sku" value="RS008N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2258.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="92"/>
+            <column name="name" value="SURF AND TURF (200GR)"/>
+            <column name="slug" value="surf-turf-200gr"/>
+            <column name="description" value="Thăn bò Mỹ nướng mềm, tôm xào bơ tỏi. Dùng kèm khoai tây nghiền, măng tây. Lựa chọn xốt tiêu xanh hoặc xốt nấm."/>
+            <column name="sku" value="RS009N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1496.jpg"/>
+            <column name="category_id" value="6"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="93"/>
+            <column name="name" value="BEEF LASAGNA"/>
+            <column name="slug" value="lasagna-beef"/>
+            <column name="description" value="Món thịt bò nghiền bỏ lò, dùng kèm bánh mỳ bơ tỏi."/>
+            <column name="sku" value="CS001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Lasagna-1.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="94"/>
+            <column name="name" value="CHICKEN PARMAGIANA"/>
+            <column name="slug" value="chicken-parmagiana"/>
+            <column name="description" value="Gà tẩm bột chiên phủ xốt Napoli và phô mai nướng chảy. Ăn kèm khoai tây chiên kiểu Mỹ"/>
+            <column name="sku" value="CS002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2250.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="95"/>
+            <column name="name" value="CHICKEN CAESAR SALAD WRAP"/>
+            <column name="slug" value="chicken-caesar-salad-wrap"/>
+            <column name="description" value="Món cuộn với thịt gà nướng cùng salát Hoàng Đế."/>
+            <column name="sku" value="CS003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2251.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="96"/>
+            <column name="name" value="MEXICAN FAJITAS (CHICKEN)"/>
+            <column name="slug" value="mexican-fajitas-chicken"/>
+            <column name="description" value="Món cuốn Mêhicô với thịt gà tẩm ướp nướng, ớt chuông Đà Lạt và hành tây trên đĩa nóng. Dùng kèm 4 lá bột mỳ tươi và các loại xốt."/>
+            <column name="sku" value="CS004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1664.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="97"/>
+            <column name="name" value="MEXICAN FAJITAS (STEAK)"/>
+            <column name="slug" value="mexican-fajitas-steak"/>
+            <column name="description" value="Món cuốn Mêhicô với thịt bò nhập khẩu nướng, ớt chuông Đà Lạt và hành tây. Dùng kèm 4 lá bột mỳ tươi và các loại xốt."/>
+            <column name="sku" value="CS005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1665.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="98"/>
+            <column name="name" value="STEAK SANDWICH"/>
+            <column name="slug" value="steak-sandwich"/>
+            <column name="description" value="Bánh kẹp với thịt bò Mỹ nhập khẩu, hành tây và xốt BQ. Dùng kèm khoai tây chiên kiểu Mỹ và hành vòng chiên."/>
+            <column name="sku" value="CS006N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2252.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="99"/>
+            <column name="name" value="PAD THAI"/>
+            <column name="slug" value="pad-thai"/>
+            <column name="description" value="Bánh phở xào kiểu thái với tôm, đậu khuôn, giá đỗ"/>
+            <column name="sku" value="CS007N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2253.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="100"/>
+            <column name="name" value="CAPTAIN CATCH"/>
+            <column name="slug" value="captain-catch"/>
+            <column name="description" value="Cá chẽm biển tẩm bột chiên giòn, mực vòng tẩm bột chiên. Dùng kèm với khoai tây chiên kiểu Mỹ. Không phục vụ kèm salát"/>
+            <column name="sku" value="CS008N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1494.jpg"/>
+            <column name="category_id" value="7"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="101"/>
+            <column name="name" value="CHEESE BURGER (BEEF)"/>
+            <column name="slug" value="cheese-burger-beef"/>
+            <column name="description" value="Burger với thịt bò Úc xay phủ phomát, xà lách, hành tây và cà chua."/>
+            <column name="sku" value="BU001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Cheese-Burger-Beef.jpg"/>
+            <column name="category_id" value="8"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="102"/>
+            <column name="name" value="CHEESE BURGER (CHICKEN)"/>
+            <column name="slug" value="cheese-burger-chicken"/>
+            <column name="description" value="Burger với lườn gà nướng phủ phomát, xà lách, hành tây và cà chua."/>
+            <column name="sku" value="BU002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Cheese-Burger-Chicken.jpg"/>
+            <column name="category_id" value="8"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="103"/>
+            <column name="name" value="AUSSIE BURGER"/>
+            <column name="slug" value="aussie-burger"/>
+            <column name="description" value="Burger với thịt bò Úc xay, thịt ba chỉ xông khói, trứng, cà chua, xà lách, củ dền và hành tây xào."/>
+            <column name="sku" value="BU003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Alfrescos-Danang-Aussie-Burger.jpg"/>
+            <column name="category_id" value="8"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="104"/>
+            <column name="name" value="COMBINATION FRIED RICE"/>
+            <column name="slug" value="combination-fried-rice"/>
+            <column name="description" value="Cơm chiên thập cẩm: bò, gà, tôm, jămbông và rau củ."/>
+            <column name="sku" value="FR001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2254.jpg"/>
+            <column name="category_id" value="9"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="105"/>
+            <column name="name" value="SEAFOOD FRIED RICE"/>
+            <column name="slug" value="seafood-fried-rice"/>
+            <column name="description" value="Cơm chiên hải sản: tôm, cá, mực và rau củ."/>
+            <column name="sku" value="FR002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2255.jpg"/>
+            <column name="category_id" value="9"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="106"/>
+            <column name="name" value="NƯỚC ÉP XOÀI"/>
+            <column name="slug" value="mango-juice"/>
+            <column name="sku" value="DR001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2265.jp"/>
+            <column name="category_id" value="10"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="107"/>
+            <column name="name" value="NƯỚC ÉP DƯA HẤU"/>
+            <column name="slug" value="watermelon-juice"/>
+            <column name="sku" value="DR002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2261.jpg"/>
+            <column name="category_id" value="10"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="108"/>
+            <column name="name" value="NƯỚC ÉP CAM"/>
+            <column name="slug" value="orange-juice"/>
+            <column name="sku" value="DR003N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2262.jpg"/>
+            <column name="category_id" value="10"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="109"/>
+            <column name="name" value="COKE"/>
+            <column name="slug" value="coke"/>
+            <column name="sku" value="DR004N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/2e8b7555-db73-481c-96fd-a5be9a0a3acd.jpg"/>
+            <column name="category_id" value="10"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="110"/>
+            <column name="name" value="NƯỚC SUỐI DASANI"/>
+            <column name="slug" value="dasani"/>
+            <column name="sku" value="DR005N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/08598fc7-6576-4bf2-b2e0-f7a71d80ab58.jpg"/>
+            <column name="category_id" value="10"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="111"/>
+            <column name="name" value="TRÀ ĐÀO"/>
+            <column name="slug" value="peach-tea"/>
+            <column name="sku" value="TE001N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2263.jpg"/>
+            <column name="category_id" value="11"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" value="112"/>
+            <column name="name" value="TRÀ VẢI"/>
+            <column name="slug" value="lychee-tea"/>
+            <column name="sku" value="TE002N"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-2264.jpg"/>
+            <column name="category_id" value="11"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

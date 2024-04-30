@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240429235200-1" author="trquoctoann">
+        <insert tableName="area">
+            <column name="id" value="1"/>
+            <column name="name" value="Hà Nội"/>
+            <column name="code" value="HN"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="30"/>
+            <column name="price_group_id" value="N.ALF"/>
+        </insert>
+        <insert tableName="area">
+            <column name="id" value="2"/>
+            <column name="name" value="Hồ Chí Minh"/>
+            <column name="code" value="HCM"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="9"/>
+            <column name="price_group_id" value="S.ALF"/>
+        </insert>
+        <insert tableName="area">
+            <column name="id" value="3"/>
+            <column name="name" value="Đà Nẵng"/>
+            <column name="code" value="DNA"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="3"/>
+            <column name="price_group_id" value="M.ALF"/>
+        </insert>
+        <insert tableName="area">
+            <column name="id" value="4"/>
+            <column name="name" value="Hải Phòng"/>
+            <column name="code" value="HP"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="1"/>
+            <column name="price_group_id" value="N.ALF"/>
+        </insert>
+        <insert tableName="area">
+            <column name="id" value="5"/>
+            <column name="name" value="Bình Dương"/>
+            <column name="code" value="BDU"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="1"/>
+            <column name="price_group_id" value="S.ALF"/>
+        </insert>
+        <insert tableName="area">
+            <column name="id" value="6"/>
+            <column name="name" value="Hưng Yên"/>
+            <column name="code" value="HY"/>
+            <column name="brand_code" value="ALFRESCOS"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="store_count" value="1"/>
+            <column name="price_group_id" value="N.ALF"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

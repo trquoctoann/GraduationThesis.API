@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240430110500-1" author="trquoctoann">
+        <insert tableName="category">
+            <column name="id" value="1"/>
+            <column name="name" value="Pizza"/>
+            <column name="description" value="Thường R: 6 miếng 22cm |Lớn L: 8 miếng 30cm |Gia Đình FA: 10 miếng 34cm"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-890.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="2"/>
+            <column name="name" value="Starters"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/Banner-Section-Starter-550x250.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="3"/>
+            <column name="name" value="BBQ Platters"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-12.jpeg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="4"/>
+            <column name="name" value="Salads"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-879.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="5"/>
+            <column name="name" value="Pasta"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/ee366394-36a1-4e08-9331-baa366137b17.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="6"/>
+            <column name="name" value="Ribs Steak"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/undefined-1656.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="7"/>
+            <column name="name" value="Chef's Selection"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/4a4188b8-fcd2-4096-9266-910cf8a0400f.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="8"/>
+            <column name="name" value="Burger"/>
+            <column name="description" value="Không phục vụ kèm xà lách"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="9"/>
+            <column name="name" value="Al's Fried Rice"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="10"/>
+            <column name="name" value="Drinks"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="image_path" value="https://api.alfrescos.com.vn/uploads/images/6012ac16-10a6-4dac-abfa-f8414f294e46.jpg"/>
+        </insert>
+        <insert tableName="category">
+            <column name="id" value="11"/>
+            <column name="name" value="Flavour Tea"/>
+            <column name="status" value="ACTIVE"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

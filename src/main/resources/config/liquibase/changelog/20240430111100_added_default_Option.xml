@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240430111100-1" author="trquoctoann">
+        <insert tableName="option">
+            <column name="id" value="1"/>
+            <column name="name" value="Chọn đế"/>
+            <column name="code" value="crust"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="is_multi" valueBoolean="false"/>
+            <column name="is_required" valueBoolean="true"/>
+        </insert>
+        <insert tableName="option">
+            <column name="id" value="2"/>
+            <column name="name" value="Chọn topping"/>
+            <column name="code" value="extra"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="is_multi" valueBoolean="true"/>
+            <column name="is_required" valueBoolean="false"/>
+        </insert>
+        <insert tableName="option">
+            <column name="id" value="3"/>
+            <column name="name" value="Chọn cách chế biến"/>
+            <column name="code" value="cook"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="is_multi" valueBoolean="false"/>
+            <column name="is_required" valueBoolean="true"/>
+        </insert>
+        <insert tableName="option">
+            <column name="id" value="4"/>
+            <column name="name" value="Chọn xốt"/>
+            <column name="code" value="sauce"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="is_multi" valueBoolean="false"/>
+            <column name="is_required" valueBoolean="true"/>
+        </insert>
+        <insert tableName="option">
+            <column name="id" value="5"/>
+            <column name="name" value="Chọn khoai tây"/>
+            <column name="code" value="potato"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="is_multi" valueBoolean="false"/>
+            <column name="is_required" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

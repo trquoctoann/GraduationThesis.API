@@ -53,4 +53,11 @@
     <include file="config/liquibase/changelog/20240428192700_added_table_constraints_CartItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240428193000_added_table_CartItemOption.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20240428193300_added_table_constraints_CartItemOption.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240429235200_added_default_Area.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430102100_added_default_Store.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430110500_added_default_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430111100_added_default_Option.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430111400_added_default_OptionDetail.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430114100_added_default_Product.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20240430171900_added_default_ProductOption.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
