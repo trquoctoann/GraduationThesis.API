@@ -8,6 +8,7 @@ import com.cheems.pizzatalk.modules.stockbatch.application.port.in.share.StockBa
 import com.cheems.pizzatalk.modules.stockbatch.application.port.out.StockBatchPort;
 import com.cheems.pizzatalk.modules.stockbatch.domain.StockBatch;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.Instant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class StockBatchLifecycleService implements StockBatchLifecycleUseCase {
 
         StockBatch stockBatch = objectMapper.convertValue(command, StockBatch.class);
         stockBatch.setStatus(RefillStatus.ORDERED);
+        stockBatch.setOrderedDate(Instant.now());
 
         stockBatch = stockBatchPort.save(stockBatch);
         log.debug("Created stock batch with command: {}", command);

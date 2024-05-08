@@ -16,6 +16,8 @@ public interface QueryStockItemUseCase {
 
     StockItem getByStoreIdAndProductId(Long storeId, Long productId, String... fetchAttributes);
 
+    Optional<StockItem> findByStoreIdAndOptionDetailId(Long storeId, Long optionDetailId, String... fetchAttributes);
+
     Optional<StockItem> findByCriteria(StockItemCriteria criteria);
 
     StockItem getByCriteria(StockItemCriteria criteria);
@@ -27,4 +29,8 @@ public interface QueryStockItemUseCase {
     List<StockItem> findListByStoreId(Long storeId);
 
     List<StockItem> findListByProductId(Long productId);
+
+    List<StockItem> findListByStoreIdAndProductId(Long storeId, Long productId);
+
+    List<StockItem> findListByStoreIdAndOptionDetailId(Long storeId, Long optionDetailId);
 }

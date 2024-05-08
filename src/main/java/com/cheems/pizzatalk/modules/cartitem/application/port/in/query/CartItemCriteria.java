@@ -25,6 +25,8 @@ public class CartItemCriteria extends QuerySelfValidating<CartItemCriteria> impl
 
     private RangeFilter<Long> productId;
 
+    private RangeFilter<Long> optionDetailId;
+
     public CartItemCriteria() {}
 
     public CartItemCriteria(CartItemCriteria other) {
@@ -33,6 +35,7 @@ public class CartItemCriteria extends QuerySelfValidating<CartItemCriteria> impl
         this.price = other.price == null ? null : other.price.copy();
         this.cartId = other.cartId == null ? null : other.cartId.copy();
         this.productId = other.productId == null ? null : other.productId.copy();
+        this.optionDetailId = other.optionDetailId == null ? null : other.optionDetailId.copy();
     }
 
     @Override

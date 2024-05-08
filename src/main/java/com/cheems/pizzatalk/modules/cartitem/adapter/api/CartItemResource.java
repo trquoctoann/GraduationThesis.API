@@ -55,6 +55,7 @@ public class CartItemResource {
     public ResponseEntity<List<CartItem>> getAllCartItems(CartItemCriteria criteria) {
         log.debug("REST request to get all cart items by criteria: {}", criteria);
         criteria.addFetchAttribute(CartItemMapper.DOMAIN_PRODUCT);
+        criteria.addFetchAttribute(CartItemMapper.DOMAIN_OPTION_DETAILS);
         return ResponseEntity.ok().body(queryCartItemUseCase.findListByCriteria(criteria));
     }
 

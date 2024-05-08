@@ -64,6 +64,9 @@ public class ProductResource {
     @GetMapping("/products/all")
     public ResponseEntity<List<Product>> getAllProducts(ProductCriteria criteria) {
         log.debug("REST request to get all products by criteria: {}", criteria);
+        criteria.addFetchAttribute(ProductMapper.DOMAIN_OPTIONS);
+        criteria.addFetchAttribute(ProductMapper.DOMAIN_OPTION_DETAILS);
+        criteria.addFetchAttribute(ProductMapper.DOMAIN_STOCK_ITEMS);
         return ResponseEntity.ok().body(queryProductUseCase.findListByCriteria(criteria));
     }
 

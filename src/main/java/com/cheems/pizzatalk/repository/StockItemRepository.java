@@ -24,7 +24,7 @@ public interface StockItemRepository extends JpaRepository<StockItemEntity, Long
     void deleteByProductId(Long productId);
 
     @Modifying
-    @Query("DELETE FROM StockItemEntity stockItemEntity WHERE stockItemEntity.option_detail.id = ?1")
+    @Query("DELETE FROM StockItemEntity stockItemEntity WHERE stockItemEntity.optionDetail.id = ?1")
     void deleteByOptionDetailId(Long optionDetailId);
 
     @Query(
@@ -44,13 +44,13 @@ public interface StockItemRepository extends JpaRepository<StockItemEntity, Long
     @Query(
         "SELECT stockItemEntity FROM StockItemEntity stockItemEntity" +
         " WHERE stockItemEntity.store.id = ?1" +
-        " AND stockItemEntity.option_detail.id IN ?2"
+        " AND stockItemEntity.optionDetail.id IN ?2"
     )
     Set<StockItemEntity> findByStoreIdAndOptionDetailIds(Long store, Set<Long> optionDetailIds);
 
     @Query(
         "SELECT stockItemEntity FROM StockItemEntity stockItemEntity" +
-        " WHERE stockItemEntity.option_detail.id = ?1" +
+        " WHERE stockItemEntity.optionDetail.id = ?1" +
         " AND stockItemEntity.store.id IN ?2"
     )
     Set<StockItemEntity> findByOptionDetailIdAndStoreIds(Long optionDetailId, Set<Long> stores);

@@ -6,9 +6,12 @@ import com.cheems.pizzatalk.modules.cartitem.application.port.in.query.CartItemC
 import com.cheems.pizzatalk.modules.cartitem.application.port.in.share.QueryCartItemUseCase;
 import com.cheems.pizzatalk.modules.cartitem.application.port.out.QueryCartItemPort;
 import com.cheems.pizzatalk.modules.cartitem.domain.CartItem;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,5 +77,24 @@ public class QueryCartItemService implements QueryCartItemUseCase {
         criteria.setCartId(cartIdFilter);
 
         return findListByCriteria(criteria);
+    }
+
+    @Override
+    public Optional<CartItem> findDuplicateCartItem(Long cartId, Long productId, Set<Long> optionDetailIds) {
+        CartItemCriteria criteria = new CartItemCriteria();
+
+        RangeFilter<Long> cartIdFilter = new RangeFilter<Long>();
+        cartIdFilter.setEquals(cartId);
+
+        RangeFilter<Long> productIdFilter = new RangeFilter<Long>();
+        productIdFilter.setEquals(productId);
+
+        RangeFilter<Long> optionDetailIdsFilter = new RangeFilter<Long>();
+        optionDetailIdsFilter.setIn(new ArrayList<>(optionDetailIds));
+        
+        criteria.setCartId(cartIdFilter);
+        criteria.setProductId(productIdFilter);
+        criteria.setOptionDetailId(optionDetailIdsFilter);
+        return findByCriteria(criteria);
     }
 }

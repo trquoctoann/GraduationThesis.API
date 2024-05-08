@@ -27,19 +27,19 @@ public class ParticipantLifecycleService implements ParticipantLifecycleUseCase 
 
     private final ParticipantPort participantPort;
 
-    private final ConversationLifecycleUseCase conversationLifecycleUseCase;
+    // private final ConversationLifecycleUseCase conversationLifecycleUseCase;
 
     private final QueryParticipantUseCase queryParticipantUseCase;
 
     public ParticipantLifecycleService(
         ObjectMapper objectMapper,
         ParticipantPort participantPort,
-        ConversationLifecycleUseCase conversationLifecycleUseCase,
+        // ConversationLifecycleUseCase conversationLifecycleUseCase,
         QueryParticipantUseCase queryParticipantUseCase
     ) {
         this.objectMapper = objectMapper;
         this.participantPort = participantPort;
-        this.conversationLifecycleUseCase = conversationLifecycleUseCase;
+        // this.conversationLifecycleUseCase = conversationLifecycleUseCase;
         this.queryParticipantUseCase = queryParticipantUseCase;
     }
 
@@ -67,7 +67,7 @@ public class ParticipantLifecycleService implements ParticipantLifecycleUseCase 
         participant.setJoinedAt(Instant.now());
 
         participant = participantPort.save(participant);
-        conversationLifecycleUseCase.addUserToConversation(userId, conversationId);
+        // conversationLifecycleUseCase.addUserToConversation(userId, conversationId);
         log.debug("User id: {} joined conversation: {}", userId, conversationId);
         return participant;
     }
@@ -89,7 +89,7 @@ public class ParticipantLifecycleService implements ParticipantLifecycleUseCase 
         participant.setLeftAt(Instant.now());
 
         participant = participantPort.save(participant);
-        conversationLifecycleUseCase.removeUserOfConversation(userId, conversationId);
+        // conversationLifecycleUseCase.removeUserOfConversation(userId, conversationId);
         log.debug("User id: {} left conversation: {}", userId, conversationId);
         return participant;
     }

@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="20240513202200-1" author="trquoctoann">
+        <insert tableName="stock_item">
+            <column name="id" value="1"/>
+            <column name="name" value="Mỏng"/>
+            <column name="sku" value="CR001N"/>
+            <column name="code" value="thin"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="1"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="2"/>
+            <column name="name" value="Dày"/>
+            <column name="sku" value="CR002N"/>
+            <column name="code" value="thick"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="1"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="3"/>
+            <column name="name" value="Thịt bò xay"/>
+            <column name="sku" value="EX001S"/>
+            <column name="code" value="extra_beef_pattie"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="4"/>
+            <column name="name" value="Thịt bò xay"/>
+            <column name="sku" value="EX001L"/>
+            <column name="code" value="extra_beef_pattie"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="5"/>
+            <column name="name" value="Thịt bò xay"/>
+            <column name="sku" value="EX001X"/>
+            <column name="code" value="extra_beef_pattie"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="6"/>
+            <column name="name" value="Nấm rơm"/>
+            <column name="sku" value="EX002S"/>
+            <column name="code" value="extra_mushroom"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="7"/>
+            <column name="name" value="Nấm rơm"/>
+            <column name="sku" value="EX002L"/>
+            <column name="code" value="extra_mushroom"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="8"/>
+            <column name="name" value="Nấm rơm"/>
+            <column name="sku" value="EX002X"/>
+            <column name="code" value="extra_mushroom"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="9"/>
+            <column name="name" value="Cá"/>
+            <column name="sku" value="EX003S"/>
+            <column name="code" value="extra_fish_cooked"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="10"/>
+            <column name="name" value="Cá"/>
+            <column name="sku" value="EX003L"/>
+            <column name="code" value="extra_fish_cooked"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="11"/>
+            <column name="name" value="Cá"/>
+            <column name="sku" value="EX003X"/>
+            <column name="code" value="extra_fish_cooked"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="12"/>
+            <column name="name" value="Tôm"/>
+            <column name="sku" value="EX004S"/>
+            <column name="code" value="extra_shrimp_cooked"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="13"/>
+            <column name="name" value="Tôm"/>
+            <column name="sku" value="EX004L"/>
+            <column name="code" value="extra_shrimp_cooked"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="14"/>
+            <column name="name" value="Tôm"/>
+            <column name="sku" value="EX004X"/>
+            <column name="code" value="extra_shrimp_cooked"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="15"/>
+            <column name="name" value="Mực"/>
+            <column name="sku" value="EX005S"/>
+            <column name="code" value="extra_squid_cooked"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="16"/>
+            <column name="name" value="Mực"/>
+            <column name="sku" value="EX005L"/>
+            <column name="code" value="extra_squid_cooked"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="17"/>
+            <column name="name" value="Mực"/>
+            <column name="sku" value="EX005X"/>
+            <column name="code" value="extra_squid_cooked"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="18"/>
+            <column name="name" value="Thịt hun khói"/>
+            <column name="sku" value="EX006S"/>
+            <column name="code" value="extra_bacon"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="19"/>
+            <column name="name" value="Thịt hun khói"/>
+            <column name="sku" value="EX006L"/>
+            <column name="code" value="extra_bacon"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="20"/>
+            <column name="name" value="Thịt hun khói"/>
+            <column name="sku" value="EX006X"/>
+            <column name="code" value="extra_bacon"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="21"/>
+            <column name="name" value="Gà"/>
+            <column name="sku" value="EX007S"/>
+            <column name="code" value="extra_chicken_breast"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="22"/>
+            <column name="name" value="Gà"/>
+            <column name="sku" value="EX007L"/>
+            <column name="code" value="extra_chicken_breast"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="23"/>
+            <column name="name" value="Gà"/>
+            <column name="sku" value="EX007X"/>
+            <column name="code" value="extra_chicken_breast"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="24"/>
+            <column name="name" value="Ngao"/>
+            <column name="sku" value="EX008S"/>
+            <column name="code" value="extra_clam"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="25"/>
+            <column name="name" value="Ngao"/>
+            <column name="sku" value="EX008L"/>
+            <column name="code" value="extra_clam"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="26"/>
+            <column name="name" value="Ngao"/>
+            <column name="sku" value="EX008X"/>
+            <column name="code" value="extra_clam"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="27"/>
+            <column name="name" value="Xúc xích Đức"/>
+            <column name="sku" value="EX009S"/>
+            <column name="code" value="extra_frankfurt_sausage"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="28"/>
+            <column name="name" value="Xúc xích Đức"/>
+            <column name="sku" value="EX009L"/>
+            <column name="code" value="extra_frankfurt_sausage"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="29"/>
+            <column name="name" value="Xúc xích Đức"/>
+            <column name="sku" value="EX009X"/>
+            <column name="code" value="extra_frankfurt_sausage"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="30"/>
+            <column name="name" value="Ớt xanh"/>
+            <column name="sku" value="EX010S"/>
+            <column name="code" value="extra_green_pepper"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="31"/>
+            <column name="name" value="Ớt xanh"/>
+            <column name="sku" value="EX010L"/>
+            <column name="code" value="extra_green_pepper"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="32"/>
+            <column name="name" value="Ớt xanh"/>
+            <column name="sku" value="EX010X"/>
+            <column name="code" value="extra_green_pepper"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="33"/>
+            <column name="name" value="Jăm bông"/>
+            <column name="sku" value="EX011S"/>
+            <column name="code" value="extra_ham"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="34"/>
+            <column name="name" value="Jăm bông"/>
+            <column name="sku" value="EX011L"/>
+            <column name="code" value="extra_ham"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="35"/>
+            <column name="name" value="Jăm bông"/>
+            <column name="sku" value="EX011X"/>
+            <column name="code" value="extra_ham"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="36"/>
+            <column name="name" value="Phômát"/>
+            <column name="sku" value="EX012S"/>
+            <column name="code" value="extra_mozza_cheese"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="37"/>
+            <column name="name" value="Phômát"/>
+            <column name="sku" value="EX012L"/>
+            <column name="code" value="extra_mozza_cheese"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="38"/>
+            <column name="name" value="Phômát"/>
+            <column name="sku" value="EX012X"/>
+            <column name="code" value="extra_mozza_cheese"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="39"/>
+            <column name="name" value="Hành tây"/>
+            <column name="sku" value="EX013S"/>
+            <column name="code" value="extra_onion"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="40"/>
+            <column name="name" value="Hành tây"/>
+            <column name="sku" value="EX013L"/>
+            <column name="code" value="extra_onion"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="41"/>
+            <column name="name" value="Hành tây"/>
+            <column name="sku" value="EX013X"/>
+            <column name="code" value="extra_onion"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="42"/>
+            <column name="name" value="Xúc xích Mỹ"/>
+            <column name="sku" value="EX014S"/>
+            <column name="code" value="extra_pepperonis"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="43"/>
+            <column name="name" value="Xúc xích Mỹ"/>
+            <column name="sku" value="EX014L"/>
+            <column name="code" value="extra_pepperonis"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="44"/>
+            <column name="name" value="Xúc xích Mỹ"/>
+            <column name="sku" value="EX014X"/>
+            <column name="code" value="extra_pepperonis"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="45"/>
+            <column name="name" value="Dứa"/>
+            <column name="sku" value="EX015S"/>
+            <column name="code" value="extra_pineapple"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="46"/>
+            <column name="name" value="Dứa"/>
+            <column name="sku" value="EX015L"/>
+            <column name="code" value="extra_pineapple"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="47"/>
+            <column name="name" value="Dứa"/>
+            <column name="sku" value="EX015X"/>
+            <column name="code" value="extra_pineapple"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="48"/>
+            <column name="name" value="Cá thu"/>
+            <column name="sku" value="EX016S"/>
+            <column name="code" value="extra_tuna"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="49"/>
+            <column name="name" value="Cá thu"/>
+            <column name="sku" value="EX016L"/>
+            <column name="code" value="extra_tuna"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="50"/>
+            <column name="name" value="Cá thu"/>
+            <column name="sku" value="EX016X"/>
+            <column name="code" value="extra_tuna"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="51"/>
+            <column name="name" value="Cá cơm"/>
+            <column name="sku" value="EX017S"/>
+            <column name="code" value="extra_anchovies"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="52"/>
+            <column name="name" value="Cá cơm"/>
+            <column name="sku" value="EX017L"/>
+            <column name="code" value="extra_anchovies"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="53"/>
+            <column name="name" value="Cá cơm"/>
+            <column name="sku" value="EX017X"/>
+            <column name="code" value="extra_anchovies"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="54"/>
+            <column name="name" value="Ôliu đen"/>
+            <column name="sku" value="EX018S"/>
+            <column name="code" value="extra_olives"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="55"/>
+            <column name="name" value="Ôliu đen"/>
+            <column name="sku" value="EX018L"/>
+            <column name="code" value="extra_olives"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="56"/>
+            <column name="name" value="Ôliu đen"/>
+            <column name="sku" value="EX018X"/>
+            <column name="code" value="extra_olives"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="57"/>
+            <column name="name" value="Ba chỉ bò nướng"/>
+            <column name="sku" value="EX019S"/>
+            <column name="code" value="extra_beef_belly"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="58"/>
+            <column name="name" value="Ba chỉ bò nướng"/>
+            <column name="sku" value="EX019L"/>
+            <column name="code" value="extra_beef_belly"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="59"/>
+            <column name="name" value="Ba chỉ bò nướng"/>
+            <column name="sku" value="EX019X"/>
+            <column name="code" value="extra_beef_belly"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="60"/>
+            <column name="name" value="Bắp"/>
+            <column name="sku" value="EX020S"/>
+            <column name="code" value="extra_corn"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="61"/>
+            <column name="name" value="Bắp"/>
+            <column name="sku" value="EX020L"/>
+            <column name="code" value="extra_corn"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="62"/>
+            <column name="name" value="Bắp"/>
+            <column name="sku" value="EX020X"/>
+            <column name="code" value="extra_corn"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="63"/>
+            <column name="name" value="Thanh Cua"/>
+            <column name="sku" value="EX021S"/>
+            <column name="code" value="extra_crab"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="64"/>
+            <column name="name" value="Thanh Cua"/>
+            <column name="sku" value="EX021L"/>
+            <column name="code" value="extra_crab"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="65"/>
+            <column name="name" value="Thanh Cua"/>
+            <column name="sku" value="EX021X"/>
+            <column name="code" value="extra_crab"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="66"/>
+            <column name="name" value="Sò điệp"/>
+            <column name="sku" value="EX022S"/>
+            <column name="code" value="extra_beef_scallop"/>
+            <column name="size" value="S"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="67"/>
+            <column name="name" value="Sò điệp"/>
+            <column name="sku" value="EX022L"/>
+            <column name="code" value="extra_beef_scallop"/>
+            <column name="size" value="L"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="68"/>
+            <column name="name" value="Sò điệp"/>
+            <column name="sku" value="EX022X"/>
+            <column name="code" value="extra_beef_scallop"/>
+            <column name="size" value="XL"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="69"/>
+            <column name="name" value="Lườn gà nướng"/>
+            <column name="sku" value="EX023N"/>
+            <column name="code" value="grilled_ck_breast"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="70"/>
+            <column name="name" value="Bò nhập khẩu"/>
+            <column name="sku" value="EX024N"/>
+            <column name="code" value="beef_salad"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="71"/>
+            <column name="name" value="Cá hồi"/>
+            <column name="sku" value="EX025N"/>
+            <column name="code" value="extra_salmon_fillet"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="72"/>
+            <column name="name" value="Tôm nướng"/>
+            <column name="sku" value="EX026N"/>
+            <column name="code" value="extra_grilled_prawns"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="73"/>
+            <column name="name" value="Phomát"/>
+            <column name="sku" value="EX027N"/>
+            <column name="code" value="cheese"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="74"/>
+            <column name="name" value="Lá bột mỳ"/>
+            <column name="sku" value="EX028N"/>
+            <column name="code" value="pasta_sheet"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="75"/>
+            <column name="name" value="Trứng"/>
+            <column name="sku" value="EX029N"/>
+            <column name="code" value="egg"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="2"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="76"/>
+            <column name="name" value="Chín vừa"/>
+            <column name="sku" value="CO001N"/>
+            <column name="code" value="medium_rare"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="3"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="77"/>
+            <column name="name" value="Chín tới"/>
+            <column name="sku" value="CO002N"/>
+            <column name="code" value="medium"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="3"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="78"/>
+            <column name="name" value="Chín kĩ"/>
+            <column name="sku" value="CO003N"/>
+            <column name="code" value="well_done"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="3"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="79"/>
+            <column name="name" value="Xốt Guacomole"/>
+            <column name="sku" value="SA001N"/>
+            <column name="code" value="sauce_guacomole"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="80"/>
+            <column name="name" value="Xốt Salsa"/>
+            <column name="sku" value="SA002N"/>
+            <column name="code" value="sauce_salsa"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="81"/>
+            <column name="name" value="Xốt Sour Cream"/>
+            <column name="sku" value="SA003N"/>
+            <column name="code" value="sauce_sour_cream"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="82"/>
+            <column name="name" value="Xốt Trio"/>
+            <column name="sku" value="SA004N"/>
+            <column name="code" value="sauce_trio"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="83"/>
+            <column name="name" value="Mixed cheese"/>
+            <column name="sku" value="SA005N"/>
+            <column name="code" value="mixed_cheese"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="84"/>
+            <column name="name" value="Xốt nấm rơm"/>
+            <column name="sku" value="SA006N"/>
+            <column name="code" value="sauce_straw_mushroom"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="85"/>
+            <column name="name" value="Xốt kem tiêu xanh"/>
+            <column name="sku" value="SA007N"/>
+            <column name="code" value="sauce_green_pepper_cream"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="86"/>
+            <column name="name" value="Xốt tiêu xanh"/>
+            <column name="sku" value="SA008N"/>
+            <column name="code" value="sauce_green_pepper"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="4"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="87"/>
+            <column name="name" value="Khoai tây nghiền"/>
+            <column name="sku" value="PO001N"/>
+            <column name="code" value="mashed_potato"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="5"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="88"/>
+            <column name="name" value="Khoai tây múi chiên"/>
+            <column name="sku" value="PO002N"/>
+            <column name="code" value="wedge_fries"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="5"/>
+        </insert>
+        <insert tableName="option_detail">
+            <column name="id" value="89"/>
+            <column name="name" value="Khoai tây sợi chiên"/>
+            <column name="sku" value="PO003N"/>
+            <column name="code" value="shoestring_fries"/>
+            <column name="status" value="ACTIVE"/>
+            <column name="option_id" value="5"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

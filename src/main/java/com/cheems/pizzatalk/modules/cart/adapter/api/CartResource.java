@@ -40,6 +40,7 @@ public class CartResource {
     @GetMapping("/carts/all")
     public ResponseEntity<List<Cart>> getAllCarts(CartCriteria criteria) {
         log.debug("REST request to get all carts by criteria: {}", criteria);
+        criteria.addFetchAttribute(CartMapper.DOMAIN_CART_ITEMS);
         return ResponseEntity.ok().body(queryCartUseCase.findListByCriteria(criteria));
     }
 

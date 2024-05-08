@@ -1,11 +1,15 @@
 package com.cheems.pizzatalk.modules.cartitem.adapter.database;
 
 import com.cheems.pizzatalk.common.exception.AdapterException;
+import com.cheems.pizzatalk.common.filter.RangeFilter;
 import com.cheems.pizzatalk.common.service.QueryService;
 import com.cheems.pizzatalk.common.specification.SpecificationUtils;
 import com.cheems.pizzatalk.entities.CartEntity_;
 import com.cheems.pizzatalk.entities.CartItemEntity;
 import com.cheems.pizzatalk.entities.CartItemEntity_;
+import com.cheems.pizzatalk.entities.CartItemOptionEntity;
+import com.cheems.pizzatalk.entities.OptionDetailEntity;
+import com.cheems.pizzatalk.entities.OptionDetailEntity_;
 import com.cheems.pizzatalk.entities.ProductEntity_;
 import com.cheems.pizzatalk.entities.mapper.CartItemMapper;
 import com.cheems.pizzatalk.entities.mapper.CartMapper;
@@ -19,6 +23,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -113,12 +119,26 @@ public class QueryCartItemAdapter extends QueryService<CartItemEntity> implement
                         )
                     );
             }
+            if (criteria.getOptionDetailId() != null) {
+                specification = specification.and(buildSpecificationFindByOptionDetailId(criteria.getOptionDetailId()));
+            }
             if (!CollectionUtils.isEmpty(fetchAttributes)) {
                 specification = specification.and(SpecificationUtils.fetchAttributes(cartItemMapper.toEntityAttributes(fetchAttributes)));
             }
             specification = specification.and(SpecificationUtils.distinct(true));
         }
         return specification;
+    }
+
+    private Specification<CartItemEntity> buildSpecificationFindByOptionDetailId(RangeFilter<Long> optionDetailId) {
+        if (optionDetailId.getIn() != null) {
+            return (root, query, builder) -> {
+                Join<CartItemEntity, CartItemOptionEntity> joinCartItemOption = SpecificationUtils.getJoinFetch(root, "cartItemOptions", JoinType.LEFT, false);
+                Join<CartItemOptionEntity, OptionDetailEntity> joinOptionDetail = SpecificationUtils.getJoinFetch(joinCartItemOption, "optionDetail", JoinType.LEFT, false);
+                return joinOptionDetail.get(OptionDetailEntity_.id).in(optionDetailId.getIn());
+            };
+        }
+        return null;
     }
 
     private CartItem toDomainModel(CartItemEntity cartItemEntity, Set<String> domainAttributes) {

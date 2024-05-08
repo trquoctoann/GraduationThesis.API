@@ -73,6 +73,26 @@ public class QueryStockItemService implements QueryStockItemUseCase {
     }
 
     @Override
+    public Optional<StockItem> findByStoreIdAndOptionDetailId(Long storeId, Long optionDetailId, String... fetchAttributes) {
+        StockItemCriteria criteria = new StockItemCriteria();
+
+        RangeFilter<Long> storeIdFilter = new RangeFilter<>();
+        storeIdFilter.setEquals(storeId);
+
+        RangeFilter<Long> optionDetailIdFilter = new RangeFilter<>();
+        optionDetailIdFilter.setEquals(optionDetailId);
+
+        criteria.setStoreId(storeIdFilter);
+        criteria.setOptionDetailId(optionDetailIdFilter);
+
+        if (fetchAttributes != null) {
+            criteria.setFetchAttributes(Arrays.stream(fetchAttributes).collect(Collectors.toSet()));
+        }
+
+        return findByCriteria(criteria);
+    }
+
+    @Override
     public Optional<StockItem> findByCriteria(StockItemCriteria criteria) {
         return queryStockItemPort.findByCriteria(criteria);
     }
@@ -112,6 +132,36 @@ public class QueryStockItemService implements QueryStockItemUseCase {
         storeIdFilter.setEquals(storeId);
 
         criteria.setStoreId(storeIdFilter);
+        return queryStockItemPort.findListByCriteria(criteria);
+    }
+
+    @Override
+    public List<StockItem> findListByStoreIdAndProductId(Long storeId, Long productId) {
+        StockItemCriteria criteria = new StockItemCriteria();
+
+        RangeFilter<Long> storeIdFilter = new RangeFilter<>();
+        storeIdFilter.setEquals(storeId);
+
+        RangeFilter<Long> productIdFilter = new RangeFilter<>();
+        productIdFilter.setEquals(productId);
+
+        criteria.setStoreId(storeIdFilter);
+        criteria.setProductId(productIdFilter);
+        return queryStockItemPort.findListByCriteria(criteria);
+    }
+
+    @Override
+    public List<StockItem> findListByStoreIdAndOptionDetailId(Long storeId, Long optionDetailId) {
+        StockItemCriteria criteria = new StockItemCriteria();
+
+        RangeFilter<Long> storeIdFilter = new RangeFilter<>();
+        storeIdFilter.setEquals(storeId);
+
+        RangeFilter<Long> optionDetailIdFilter = new RangeFilter<>();
+        optionDetailIdFilter.setEquals(optionDetailId);
+
+        criteria.setStoreId(storeIdFilter);
+        criteria.setOptionDetailId(optionDetailIdFilter);
         return queryStockItemPort.findListByCriteria(criteria);
     }
 }

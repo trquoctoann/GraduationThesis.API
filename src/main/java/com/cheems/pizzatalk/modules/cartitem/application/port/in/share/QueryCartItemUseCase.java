@@ -4,6 +4,8 @@ import com.cheems.pizzatalk.modules.cartitem.application.port.in.query.CartItemC
 import com.cheems.pizzatalk.modules.cartitem.domain.CartItem;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,4 +23,6 @@ public interface QueryCartItemUseCase {
     Page<CartItem> findPageByCriteria(CartItemCriteria criteria, Pageable pageable);
 
     List<CartItem> findListByCartId(Long cartId);
+
+    Optional<CartItem> findDuplicateCartItem(Long cartId, Long productId, Set<Long> optionDetailIds);
 }

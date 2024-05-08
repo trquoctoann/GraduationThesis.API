@@ -51,12 +51,19 @@ public class StockItemLifecycleService implements StockItemLifecycleUseCase {
     @Override
     public StockItem create(CreateStockItemCommand command) {
         log.debug("Saving stock item: {} to store id: {}", command, command.getStoreId());
-        if (queryStockItemUseCase.findByStoreIdAndProductId(command.getStoreId(), command.getProductId()).isPresent()) {
-            throw new BusinessException("Item already assigned to this store");
-        } else if (command.getProductId() != null && command.getOptionDetailId() != null) {
+        if (command.getProductId() != null && command.getOptionDetailId() != null) {
             throw new BusinessException("Item must be specified as either a product or an option detail, but not both");
         } else if (command.getProductId() == null && command.getOptionDetailId() == null) {
             throw new BusinessException("Item must not be null");
+        }
+
+        if (
+            (command.getProductId() != null &&
+                queryStockItemUseCase.findByStoreIdAndProductId(command.getStoreId(), command.getProductId()).isPresent()) ||
+            (command.getOptionDetailId() != null &&
+                queryStockItemUseCase.findByStoreIdAndOptionDetailId(command.getStoreId(), command.getOptionDetailId()).isPresent())
+        ) {
+            throw new BusinessException("Item already assigned to this store");
         }
         String[] stockInformation = getSkuOfStockItem(command);
 

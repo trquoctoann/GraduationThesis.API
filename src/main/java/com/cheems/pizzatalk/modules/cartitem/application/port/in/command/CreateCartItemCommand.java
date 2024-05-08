@@ -16,9 +16,6 @@ public class CreateCartItemCommand extends CommandSelfValidating<CreateCartItemC
     private Integer quantity;
 
     @NotNull
-    private Float price;
-
-    @NotNull
     private Long cartId;
 
     @NotNull
